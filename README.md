@@ -57,8 +57,15 @@ Vous pouvez aussi annuler le commit en faisant un clic droit sur l'élément
 précédent le commit dans l'historique des modifications puis "Reset Current 
 Branch To Here" avec l'option "soft".
 
-## Avant un commit
+### Avant un commit
 
 Si vous avez installé une nouvelle dépendance à une bibliothèque sur votre 
 machine, pensez à mettre à jour le fichier "requirements.txt" en exécutant 
 la commande `pip freeze > ./requirements.txt` au plus haut niveau.
+
+## Éditer README.md
+
+Par défaut, la vue Pycharm permet seulement la lecture des fichiers .md. 
+Lorsqu'un fichier .md est ouvert, en haut à droite de la fenêtre se 
+trouvent 3 boutons permettant de modifier la vue du fichier (preview seule, 
+édition seule, édition + preview à côté).
