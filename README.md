@@ -14,7 +14,7 @@ ensuite revenir à l'UI + récente une fois le setup fait) :
 - https://www.youtube.com/watch?v=8ZEssR8VTKo pour importer sur Github un 
   projet local que vous avez sur Pycharm
 
-Rmq: une fois le projet lié, soyiez bien sûrs d'avoir ajouté un 
+Rmq : une fois le projet lié, soyez bien sûrs d'avoir ajouté un 
 interpréteur Python puis installez les packages requis du fichier 
 "requirements.txt". (En ouvrant ce fichier, Pycharm vous proposera 
 automatiquement de les installer.)
