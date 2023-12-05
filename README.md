@@ -16,25 +16,27 @@ ensuite revenir à l'UI + récente une fois le setup fait) :
 
 Rmq : une fois le projet lié, soyez bien sûrs d'avoir ajouté un 
 interpréteur Python puis installez les packages requis du fichier 
-"requirements.txt". (En ouvrant ce fichier, Pycharm vous proposera 
+"requirements.txt" si Pycharm ne l'a pas déjà fait. (En ouvrant ce fichier, 
+Pycharm vous 
+proposera 
 automatiquement de les installer.)
 
-## Add
+### Add
 
 Si vous créez un nouveau fichier, qui n'était pas encore sur Github, il 
 faut l'ajouter si vous voulez qu'il soit pris en compte dans votre prochain 
-push. Pour cela:
+push. Pour cela :
 1. Clic droit (dans l'arborescence) sur le dossier/fichier à ajouter
 2. Clic sur "Git"
 3. Clic sur "Add"
 
-## Update project - Commit - Push
+### Update project - Commit - Push
 
 Une fois Github lié, un nouveau menu déroulant a dû apparaitre en haut à 
 gauche de Pycharm, à côté du nom du projet. Ce menu permet, entre autres, 
 de récupérer une copie du projet sur Github (update), de commit et de push.
 
-### Commit et push
+#### Commit et push
 
 1. Dans le menu à gauche de la fenêtre, sélectionnez les fichiers à commit 
 (ceux modifiés et ceux que vous avez ajoutés avec "Add"). 
