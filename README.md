@@ -4,11 +4,9 @@ Projet de groupe ENSISA messagerie en ligne.
 
 ## Connexion Github - Pycharm:
 
-Pour utiliser Github avec Pycharm, suivez ces vidéos (pour trouver tous les 
-menus de la vidéo, comme l'interface a changé entre temps, vous pouvez 
-revenir temporairement à l'ancienne interface en cliquant sur l'engrenage 
-en haut à droite de Pycharm puis sur "Switch to classic UI" (vous pourrez 
-ensuite revenir à l'UI + récente une fois le setup fait) :
+Pour utiliser Github avec Pycharm, suivez ces vidéos (dans le nouvel 
+affichage Pycharm, le menu en haut à gauche s'obtient en cliquant sur les 4 
+barres horizontales en haut à gauche de la fenêtre) :
 - https://www.youtube.com/watch?v=cAnWazo5pFU pour connecter un projet 
   Github existant avec votre Pycharm.
 - https://www.youtube.com/watch?v=8ZEssR8VTKo pour importer sur Github un 
@@ -17,9 +15,7 @@ ensuite revenir à l'UI + récente une fois le setup fait) :
 Rmq : une fois le projet lié, soyez bien sûrs d'avoir ajouté un 
 interpréteur Python puis installez les packages requis du fichier 
 "requirements.txt" si Pycharm ne l'a pas déjà fait. (En ouvrant ce fichier, 
-Pycharm vous 
-proposera 
-automatiquement de les installer.)
+Pycharm vous proposera automatiquement de les installer.)
 
 ### Add
 
