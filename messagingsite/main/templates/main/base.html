@@ -1,0 +1,48 @@
+<!doctype HTML>
+{% load static %}
+<html lang="fr">
+    <head>
+        <meta charset="utf_8"/>
+        <title>ENSISINGERIE</title>
+        {% block styles %}
+            <link rel="stylesheet"
+                  href="{% static 'main/style.css' %}"/>
+        {% endblock %}
+    </head>
+    <body>
+        <header id="bande-top">
+            <div class="head-left">
+        <a href="{% url 'main:home' %}"><img src="{% static 'main/img/TODO' %}" alt="Logo" height="100px" width="100px" /></a>
+    </div>
+    <div>
+        <p id="title"><a href="{% url 'main:home' %}">ENSISINGERIE</a></p>
+    </div>
+    <div class="head-right">
+        <ul>
+            <li class="param" href><div class="toggle-switch">
+                <input type="checkbox" id="dark-theme">
+                <label for="dark-theme">
+                    <img width="25px" height="25px" src="TODO" alt="Light Mode" draggable="false">
+                    <img width="25px" height="25px" src="TODO" alt="Dark Mode" draggable="false">
+                </label>
+            </div>
+            <script>
+                var dark = document.getElementById("dark-theme");
+                dark.onclick = function(){
+                    document.body.classList.toggle("light-theme");
+                }
+            </script>
+            </ul>
+    </div>
+        </header>
+        {% block content %} {% endblock %}
+        <footer>
+            <p>TODO</p>
+        </footer>
+
+        {% block js %}
+            <script type="text/javascript"
+                    src="{% static 'main/script.js' %}"></script>
+        {% endblock %}
+    </body>
+</html>
