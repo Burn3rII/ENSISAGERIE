@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'api.apps.ApiConfig',
+    'main.apps.MainConfig',
     'users.apps.UsersConfig',  # Important que l'app users soit avant les
     # contrib.
     'django.contrib.admin',
