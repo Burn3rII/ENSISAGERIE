@@ -1,0 +1,25 @@
+Utilisateurs (inscription, connexion, profils, changement de mdp)
+Fonctionnalité de création de salons de discussion
+Application avec plusieurs salons de discussion
+Gestion des émojis et des droits
+Fonction de modération
+Notifications
+Statistiques (nb de messages envoyés, nb d'utilisateurs actifs ou non)
+Conversation par messages
+
+User:
+pseudo
+firstname
+lastname
+email
+password
+
+Travail actuel:
+Utilisateurs (inscription, connexion, profils, changement de mdp)
+
+Apps:
+users (gestion utilisateurs, page de profil)
+rooms
+stats
+parameters
+main (relie les pages de salons, de users, de stats)
