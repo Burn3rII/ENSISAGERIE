@@ -9,6 +9,7 @@ Hello, {{ user.username|default:'Guest' }}!
             {% csrf_token %}
             <button type="submit">Logout</button>
         </form>
+        <a href="{% url 'users:profil' %}">My profil</a>
         <a href="{% url 'users:password_change' %}">Change password</a>
     {% else %}
         <a href="{% url 'users:login' %}">Login</a>
