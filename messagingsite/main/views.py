@@ -1,11 +1,9 @@
-# Create your views here.
+from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views.generic.base import TemplateView
 
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, Http404
-from django.template import Template, Context, loader
+class HomeView(TemplateView):
+    template_name = "main/index.html"
 
-
-def home(request):
-    context = {}
-       
-    return render(request, "main/index.html", context)
+class HelpView(TemplateView):
+    template_name = "main/help.html"

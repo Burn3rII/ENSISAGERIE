@@ -5,7 +5,7 @@
         <meta charset="utf_8"/>
         <title>ENSISINGERIE</title>
         {% block styles %}
-            <link rel="stylesheet" href="{% static 'main/style.css' %}"/>
+            <link rel="stylesheet" href="{% static 'main/css/style.css' %}"/>
         {% endblock %}
     </head>
     <body>
@@ -18,22 +18,14 @@
     </div>
     <div class="header-menu">
         <ul>
-            <li class="button"><a href="{% url 'users:login' %}">Connectez vous</a></li>
-            <li class="button"><a href="">Créer un compte</a></li>
-            <li class="button"><a href="">Support</a></li>
+            <li class="button"><a href="{% url 'users:login' %}">Connectez vous / Créez un compte</a></li>
+            <li class="button"><a href="{% url 'main:help' %}">Support</a></li>
             <li class="param" href><div class="toggle-switch">
                 <input type="checkbox" id="theme-switch">
                 <label for="dark-theme">
                     <img width="25px" height="25px" src="TODO" alt="Light Mode" draggable="false">
                     <img width="25px" height="25px" src="TODO" alt="Dark Mode" draggable="false">
                 </label>
-            </div>
-            <script>
-                var dark = document.getElementById("theme-switch");
-                dark.onclick = function(){
-                    document.body.classList.toggle("dark-theme");
-                }
-            </script>
             </ul>
     </div>
         </header>
@@ -43,8 +35,10 @@
         </footer>
 
         {% block js %}
-            <script type="text/javascript"
-                    src="{% static 'main/script.js' %}"></script>
+            <!-- spript jquery -->
+            <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+            <!-- script de base -->
+            <script type="text/javascript" src="{% static 'main/js/script.js' %}"></script>
         {% endblock %}
     </body>
 </html>
