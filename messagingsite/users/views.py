@@ -69,7 +69,7 @@ class CustomPasswordResetCompleteView(PasswordResetCompleteView):
 class ProfilView(FormView):
     template_name = "users/profil.html"
     form_class = UserProfilForm
-    success_url = reverse_lazy('users:profil')
+    success_url = reverse_lazy('users:dashboard')
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -84,3 +84,7 @@ class ProfilView(FormView):
         initial['last_name'] = user.last_name
         initial['email'] = user.email
         return initial
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
