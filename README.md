@@ -65,3 +65,14 @@ Par défaut, la vue Pycharm permet seulement la lecture des fichiers .md.
 Lorsqu'un fichier .md est ouvert, en haut à droite de la fenêtre se 
 trouvent 3 boutons permettant de modifier la vue du fichier (preview seule, 
 édition seule, édition + preview à côté).
+
+## Pages Django utiles
+Page du user management : https://docs.djangoproject.com/en/4.2/topics/auth/default/
+
+Pour la création de vues en dérivant une des classes View : https://docs.djangoproject.com/en/4.2/ref/class-based-views/
+
+Pour des exemples de dérivation de classes View : https://docs.djangoproject.com/en/4.2/ref/class-based-views/generic-editing/#formview
+
+Pour la création de formulaires en dérivant la classe ModelForm : https://docs.djangoproject.com/en/4.2/topics/forms/modelforms/
+
+Pour tout ce qui concerne le type User (et équivalents) : https://docs.djangoproject.com/en/4.2/ref/contrib/auth/
