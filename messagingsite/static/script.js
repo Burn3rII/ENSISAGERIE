@@ -1,8 +1,12 @@
 window.onload = function(){
-    var theme = localStorage.getItem('theme')
+    var theme = localStorage.getItem('theme');
     switch (theme) {
         case 'dark-theme':
-            document.body.classList.toggle("dark-theme");
+            //document.body.classList.toggle("dark-theme");
+            $(document).toggleClass("dark-theme");
+            case 'light-theme':
+            localStorage.setItem("theme","light-theme")
+            break;
             break;
         default:
             localStorage.setItem("theme","light-theme")
@@ -10,8 +14,9 @@ window.onload = function(){
 }
 
 $("#theme-switch").click(function(){
-    var theme = localStorage.getItem('theme')
-    document.body.classList.toggle("dark-theme");
+    var theme = localStorage.getItem('theme');
+    $(document).toggleClass("dark-theme");
+    //document.body.classList.toggle("dark-theme");
     switch (theme) {
         case 'dark-theme':
             localStorage.setItem("theme","light-theme")
