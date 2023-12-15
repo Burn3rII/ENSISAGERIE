@@ -4,9 +4,9 @@ window.onload = function(){
         case 'dark-theme':
             //document.body.classList.toggle("dark-theme");
             $(document).toggleClass("dark-theme");
+            break;
             case 'light-theme':
             localStorage.setItem("theme","light-theme")
-            break;
             break;
         default:
             localStorage.setItem("theme","light-theme")
