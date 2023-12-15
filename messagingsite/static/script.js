@@ -3,10 +3,6 @@ window.onload = function(){
     switch (theme) {
         case 'dark-theme':
             document.body.classList.toggle("dark-theme");
-            localStorage.setItem("theme","dark-theme")
-            break;
-        case 'light-theme':
-            localStorage.setItem("theme","light-theme")
             break;
         default:
             localStorage.setItem("theme","light-theme")
