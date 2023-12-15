@@ -3,7 +3,7 @@ window.onload = function(){
     switch (theme) {
         case 'dark-theme':
             //document.body.classList.toggle("dark-theme");
-            $(document).toggleClass("dark-theme");
+            $(document.body).toggleClass("dark-theme");
             break;
             case 'light-theme':
             localStorage.setItem("theme","light-theme")
@@ -15,7 +15,7 @@ window.onload = function(){
 
 $("#theme-switch").click(function(){
     var theme = localStorage.getItem('theme');
-    $(document).toggleClass("dark-theme");
+    $(document.body).toggleClass("dark-theme");
     //document.body.classList.toggle("dark-theme");
     switch (theme) {
         case 'dark-theme':
