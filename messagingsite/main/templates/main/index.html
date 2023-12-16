@@ -2,9 +2,16 @@
 {% load static %}
 
 {% block content %}
-<section>
-    <div>
-        <p>Présentation des fonctionnalités</p>
-    </div>
-</section>
+<div>
+    <p>Présentation des fonctionnalités</p>
+    <p>Bonjour {{ user.username|default:'invité' }} !</p>
+</div>
+
+<div>
+    {% if user.is_authenticated %}
+        <a href="{% url 'users:profil' %}" class="type1">Mon profil</a>
+        <a href="{% url 'users:password_change' %}" class="type1">Modifier
+            mot de passe</a>
+    {% endif %}
+</div>
 {% endblock %}

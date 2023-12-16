@@ -1,66 +1,117 @@
+/*------------------------------Variables-----------------------------------*/
+
 @import url('https://fonts.googleapis.com/css?family=Roboto:700');
 
 :root {
-    --text-color: rgb(30, 30, 30);
-    --highlight-color: rgb(220,220,220);
+    --main-color-1: #ECC19C;
+    --main-color-2: #1E847F;
+
+    --type1-a-color: #AAB2B7;
+    --a-hover-color: #34495E;
+    --a-active-color: #0000FF;
+
+    --font-size: 16px;
 }
 
+/*------------------------------Global---------------------------------------*/
+
 .dark-theme {
-    --text-color: rgb(220,220,220);
-    --highlight-color: rgb(30, 30, 30);
+    --main-color-1: #DCDCDC;
+    --main-color-2: #1E1E1E;
+}
+
+a.type1 {
+    color: var(--type1-a-color);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--a-hover-color);
+}
+
+a:active {
+    color: var(--a-active-color);
 }
 
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', Arial, Helvetica, sans-serif;
-    color: var(--text-color);
-    background-color: var(--highlight-color);
+    color: var(--main-color-1);
 }
 
-.header-logo {
-    display: inline-block;
-    text-decoration: none;
-    width: 15%;
+body {
+    font-size: var(--font-size);
+    font-family: 'Roboto', Arial;
+    background-color: var(--main-color-2);
+    margin-bottom: 10rem;
 }
 
+header {
+    margin: 1rem 1rem 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
 
-.header-title {
-    display: inline-block;
+header > * {
+    margin-right: 1rem;
+}
+
+header a {
     text-decoration: none;
+}
+
+#home-link-logo {
+    flex: 1;
+}
+
+#logo {
+    width: 6rem;
+    height: 6rem;
 }
 
 #title {
-    text-align:center;
-    display: inline-block;
-    margin-bottom: 10%;
+    flex: 2;
+    font-family: Courier New, monospace;
 }
 
-#title a {
-    text-decoration: none;
-    font-size: 30px;
+#header-menu {
+    flex: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
-.header-menu {
-    display: inline-block;
-    margin: auto;
-    width: 60%;
-    height: 100%;
-    text-decoration: none;
+#header-menu > * {
+    flex: 1;
 }
 
-.header-menu ul {
-    list-style-type: none;
-    text-decoration: none;
+@media screen and (max-width:1000px){
+    #header-menu {
+        flex-direction: column;
+    }
 }
 
-.header-menu ul li {
-    display: inline-block;
-    padding: 5%;
+#header-menu button[type=submit] {
+    font-family: 'Roboto', Arial;
+    font-size: var(--font-size);
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }
 
-.button a {
-    margin: 20px;
+#header-menu button[type=submit]:hover {
+    color: var(--a-hover-color);
+}
+
+#header-menu button[type=submit]:active {
+    color: var(--a-active-color);
+}
+
+#main-content {
+    margin: 1rem 1rem 0 1rem;
 }
 
 footer p {
@@ -72,6 +123,49 @@ footer p {
     bottom: 0;
     width: 100%;
     height: 3rem;
-    color: var(--highlight-color);
-    background-color: var(--text-color);
+    color: var(--main-color-2);
+    background-color: var(--main-color-1);
+}
+
+/*------------------------------Forms----------------------------------------*/
+
+.form-holder .form-content {
+    display: flex;
+    padding: 1rem 10%;
+}
+
+.form-content .form-items {
+    width: 100%;
+    padding: 2rem;
+    border: 0.2rem solid var(--main-color-1);
+    border-radius: 0.7rem;
+}
+
+.form-content label {
+    color: var(--main-color-1);
+}
+
+.form-content input[type=text], .form-content input[type=email],
+.form-content input[type=password] {
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    padding: 0.5rem 0;
+    border: 0;
+    border-radius: 0.5rem;
+    outline: 0;
+    text-indent: 0.5rem;
+    color: var(--main-color-2);
+    background-color: var(--main-color-1);
+}
+
+input[type=submit] {
+    padding: 5px;
+    border-radius: 6px;
+    color: var(--main-color-2);
+    background-color: var(--main-color-1);
+}
+
+input[type=submit]:hover, input[type=submit]:focus, input[type=submit]:active{
+    background-color: #495056;
 }
