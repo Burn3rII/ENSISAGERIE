@@ -26,6 +26,7 @@
                     <a href="{% url 'users:login' %}">Se connecter / Créer
                         un compte</a>
                 {% else %}
+                    <a href="{% url 'users:profil' %}">Mon profil</a>
                     <form action="{% url 'users:logout' %}" method="post">
                         {% csrf_token %}
                         <button type="submit">Se déconnecter</button>

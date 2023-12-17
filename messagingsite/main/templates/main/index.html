@@ -3,15 +3,36 @@
 
 {% block content %}
 <div>
-    <p>Présentation des fonctionnalités</p>
-    <p>Bonjour {{ user.username|default:'invité' }} !</p>
+    <h2>Bonjour {{ user.username|default:'invité' }} !</h2>
 </div>
 
-<div>
-    {% if user.is_authenticated %}
-        <a href="{% url 'users:profil' %}" class="type1">Mon profil</a>
-        <a href="{% url 'users:password_change' %}" class="type1">Modifier
-            mot de passe</a>
+<div id="welcome-section">
+    <h3>Bienvenue sur Ensisingerie, la messagerie qui simplifie la
+        communication et la collaboration.</h3>
+    {% if not user.is_authenticated %}
+    <p>Connectez-vous ou créez un compte pour commencer.</p>
     {% endif %}
+</div>
+
+<div id="updates-section">
+    <h3>Dernières mises à jour et annonces</h3>
+    <ul>
+        <li>Nouvelle fonctionnalité : Possibilité de modifier son mot de
+            passe</li>
+        <li>Amélioration de l'interface utilisateur</li>
+        <li>Bientôt : possibilité de créer un salon de discussion !</li>
+    </ul>
+</div>
+
+<div id="features-section">
+    <h2>Fonctionnalités principales</h2>
+    <ul>
+        <li>Communication instantanée</li>
+        <li>Gestion intuitive des messages</li>
+        <li>Sécurité avancée des données</li>
+    </ul>
+</div>
+
+<div id="illustration-section">
 </div>
 {% endblock %}

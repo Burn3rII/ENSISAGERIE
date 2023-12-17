@@ -1,4 +1,4 @@
-window.onload = function(){
+window.onload = function() {
     var theme = localStorage.getItem('theme');
     switch (theme) {
         case 'dark-theme':
@@ -9,7 +9,7 @@ window.onload = function(){
     }
 }
 
-$("#theme-switch").click(function(){
+$("#theme-switch").click(function() {
     var theme = localStorage.getItem('theme');
     $(document.body).toggleClass("dark-theme");
     switch (theme) {
