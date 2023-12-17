@@ -13,7 +13,7 @@ from .forms import CustomUserCreationForm, UserProfilForm
 from django.contrib.auth import login
 
 
-class CustomUserCreationView(CreateView):
+class UserCreationView(CreateView):
     template_name = 'users/register.html'
     form_class = CustomUserCreationForm
     success_url = reverse_lazy('main:home')

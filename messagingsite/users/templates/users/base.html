@@ -36,8 +36,10 @@
                 <div>
                     <input type="button" id="theme-switch">
                     <label for="theme-switch">
-                        <img width="25px" height="25px" src="TODO" alt="Light Mode" draggable="false">
-                        <img width="25px" height="25px" src="TODO" alt="Dark Mode" draggable="false">
+                        <img width="25px" height="25px" src="TODO"
+                             alt="Light Mode" draggable="false">
+                        <img width="25px" height="25px" src="TODO"
+                             alt="Dark Mode" draggable="false">
                     </label>
                 </div>
             </nav>
@@ -53,10 +55,14 @@
 
         {% block js %}
             <!-- spript jquery -->
-            <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+                    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+                    crossorigin="anonymous"></script>
             <!-- script de base -->
-            <script type="text/javascript" src="{% static 'script.js' %}"></script>
-            <script type="text/javascript" src="{% static 'users/js/script.js' %}"></script>
+            <script type="text/javascript"
+                    src="{% static 'script.js' %}"></script>
+            <script type="text/javascript"
+                    src="{% static 'users/js/script.js' %}"></script>
         {% endblock %}
     </body>
 </html>

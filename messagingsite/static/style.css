@@ -17,7 +17,7 @@
 
 .dark-theme {
     --primary-color: #1E1E1E;
-    --secondary-color: #DCDCDC;
+    --secondary-color: #D2691E;
 }
 
 a.type1 {
@@ -95,7 +95,7 @@ header a {
     flex: 1;
 }
 
-@media screen and (max-width:1000px){
+@media screen and (max-width:1000px) {
     #header-menu {
         flex-direction: column;
     }
@@ -166,8 +166,19 @@ footer p {
     background-color: var(--secondary-color);
 }
 
+input[type=text] {
+    padding: 0.5rem 0;
+    border: 0;
+    border-radius: 0.5rem;
+    outline: 0;
+    text-indent: 0.5rem;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+}
+
 input[type=submit] {
     padding: 5px;
+    margin-bottom: 0.5rem;
     border-radius: 6px;
     color: var(--primary-color);
     background-color: var(--secondary-color);
