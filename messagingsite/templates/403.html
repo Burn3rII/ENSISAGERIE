@@ -12,8 +12,12 @@
     <body>
 
         <section>
-            <p> Erreur 500 </p>
-            <h1> Erreur Serveur </h1>
+            <p> Erreur 403 </p>
+            <h1> Accès interdit </h1>
+            {% if not user.is_authenticated %}
+                <p> Veuillez vous <a href="{% url 'users:login' %}">connecter ou créer
+                    un compte</a> avant d'utiliser ce service</p>
+            {% endif %}
         </section>
 
         {% block js %}
