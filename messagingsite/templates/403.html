@@ -1,44 +1,14 @@
-<!doctype HTML>
+{% extends "base_error.html" %}
 {% load static %}
-<html lang="fr">
-    <head>
-        <meta charset="utf_8"/>
-        <title>Ensisingerie</title>
-        {% block styles %}
-            <link type="text/css" rel="stylesheet" href="{% static 'style.css' %}"/>
-            <link type="text/css" rel="stylesheet" href="{% static 'error_style.css' %}"/>
-        {% endblock %}
-    </head>
 
-    <body>
+{% block content %}
 
-        <section>
-
-            <div class="error_div">
-                <p id="Error_code"> Erreur 403 </p>
-            </div>
-            <div class="error_div">
-                <img src="{% static 'images/error403.png' %}" alt="Error 403" id="Error_logo"/>
-                <h1 id="Error_descriptor"> Accès interdit </h1>
-            </div>
-            <div class="error_div">
-                {% if not user.is_authenticated %}
-                    <p id="Error_extra"> Veuillez vous <a href="{% url 'users:login' %}">connecter ou créer
-                    un compte</a> avant d'utiliser ce service</p>
-                {% endif %}
-            </div>
-
-        </section>
-
-        {% block js %}
-            <!-- spript jquery -->
-            <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-                    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-                    crossorigin="anonymous"></script>
-            <!-- script de base -->
-            <script type="text/javascript"
-                    src="{% static 'script.js' %}"></script>
-        {% endblock %}
-
-    </body>
-</html>
+    <div>
+        <p id="Error_code"> Erreur 403 </p>
+    </div>
+    <div>
+        <img src="{% static 'images/error403.png' %}" alt="Error 403" id="Error_logo"/>
+        <h1 id="Error_descriptor"> Accès interdit </h1>
+    </div>
+        
+{% endblock %}

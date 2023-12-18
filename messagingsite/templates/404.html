@@ -1,38 +1,14 @@
-<!doctype HTML>
+{% extends "base_error.html" %}
 {% load static %}
-<html lang="fr">
-    <head>
-        <meta charset="utf_8"/>
-        <title>Ensisingerie</title>
-        {% block styles %}
-            <link type="text/css" rel="stylesheet" href="{% static 'style.css' %}"/>
-            <link type="text/css" rel="stylesheet" href="{% static 'error_style.css' %}"/>
-        {% endblock %}
-    </head>
 
-    <body>
+{% block content %}
 
-        <section>
-
-            <div class="error_div">
-                <p id="Error_code"> Erreur 404 </p>
-            </div>
-            <div class="error_div">
-                <img src="{% static 'images/error404.png' %}" alt="Error 404" id="Error_logo"/>
-                <h1 id="Error_descriptor"> Vous avez glissé hors de notre site </h1>
-            </div>
-
-        </section>
-
-        {% block js %}
-            <!-- spript jquery -->
-            <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-                    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-                    crossorigin="anonymous"></script>
-            <!-- script de base -->
-            <script type="text/javascript"
-                    src="{% static 'script.js' %}"></script>
-        {% endblock %}
-
-    </body>
-</html>
+    <div>
+        <p id="Error_code"> Erreur 404 </p>
+    </div>
+    <div>
+        <img src="{% static 'images/error404.png' %}" alt="Error 404" id="Error_logo"/>
+        <h2 id="Error_descriptor"> Vous avez glissé hors de notre site </h1>
+    </div>
+        
+{% endblock %}
