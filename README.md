@@ -2,6 +2,16 @@
 
 Projet de groupe ENSISA messagerie en ligne.
 
+## Lancer le serveur avec debug = false:
+
+/ ! \ Prérequis : avoir installer un distributeur de fichiers statiques, ici whitenoise ( voir requirement.txt )
+
+D'abord centraliser les fichiers statiques avec la commande :
+- python manage.py collectstatic
+Puis on lance le serveur :
+- python manage.py runserver
+
+
 ## Connexion Github - Pycharm:
 
 Pour utiliser Github avec Pycharm, suivez ces vidéos (dans le nouvel 

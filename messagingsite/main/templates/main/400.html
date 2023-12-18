@@ -1,0 +1,14 @@
+{% extends "main/base_error.html" %}
+{% load static %}
+
+{% block content %}
+
+    <div>
+        <p id="Error_code"> Erreur 400 </p>
+    </div>
+    <div>
+        <img src="{% static 'images/error400.png' %}" alt="Error 400" id="Error_logo"/>
+        <h1 id="Error_descriptor"> Votre requête est invalide </h1>
+    </div>
+        
+{% endblock %}

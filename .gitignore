@@ -1,3 +1,5 @@
 
 *.pyc
 */__pycache__/*
+*/staticfiles/*
+messagingsite/db.sqlite3
