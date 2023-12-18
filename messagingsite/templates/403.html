@@ -5,8 +5,8 @@
         <meta charset="utf_8"/>
         <title>Ensisingerie</title>
         {% block styles %}
-            <link rel="stylesheet" href="{% static 'style.css' %}"/>
-            <link rel="stylesheet" href="{% static 'error_style.css' %}"/>
+            <link type="text/css" rel="stylesheet" href="{% static 'style.css' %}"/>
+            <link type="text/css" rel="stylesheet" href="{% static 'error_style.css' %}"/>
         {% endblock %}
     </head>
 
@@ -27,7 +27,7 @@
                     un compte</a> avant d'utiliser ce service</p>
                 {% endif %}
             </div>
-            
+
         </section>
 
         {% block js %}
