@@ -1,0 +1,37 @@
+@media screen and (min-width:1000px) {
+    #index-content {
+        display: flex;
+    }
+
+    #left, #right {
+        flex: 1;
+    }
+
+    #left {
+        margin-right: 1rem;
+    }
+}
+
+@media screen and (max-width:1000px) {
+    #index-content {
+        display: block;
+    }
+}
+
+#left > *, #rooms-section {
+    margin-top: 3rem;
+}
+
+#your-rooms, #search-room {
+    border: 0.2rem solid var(--secondary-color);
+    border-radius: 0.7rem;
+    padding: 1rem;
+}
+
+#rooms-section div {
+    margin-bottom: 3rem;
+}
+
+#rooms-section div:last-child {
+    margin-bottom: 0;
+}

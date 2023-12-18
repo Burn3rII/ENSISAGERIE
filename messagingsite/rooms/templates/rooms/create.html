@@ -1,7 +1,7 @@
 {% extends 'users/base.html' %}
 
 {% block content %}
-<h2>Votre profil</h2>
+<h2>Créer un salon</h2>
 
 <div class="form-holder">
     <div class="form-content">
@@ -9,12 +9,9 @@
             <form method="post">
                 {% csrf_token %}
                 {{form}}
-                <input type="submit" value="Sauvegarder">
+                <input type="submit" value="Créer le salon">
             </form>
         </div>
     </div>
 </div>
-
-<a href="{% url 'users:password_change' %}" class="type1">Modifier mot de
-    passe</a>
 {% endblock %}
