@@ -1,0 +1,29 @@
+<!doctype HTML>
+{% load static %}
+<html lang="fr">
+    <head>
+        <meta charset="utf_8"/>
+        <title>Ensisingerie</title>
+        {% block styles %}
+            <link rel="stylesheet" href="{% static 'style.css' %}"/>
+        {% endblock %}
+    </head>
+
+    <body>
+
+        <section>
+            <p> Erreur 404 </p>
+        </section>
+
+        {% block js %}
+            <!-- spript jquery -->
+            <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+                    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+                    crossorigin="anonymous"></script>
+            <!-- script de base -->
+            <script type="text/javascript"
+                    src="{% static 'script.js' %}"></script>
+        {% endblock %}
+
+    </body>
+</html>
