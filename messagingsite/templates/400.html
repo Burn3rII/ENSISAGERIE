@@ -13,8 +13,15 @@
     <body>
 
         <section>
-            <p> Erreur 400 </p>
-            <h1> Votre requête est invalide </h1>
+
+            <div class="error_div">
+                <p id="Error_code"> Erreur 400 </p>
+            </div>
+            <div class="error_div">
+                <img src="{% static 'images/error400.png' %}" alt="Error 400" id="Error_logo"/>
+                <h1 id="Error_descriptor"> Votre requête est invalide </h1>
+            </div>
+            
         </section>
 
         {% block js %}

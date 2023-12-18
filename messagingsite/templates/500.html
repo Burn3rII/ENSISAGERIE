@@ -13,8 +13,15 @@
     <body>
 
         <section>
-            <p> Erreur 500 </p>
-            <h1> Erreur Serveur </h1>
+
+            <div class="error_div">
+                <p id="Error_code"> Erreur 500 </p>
+            </div>
+            <div class="error_div">
+                <img src="{% static 'images/error500.png' %}" alt="Error 500" id="Error_logo"/>
+                <h1 id="Error_descriptor"> Erreur Serveur </h1>
+            </div>
+
         </section>
 
         {% block js %}
