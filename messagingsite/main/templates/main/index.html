@@ -2,9 +2,75 @@
 {% load static %}
 
 {% block content %}
-<section>
-    <div>
-        <p>Présentation des fonctionnalités</p>
+<div>
+    <h2>Bonjour {{ user.username|default:'invité' }} !</h2>
+</div>
+
+<div id="index-content">
+    <div id="left">
+        <div id="welcome-section">
+            <h3>Bienvenue sur Ensisingerie, la messagerie qui simplifie la
+                communication et la collaboration.</h3>
+            {% if not user.is_authenticated %}
+            <p>Connectez-vous ou créez un compte pour commencer.</p>
+            {% endif %}
+        </div>
+
+        <div id="updates-section">
+            <h3>Dernières mises à jour et annonces</h3>
+            <ul>
+                <li>Nouvelle fonctionnalité : Possibilité de modifier son mot de
+                    passe</li>
+                <li>Amélioration de l'interface utilisateur</li>
+                <li>Bientôt : possibilité de créer un salon de discussion !</li>
+            </ul>
+        </div>
+
+        <div id="features-section">
+            <h3>Fonctionnalités principales</h3>
+            <ul>
+                <li>Communication instantanée</li>
+                <li>Gestion intuitive des messages</li>
+                <li>Sécurité avancée des données</li>
+            </ul>
+        </div>
     </div>
-</section>
+
+    {% if user.is_authenticated %}
+    <div id="right">
+        <div id="rooms-section">
+            <h3>Vos salons</h3>
+            <div id="your-rooms">
+                {% if your_rooms %}
+                <ul>
+                    {% for room in your_rooms %}
+                    <li><a href="{% url 'rooms:detail' room.id %}"
+                           class="type1">{{ room.name }}</a></li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                    <p>Il semble que vous ne soyez inscrit dans aucun salon.</p>
+                {% endif %}
+            </div>
+            <h3>Rechercher un salon</h3>
+            <div id="search-room">
+                <form id="search-form">
+                    <input type="text" id="search-input"
+                           placeholder="Rechercher par nom">
+                    <input type="submit" value="Rechercher"/>
+                </form>
+
+                <div id="search-results"></div>
+            </div>
+            <div id="create-room">
+                <h3><a href="{% url 'rooms:create' %}" class="type1">Créer un
+                    salon</a></h3>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<div id="illustration-section">
+</div>
 {% endblock %}

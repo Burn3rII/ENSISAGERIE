@@ -13,14 +13,10 @@ from .forms import CustomUserCreationForm, UserProfilForm
 from django.contrib.auth import login
 
 
-class DashboardView(TemplateView):
-    template_name = "users/dashboard.html"
-
-
-class CustomUserCreationView(CreateView):
+class UserCreationView(CreateView):
     template_name = 'users/register.html'
     form_class = CustomUserCreationForm
-    success_url = reverse_lazy('users:dashboard')
+    success_url = reverse_lazy('main:home')
 
     def form_valid(self, form):
         response = super().form_valid(form)
@@ -30,11 +26,11 @@ class CustomUserCreationView(CreateView):
 
 class CustomLoginView(LoginView):
     template_name = 'registration/login.html'
-    next_page = 'users:dashboard'
+    next_page = 'main:home'
 
 
 class CustomLogoutView(LogoutView):
-    next_page = 'users:dashboard'
+    next_page = 'main:home'
 
 
 class CustomPasswordChangeView(PasswordChangeView):
@@ -69,7 +65,7 @@ class CustomPasswordResetCompleteView(PasswordResetCompleteView):
 class ProfilView(FormView):
     template_name = "users/profil.html"
     form_class = UserProfilForm
-    success_url = reverse_lazy('users:profil')
+    success_url = reverse_lazy('main:home')
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -84,3 +80,7 @@ class ProfilView(FormView):
         initial['last_name'] = user.last_name
         initial['email'] = user.email
         return initial
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
