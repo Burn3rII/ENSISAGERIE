@@ -18,5 +18,8 @@
 }
 
 #Error_descriptor{
-
+    padding-left: 4rem;
+    height: 2rem;
+    font-size: 2rem;
+    font-weight: bold;
 }
