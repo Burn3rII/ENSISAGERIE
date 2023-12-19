@@ -10,6 +10,9 @@
     --a-hover-color: #34495E;
     --a-active-color: #0000FF;
 
+    --chat-color1: #FF6F61;
+    --chat-color2: #1EAFB8;
+
     --font-size: 16px;
 }
 
@@ -176,7 +179,7 @@ input[type=text] {
     background-color: var(--secondary-color);
 }
 
-input[type=submit] {
+input[type=submit], .in_body_button {
     padding: 5px;
     margin-bottom: 0.5rem;
     border-radius: 6px;

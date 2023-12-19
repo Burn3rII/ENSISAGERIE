@@ -2,9 +2,31 @@
 {% load static %}
 
 {% block content %}
-<section>
-    <div>
-        <h1>{{ room.name }}</h1>
+<div id="room-nav">
+    <div id="nav-left">
+        <h2>{{ room.name }}</h2>
     </div>
-</section>
+
+    <div id="nav-right">
+        <div id="search-room">
+            <form id="search-form">
+                <input type="text" id="search-input"
+                       placeholder="Inviter un utilisateur">
+                <input type="submit" value="Rechercher" id="search-submit"/>
+            </form>
+
+            <div id="search-results"></div>
+        </div>
+    </div>
+</div>
+
+<div id="chat">
+    <div id="messages"></div>
+    <input type="text" id="messageInput" autocomplete="off" />
+    <button onclick="sendMessage()" class="in_body_button">Envoyer</button>
+</div>
+
+<script type="text/javascript" src="{% static 'rooms/js/script.js' %}"
+        data-room-id="{{ room.id }}"
+        data-csrf-token="{{ csrf_token }}"></script>
 {% endblock %}
