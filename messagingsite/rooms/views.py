@@ -6,6 +6,8 @@ from django.template.loader import render_to_string
 from .forms import RoomCreationForm
 from .models import Room, Message
 from django.shortcuts import render, get_object_or_404
+"""from django.contrib.auth.models import User
+from django.contrib.auth.models import Group"""
 
 
 class RoomCreationView(CreateView):
@@ -77,3 +79,26 @@ def load_messages(request):
         return render(request, 'rooms/messages.html', {'messages': messages})
     else:
         return JsonResponse({'status': 'error'})
+
+
+"""
+def add_member(request, room_id, user_id):
+    room = get_object_or_404(ChatRoom, pk=room_id)
+    user = get_object_or_404(get_user_model(), pk=user_id)
+
+    if request.user == room.owner:
+        room.members.add(user)
+        return HttpResponse("Member added successfully.")
+    else:
+        return HttpResponseForbidden("Permission denied. Only the owner can add members.")
+
+def delete_chat_room(request, room_id):
+    room = get_object_or_404(ChatRoom, pk=room_id)
+
+    if request.user == room.owner:
+        room.delete()
+        return HttpResponse("Chat room deleted successfully.")
+    else:
+        return HttpResponseForbidden("Permission denied. Only the owner can delete the chat room.")
+
+"""
