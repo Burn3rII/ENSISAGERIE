@@ -4,11 +4,11 @@
 {% block content %}
 
     <div>
-        <p id="Error_code"> Erreur 500 </p>
+        <h1 id="Error_code">Erreur 500</h1>
     </div>
-    <div>
+    <div> 
+        <p id="Error_descriptor">Erreur Serveur</p>
         <img src="{% static 'images/error500.png' %}" alt="Error 500" id="Error_logo"/>
-        <h1 id="Error_descriptor"> Erreur Serveur </h1>
     </div>
         
 {% endblock %}
