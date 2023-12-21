@@ -11,6 +11,12 @@
     </head>
 
     <body>
+        {% block jquery %}
+        <!-- Script jquery -->
+            <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+                    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+                    crossorigin="anonymous"></script>
+        {% endblock %}
         <header>
             <a href="{% url 'main:home' %}" id="home-link-logo">
                 <img src="{% static 'images/logo.png' %}" alt="Logo"
@@ -54,11 +60,7 @@
         </footer>
 
         {% block js %}
-            <!-- spript jquery -->
-            <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-                    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-                    crossorigin="anonymous"></script>
-            <!-- script de base -->
+            <!-- Script de base -->
             <script type="text/javascript"
                     src="{% static 'script.js' %}"></script>
             <script type="text/javascript"

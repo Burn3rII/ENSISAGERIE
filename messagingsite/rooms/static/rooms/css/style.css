@@ -1,0 +1,50 @@
+#room-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#nav-right {
+    display: flex;
+    align-items: center;
+}
+
+@media screen and (max-width:1000px) {
+    #room-nav {
+        display: block;
+    }
+    #nav-right {
+        margin-top: 0.5rem;
+    }
+}
+
+#search-submit {
+    margin-bottom: 0;
+}
+
+#messages {
+    padding: 0 2rem;
+    height: 40vh;
+    overflow-y: scroll;
+    margin: 2rem auto;
+}
+
+.others-message {
+    text-align: right;
+}
+
+#messages p.others-message {
+    padding: 5px;
+    margin-bottom: 0.5rem;
+    border-radius: 6px;
+    color: black;
+    background-color: var(--chat-color1);
+}
+
+#messages p.my-message {
+    padding: 5px;
+    margin-bottom: 0.5rem;
+    border-radius: 6px;
+    color: #000000;
+    background-color: var(--chat-color2);
+}

@@ -1,0 +1,14 @@
+{% extends "main/base_error.html" %}
+{% load static %}
+
+{% block content %}
+
+    <div>
+        <p id="Error_code"> Erreur 403 </p>
+    </div>
+    <div>
+        <img src="{% static 'images/error403.png' %}" alt="Error 403" id="Error_logo"/>
+        <h1 id="Error_descriptor"> Accès interdit </h1>
+    </div>
+        
+{% endblock %}

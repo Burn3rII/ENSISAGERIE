@@ -1,0 +1,25 @@
+#Error_section{
+    margin: 1rem 1rem 0 1rem;
+}
+
+#Error_section div{
+    padding: 2rem;
+}
+
+#Error_code{
+    padding-left: 4rem;
+    height: 2rem;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+#Error_logo{
+
+}
+
+#Error_descriptor{
+    padding-left: 4rem;
+    height: 2rem;
+    font-size: 2rem;
+    font-weight: bold;
+}

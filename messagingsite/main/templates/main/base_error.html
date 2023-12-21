@@ -6,17 +6,11 @@
         <title>Ensisingerie</title>
         {% block styles %}
             <link rel="stylesheet" href="{% static 'style.css' %}"/>
-            <link rel="stylesheet" href="{% static 'users/css/style.css' %}"/>
+            <link rel="stylesheet" href="{% static 'main/css/style_error.css' %}"/>
         {% endblock %}
     </head>
 
     <body>
-        {% block jquery %}
-        <!-- Script jquery -->
-            <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-                    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-                    crossorigin="anonymous"></script>
-        {% endblock %}
         <header>
             <a href="{% url 'main:home' %}" id="home-link-logo">
                 <img src="{% static 'images/logo.png' %}" alt="Logo"
@@ -51,7 +45,7 @@
             </nav>
         </header>
 
-        <section id="main-content">
+        <section id="Error_section">
             {% block content %} {% endblock %}
         </section>
 
@@ -60,11 +54,13 @@
         </footer>
 
         {% block js %}
-            <!-- Script de base -->
+            <!-- spript jquery -->
+            <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+                    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+                    crossorigin="anonymous"></script>
+            <!-- script de base -->
             <script type="text/javascript"
                     src="{% static 'script.js' %}"></script>
-            <script type="text/javascript"
-                    src="{% static 'users/js/script.js' %}"></script>
         {% endblock %}
     </body>
 </html>

@@ -1,0 +1,7 @@
+{% for message in messages %}
+    {% if message.sender == user %}
+    <p class="my-message">{{ message.sender.username }}:{{ message.text}}</p>
+    {% else %}
+    <p class="others-message">{{ message.sender.username }}: {{ message.text}}</p>
+    {% endif %}
+{% endfor %}

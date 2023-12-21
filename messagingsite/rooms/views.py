@@ -4,7 +4,8 @@ from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView
 from django.template.loader import render_to_string
 from .forms import RoomCreationForm
-from .models import Room
+from .models import Room, Message
+from django.shortcuts import render, get_object_or_404
 
 
 class RoomCreationView(CreateView):
@@ -37,10 +38,42 @@ class RoomDetailView(TemplateView):
 def search_rooms(request):
     if request.method == 'GET':
         search_term = request.GET.get('search_term', '')
-        rooms = Room.objects.filter(name__icontains=search_term)
+        rooms = Room.objects.filter(name__icontains=search_term)[:5]
         search_results_html = render_to_string('rooms/search_results.html',
                                                {'search_results': rooms})
 
         return JsonResponse({'search_results_html': search_results_html})
     else:
         return JsonResponse({'error': 'Méthode non autorisée'})
+
+
+def detail(request, room_id):
+    room = get_object_or_404(Room, pk=room_id)
+    return render(request, 'rooms/detail.html', {'room': room})
+
+
+def send_message(request):
+    if request.method == 'POST':
+        room_id = request.POST.get('room_id')
+        message_content = request.POST.get('message')
+        room = get_object_or_404(Room, pk=room_id)
+        sender = request.user
+
+        # Save message to database
+        Message.objects.create(room=room, sender=sender,
+                               text=message_content)
+
+        return JsonResponse({'status': 'success'})
+    else:
+        return JsonResponse({'status': 'error'})
+
+
+def load_messages(request):
+    if request.method == 'GET':
+        room_id = request.GET.get('room_id')
+        room = get_object_or_404(Room, pk=room_id)
+        messages = Message.objects.filter(room=room).order_by('-publication_date').reverse()
+
+        return render(request, 'rooms/messages.html', {'messages': messages})
+    else:
+        return JsonResponse({'status': 'error'})
