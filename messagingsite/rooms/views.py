@@ -64,11 +64,25 @@ def send_message(request):
         # Save message to database
         Message.objects.create(room=room, sender=sender,
                                text=message_content)
-
+        
         return JsonResponse({'status': 'success'})
     else:
         return JsonResponse({'status': 'error'})
-
+    
+def last_message_date(request):
+    if request.method == 'GET':
+        room_id = request.GET.get('room_id')
+        room = get_object_or_404(Room, pk=room_id)
+        last_message = Message.objects.filter(room=room).order_by('-publication_date').first()
+        
+        if last_message:
+            return JsonResponse({'last_message_date': last_message.publication_date})
+        
+        else:
+            return JsonResponse({'status': 'no messages'})
+        
+    else:
+        return JsonResponse({'status': 'error'})
 
 def load_messages(request):
     if request.method == 'GET':
