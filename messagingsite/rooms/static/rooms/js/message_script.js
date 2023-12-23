@@ -70,9 +70,9 @@ function sendMessage() {
 
             last_message_date();
             loadMessages();
-            
+
             // Pour tout de suite mettre à jour les messages
-            // après un envoie
+            // après un envoie de message
         },
     });
 }
