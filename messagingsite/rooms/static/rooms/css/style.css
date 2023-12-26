@@ -2,11 +2,17 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin: 0 3rem;
+}
+
+#nav-left {
+    padding-left: 2rem;
 }
 
 #nav-right {
     display: flex;
     align-items: center;
+    padding-right: 1rem;
 }
 
 @media screen and (max-width:1000px) {
@@ -27,15 +33,16 @@
     flex-direction: column;
     height: auto;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 #messages {
     padding: 0 2rem;
-    height: auto;
-    margin: 2rem auto 0 auto;
+    height: 100%;
+    margin: 2rem 3rem 0 3rem;
     flex-grow: 1;
     overflow-y: scroll;
-    width: 90%;
+    width: auto;
 }
 
 #messages p {
@@ -44,9 +51,11 @@
 }
 
 #messageForm {
+    padding: 0 2rem;
     position: sticky;
     bottom: 0;
-    width: 100%;
+    margin: 1rem 3rem 0 3rem;
+    width: 90%;
 }
 
 /*
@@ -56,17 +65,17 @@
 */
 
 #messages p.others-message {
-    padding: 5px;
+    padding: 0.5rem;
     margin-bottom: 0.5rem;
-    border-radius: 6px;
+    border-radius: 0.75rem;
     color: black;
     background-color: var(--chat-color1);
 }
 
 #messages p.my-message {
-    padding: 5px;
+    padding: 0.5rem 0;
     margin-bottom: 0.5rem;
-    border-radius: 6px;
+    border-radius: 0.75rem;
     color: #000000;
     background-color: var(--chat-color2);
 }
