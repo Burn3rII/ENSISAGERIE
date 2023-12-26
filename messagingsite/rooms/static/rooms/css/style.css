@@ -22,11 +22,25 @@
     margin-bottom: 0;
 }
 
+#chat {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    overflow-y: auto;
+}
+
 #messages {
     padding: 0 2rem;
-    height: 40vh;
-    overflow-y: scroll;
+    height: auto;
     margin: 2rem auto;
+    flex-grow: 1;
+    overflow-y: scroll;
+}
+
+#messageForm {
+    position: sticky;
+    bottom: 0;
+    width: 100%;
 }
 
 .others-message {
