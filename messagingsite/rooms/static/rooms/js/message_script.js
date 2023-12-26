@@ -55,24 +55,27 @@ function sendMessage() {
     const csrfToken = document.querySelector('script[data-csrf-token]').getAttribute('data-csrf-token');
 
     const messageInput = $("#messageInput");
-    const message = messageInput.val();
+    let message = messageInput.val();
+    message = message.trim();
 
-    $.ajax({
-        url: "/rooms/send_message/",
-        type: "POST",
-        data: {
-            room_id: roomId,
-            message: message,
-            csrfmiddlewaretoken: csrfToken,
-        },
-        success: function () {
-            messageInput.val("");
-
-            last_message_date();
-            loadMessages();
-
-            // Pour tout de suite mettre à jour les messages
-            // après un envoie de message
-        },
-    });
+    if (message !== "") {
+        $.ajax({
+            url: "/rooms/send_message/",
+            type: "POST",
+            data: {
+                room_id: roomId,
+                message: message,
+                csrfmiddlewaretoken: csrfToken,
+            },
+            success: function () {
+                messageInput.val("");
+    
+                last_message_date();
+                loadMessages();
+    
+                // Pour tout de suite mettre à jour les messages
+                // après un envoie de message
+            },
+        });
+    }    
 }
