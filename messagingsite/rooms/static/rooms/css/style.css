@@ -32,9 +32,15 @@
 #messages {
     padding: 0 2rem;
     height: auto;
-    margin: 2rem auto;
+    margin: 2rem auto 0 auto;
     flex-grow: 1;
     overflow-y: scroll;
+    width: 90%;
+}
+
+#messages p {
+    width: 100%;
+    overflow-wrap: break-word;
 }
 
 #messageForm {
@@ -43,9 +49,11 @@
     width: 100%;
 }
 
+/*
 .others-message {
     text-align: right;
 }
+*/
 
 #messages p.others-message {
     padding: 5px;
