@@ -2,11 +2,17 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin: 0 3rem;
+}
+
+#nav-left {
+    padding-left: 2rem;
 }
 
 #nav-right {
     display: flex;
     align-items: center;
+    padding-right: 1rem;
 }
 
 @media screen and (max-width:1000px) {
@@ -22,29 +28,54 @@
     margin-bottom: 0;
 }
 
-#messages {
-    padding: 0 2rem;
-    height: 40vh;
-    overflow-y: scroll;
-    margin: 2rem auto;
+#chat {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
+#messages {
+    padding: 0 2rem;
+    height: 100%;
+    margin: 2rem 3rem 0 3rem;
+    flex-grow: 1;
+    overflow-y: scroll;
+    width: auto;
+}
+
+#messages p {
+    width: 100%;
+    overflow-wrap: break-word;
+}
+
+#messageForm {
+    padding: 0 2rem;
+    position: sticky;
+    bottom: 0;
+    margin: 1rem 3rem 0 3rem;
+    width: 90%;
+}
+
+/*
 .others-message {
     text-align: right;
 }
+*/
 
 #messages p.others-message {
-    padding: 5px;
+    padding: 0.5rem;
     margin-bottom: 0.5rem;
-    border-radius: 6px;
+    border-radius: 0.75rem;
     color: black;
     background-color: var(--chat-color1);
 }
 
 #messages p.my-message {
-    padding: 5px;
+    padding: 0.5rem;
     margin-bottom: 0.5rem;
-    border-radius: 6px;
+    border-radius: 0.75rem;
     color: #000000;
     background-color: var(--chat-color2);
 }
