@@ -1,25 +1,25 @@
-Utilisateurs (inscription, connexion, profils, changement de mdp)
-Fonctionnalité de création de salons de discussion
-Application avec plusieurs salons de discussion
-Gestion des émojis et des droits
-Fonction de modération
-Notifications
-Statistiques (nb de messages envoyés, nb d'utilisateurs actifs ou non)
-Conversation par messages
+Index:
+Changer les news
+Mettre un bouton dark mode correct
+Ne faire apparaitre que les 10 premiers salons et après mettre un scroll (S)
+Rendre joli le bouton pour rejoindre un salon (S)
 
-User:
-pseudo
-firstname
-lastname
-email
-password
+Salon (page principale):
+Aligner le bouton gestion des utilisateurs (S)
+Réduire le nb de messages visibles (mettre un scroll)
+Gérer les émojis
+Pouvoir supprimer son propre message et n'importe quel message si owner
 
-Travail actuel:
-Utilisateurs (inscription, connexion, profils, changement de mdp)
+Salon (page gestion des utilisateurs): (S)
+Pouvoir inviter quelqu'un
+Pouvoir renvoyer quelqu'un
+Rendre les boutons plus esthétiques
 
-Apps:
-users (gestion utilisateurs, page de profil)
-rooms
-stats
-parameters
-main (relie les pages de salons, de users, de stats)
+Nouvelles pages:
+Page de statistiques (ne de messages envoyés, nb d'utilisateurs actifs ou non
+etc...)
+
+Au niveau des droits (pour Maxence):
+Voir si le site est protégé contre le fait de pouvoir accéder directement aux
+pages, mêmes interdites, en passant par l'URL (je pense pas qu'il le soit) et
+voir si on peut régler ca avec les perms proposées par Django
