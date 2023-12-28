@@ -79,3 +79,44 @@ function sendMessage() {
         });
     }    
 }
+
+$(document).ready(function () {
+    // Fonction pour générer un tableau d'emojis basé sur les Unicode codepoints
+    function generateEmojis() {
+        const emojis = [];
+
+        // Boucle à travers les Unicode codepoints pour les emojis et les intègre dans le tableau
+        for (let i = 0x1F600; i <= 0x1F64F; i++) {
+            emojis.push(String.fromCodePoint(i));
+        }
+
+        return emojis;
+    }
+
+    // Fonction pour afficher les emojis dans un conteneur spécifié
+    function displayEmojis(containerId, emojis) {
+        const emojiContainer = $('#' + containerId);
+        emojiContainer.empty(); // Vide le conteneur avant l'affichage des emojis
+
+        // Affiche chaque emoji dans le conteneur
+        emojis.forEach(emoji => {
+            const emojiElement = $('<span class="emoji">').text(emoji);
+            emojiContainer.append(emojiElement);
+
+            // AJoute des click event handler à chaque emoji
+            emojiElement.on('click', function () {
+                // Récupère le texte actuel dans le champ de saisie
+                const currentText = $('#messageInput').val();
+
+                // Ajoute l'emoji cliqué au champ de saisie
+                $('#messageInput').val(currentText + emoji);
+            });
+        });
+    }
+
+    // Ajoute un event handler pour le bouton emoji qui affiche les emojis
+    $('#emojiButton').on('click', function () {
+        const emojis = generateEmojis();
+        displayEmojis('emojiContainer', emojis);
+    });
+});
