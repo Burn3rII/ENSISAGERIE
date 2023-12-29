@@ -19,6 +19,7 @@ function loadMessages() {
             $("#messages").html(data);
             message_number_client = message_number_server;
         },
+        
     });
 
     
@@ -58,11 +59,7 @@ function plusShownMessageNumber() {
     if (message_shown_status + message_shown_offset > message_number_server){
         message_shown_number += message_shown_offset;
         
-    } else {
-        message_shown_number = message_server_number;
-        $('.seeMore').hide();
     }
-
 }
 
 
