@@ -6,6 +6,7 @@ var message_shown_status = "auto";
 
 function loadMessages() {
     const roomId = document.querySelector('script[data-room-id]').getAttribute('data-room-id');
+    message_shown_number += message_number_server - message_number_client;
 
     $.ajax({
         url: "/rooms/load_messages/",
@@ -16,10 +17,11 @@ function loadMessages() {
         },
         success: function (data) {
             $("#messages").html(data);
+            message_number_client = message_number_server;
         },
     });
 
-    message_number_client = message_number_server;
+    
 }
 
 function loadAllMessages() {
@@ -33,10 +35,10 @@ function loadAllMessages() {
         },
         success: function (data) {
             $("#messages").html(data);
+            message_number_client = message_number_server;
         },
     });
 
-    message_number_client = message_number_server;
 }
 
 function serverMessageNumber() {
@@ -52,10 +54,10 @@ function serverMessageNumber() {
     });
 }
 
-function changeShownMessageNumber() {
-    if (message_shown_status === "auto") {
-        message_shown_number = +=10;
-        message
+function plusShownMessageNumber() {
+    if (message_shown_status + message_shown_offset > message_number_server){
+        message_shown_number += message_shown_offset;
+        
     } else {
         message_shown_number = message_server_number;
         $('.seeMore').hide();
@@ -128,7 +130,7 @@ $(document).ready(function() {
     $('#seeMoreForm').on('submit', function(event) {
         event.preventDefault();
         message_shown_status = "auto";
-        changeShownMessageNumber();
+        plusShownMessageNumber();
         serverMessageNumber();
         lastMessageDate();
         loadMessages();
