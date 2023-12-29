@@ -84,7 +84,6 @@ function sendMessage() {
                 messageInput.val("");
                 
                 if (message_shown_status === "auto"){
-                    message_shown_number ++;
                     serverMessageNumber();
                     loadMessages();
                 }
