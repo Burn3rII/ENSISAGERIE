@@ -10,5 +10,6 @@ urlpatterns = [
     path('search/', views.search_rooms, name='search'),
     path('send_message/', views.send_message, name='send_message'),
     path('load_messages/', views.load_messages, name='load_messages'),
-    path('last_message_date/', views.last_message_date, name='last_message_date'),
+    path('load_all_messages/', views.load_all_messages, name='load_all_messages'),
+    path('message_number/', views.message_number, name='message_number'),
 ]

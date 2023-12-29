@@ -1,6 +1,9 @@
 var last_message_date_server = "0";
 var last_message_date_client = "0";
-var message_number = 10;
+var message_number_server = 0;
+var message_number_client = 0;
+var message_shown_number = 10;
+var message_shown_status = "auto";
 
 function loadMessages() {
     const roomId = document.querySelector('script[data-room-id]').getAttribute('data-room-id');
@@ -10,28 +13,59 @@ function loadMessages() {
         type: "GET",
         data: { 
             room_id: roomId,
-            message_number: message_number,
+            message_number: message_shown_number,
         },
         success: function (data) {
             $("#messages").html(data);
         },
     });
 
-    last_message_date_client = last_message_date_server;
+    message_number_client = message_number_server;
 }
 
-function lastMessageDate() {
+function loadAllMessages() {
     const roomId = document.querySelector('script[data-room-id]').getAttribute('data-room-id');
 
     $.ajax({
-        url: "/rooms/last_message_date/",
+        url: "/rooms/load_all_messages/",
+        type: "GET",
+        data: { 
+            room_id: roomId,
+        },
+        success: function (data) {
+            $("#messages").html(data);
+        },
+    });
+
+    message_number_client = message_number_server;
+}
+
+function serverMessageNumber() {
+    const roomId = document.querySelector('script[data-room-id]').getAttribute('data-room-id');
+
+    $.ajax({
+        url: "/rooms/message_number/",
         type: "GET",
         data: { room_id: roomId },
         success: function (data) {
-            last_message_date_server = data.last_message_date;
+            message_number_server = data.message_number;
         },
     });
 }
+
+/*
+
+function changeShownMessageNumber() {
+    if (message_shown_status === "auto") {
+        message
+    } else {
+        message_shown_number = message_server_number;
+        $('.seeMore').hide();
+    }
+
+}
+
+*/
 
 function sendMessage() {
     const roomId = document.querySelector('script[data-room-id]').getAttribute('data-room-id');
@@ -53,8 +87,9 @@ function sendMessage() {
             success: function () {
                 messageInput.val("");
                 
-                message_number ++;
-                lastMessageDate();
+                // message_shown_number ++;
+                // message_server_number ++;
+                serverMessageNumber();
                 loadMessages();
     
                 // Pour tout de suite mettre à jour les messages
@@ -66,15 +101,21 @@ function sendMessage() {
 
 $(document).ready(function() {
     // Charger les messages dès le départ
-    lastMessageDate();
+    serverMessageNumber();
     loadMessages();
     
     setInterval(function () {
         
-        lastMessageDate();
+        serverMessageNumber();
+        
       
-        if (last_message_date_server !== last_message_date_client) {
-            loadMessages();
+        if (message_number_server !== message_number_client) {
+            if (message_shown_status === "auto") {
+                loadMessages();
+            }
+            else if (message_shown_status === "all") {
+                loadAllMessages();
+            }
         }
         
     }, 500);
@@ -84,9 +125,23 @@ $(document).ready(function() {
         sendMessage();
     });
 
-    $('seeMoreForm').on('submit', function(event) {
+    /*
+
+    $('#seeMoreForm').on('submit', function(event) {
         event.preventDefault();
-        message_number += 10;
+        changeShownMessageNumber();
+        lastMessageDate();
         loadMessages();
+    });
+
+    */
+
+    $('#seeAllForm').on('submit', function(event) {
+        event.preventDefault();
+        message_shown_status = "all";
+        serverMessageNumber();
+        loadAllMessages();
+        //$('.seeAll').hide();
+        //$('#nav-middle').show();
     });
 });
