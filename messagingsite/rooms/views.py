@@ -87,8 +87,9 @@ def last_message_date(request):
 def load_messages(request):
     if request.method == 'GET':
         room_id = request.GET.get('room_id')
+        message_number = int(request.GET.get('message_number'))
         room = get_object_or_404(Room, pk=room_id)
-        messages = Message.objects.filter(room=room).order_by('-publication_date').reverse()
+        messages = Message.objects.filter(room=room).order_by('-publication_date')[:message_number].reverse()
 
         return render(request, 'rooms/messages.html', {'messages': messages})
     else:
