@@ -55,13 +55,18 @@ function serverMessageNumber() {
     });
 }
 
-function plusShownMessageNumber() {
-    if (message_shown_status + message_shown_offset > message_number_server){
+function moreShownMessageNumber() {
+    if (message_shown_status + message_shown_offset < message_number_server){
         message_shown_number += message_shown_offset;
         
     }
 }
 
+function lessShownMessageNumber() {
+    if (message_shown_number - message_shown_offset > message_shown_offset){
+        message_shown_number -= message_shown_offset;
+    }
+}
 
 function sendMessage() {
     const roomId = document.querySelector('script[data-room-id]').getAttribute('data-room-id');
@@ -126,9 +131,16 @@ $(document).ready(function() {
     $('#seeMoreForm').on('submit', function(event) {
         event.preventDefault();
         message_shown_status = "auto";
-        plusShownMessageNumber();
+        moreShownMessageNumber();
         serverMessageNumber();
-        lastMessageDate();
+        loadMessages();
+    });
+
+    $('#seeLessForm').on('submit', function(event) {
+        event.preventDefault();
+        message_shown_status = "auto";
+        lessShownMessageNumber();
+        serverMessageNumber();
         loadMessages();
     });
 
