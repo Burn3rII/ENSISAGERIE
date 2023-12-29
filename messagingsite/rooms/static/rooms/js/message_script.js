@@ -1,8 +1,7 @@
-var last_message_date_server = "0";
-var last_message_date_client = "0";
 var message_number_server = 0;
 var message_number_client = 0;
-var message_shown_number = 10;
+var message_shown_offset = 10;
+var message_shown_number = message_shown_offset;
 var message_shown_status = "auto";
 
 function loadMessages() {
@@ -53,10 +52,9 @@ function serverMessageNumber() {
     });
 }
 
-/*
-
 function changeShownMessageNumber() {
     if (message_shown_status === "auto") {
+        message_shown_number = +=10;
         message
     } else {
         message_shown_number = message_server_number;
@@ -65,7 +63,6 @@ function changeShownMessageNumber() {
 
 }
 
-*/
 
 function sendMessage() {
     const roomId = document.querySelector('script[data-room-id]').getAttribute('data-room-id');
@@ -87,13 +84,16 @@ function sendMessage() {
             success: function () {
                 messageInput.val("");
                 
-                // message_shown_number ++;
-                // message_server_number ++;
-                serverMessageNumber();
-                loadMessages();
-    
-                // Pour tout de suite mettre à jour les messages
-                // après un envoie de message
+                if (message_shown_status === "auto"){
+                    message_shown_number ++;
+                    serverMessageNumber();
+                    loadMessages();
+                }
+
+                if (message_shown_status === "all"){
+                    serverMessageNumber();
+                    loadAllMessages();
+                }
             },
         });
     }    
@@ -125,23 +125,19 @@ $(document).ready(function() {
         sendMessage();
     });
 
-    /*
-
     $('#seeMoreForm').on('submit', function(event) {
         event.preventDefault();
+        message_shown_status = "auto";
         changeShownMessageNumber();
+        serverMessageNumber();
         lastMessageDate();
         loadMessages();
     });
-
-    */
 
     $('#seeAllForm').on('submit', function(event) {
         event.preventDefault();
         message_shown_status = "all";
         serverMessageNumber();
         loadAllMessages();
-        //$('.seeAll').hide();
-        //$('#nav-middle').show();
     });
 });
