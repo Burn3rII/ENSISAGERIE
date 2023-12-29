@@ -27,6 +27,7 @@ function loadMessages() {
 
 function loadAllMessages() {
     const roomId = document.querySelector('script[data-room-id]').getAttribute('data-room-id');
+    message_shown_number = message_number_server;
 
     $.ajax({
         url: "/rooms/load_all_messages/",
@@ -56,15 +57,19 @@ function serverMessageNumber() {
 }
 
 function moreShownMessageNumber() {
-    if (message_shown_status + message_shown_offset < message_number_server){
+    if (message_shown_number + message_shown_offset < message_number_server){
         message_shown_number += message_shown_offset;
         
+    } else {
+        message_shown_number = message_number_server;
     }
 }
 
 function lessShownMessageNumber() {
     if (message_shown_number - message_shown_offset > message_shown_offset){
         message_shown_number -= message_shown_offset;
+    } else {
+        message_shown_number = message_shown_offset;
     }
 }
 
