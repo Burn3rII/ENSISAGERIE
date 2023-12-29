@@ -21,7 +21,6 @@ function loadMessages() {
         },
         
     });
-
     
 }
 
@@ -114,8 +113,7 @@ $(document).ready(function() {
     
     setInterval(function () {
         
-        serverMessageNumber();
-        
+        serverMessageNumber();       
       
         if (message_number_server !== message_number_client) {
             if (message_shown_status === "auto") {
