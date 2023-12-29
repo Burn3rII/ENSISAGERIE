@@ -1,5 +1,6 @@
 var last_message_date_server = "0";
 var last_message_date_client = "0";
+var message_number = 10;
 
 function loadMessages() {
     const roomId = document.querySelector('script[data-room-id]').getAttribute('data-room-id');
@@ -7,7 +8,10 @@ function loadMessages() {
     $.ajax({
         url: "/rooms/load_messages/",
         type: "GET",
-        data: { room_id: roomId },
+        data: { 
+            room_id: roomId,
+            message_number: message_number,
+        },
         success: function (data) {
             $("#messages").html(data);
         },
@@ -16,7 +20,7 @@ function loadMessages() {
     last_message_date_client = last_message_date_server;
 }
 
-function last_message_date() {
+function lastMessageDate() {
     const roomId = document.querySelector('script[data-room-id]').getAttribute('data-room-id');
 
     $.ajax({
@@ -28,27 +32,6 @@ function last_message_date() {
         },
     });
 }
-
-$(document).ready(function() {
-    // Charger les messages dès le départ
-    last_message_date();
-    loadMessages();
-    
-    setInterval(function () {
-        
-        last_message_date();
-      
-        if (last_message_date_server !== last_message_date_client) {
-            loadMessages();
-        }
-        
-    }, 1500);
-    
-    $('#messageForm').on('submit', function(event) {
-        event.preventDefault();
-        sendMessage();
-    });
-});
 
 function sendMessage() {
     const roomId = document.querySelector('script[data-room-id]').getAttribute('data-room-id');
@@ -69,8 +52,9 @@ function sendMessage() {
             },
             success: function () {
                 messageInput.val("");
-    
-                last_message_date();
+                
+                message_number ++;
+                lastMessageDate();
                 loadMessages();
     
                 // Pour tout de suite mettre à jour les messages
@@ -79,3 +63,30 @@ function sendMessage() {
         });
     }    
 }
+
+$(document).ready(function() {
+    // Charger les messages dès le départ
+    lastMessageDate();
+    loadMessages();
+    
+    setInterval(function () {
+        
+        lastMessageDate();
+      
+        if (last_message_date_server !== last_message_date_client) {
+            loadMessages();
+        }
+        
+    }, 500);
+    
+    $('#messageForm').on('submit', function(event) {
+        event.preventDefault();
+        sendMessage();
+    });
+
+    $('seeMoreForm').on('submit', function(event) {
+        event.preventDefault();
+        message_number += 10;
+        loadMessages();
+    });
+});
