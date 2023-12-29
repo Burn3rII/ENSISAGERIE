@@ -79,3 +79,19 @@
     color: #000000;
     background-color: var(--chat-color2);
 }
+
+#emojiContainer {
+    max-height: 200px;
+    overflow-y: auto;
+    display: flex;
+    gap: 10px; /* Permet d'ajuster l'espace entre chaque emoji */
+    flex-wrap: wrap; /* Permet de passer à la ligne quand la largeur est trop petite */
+}
+
+.emoji span {
+            font-size: 1.5rem; /* Permet d'ajuster la taille des emoji */
+}
+
+.emoji:hover {
+    cursor : pointer;
+}

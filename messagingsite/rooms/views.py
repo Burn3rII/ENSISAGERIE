@@ -96,6 +96,12 @@ def load_messages(request):
         return JsonResponse({'status': 'error'})
 
 
+
+
+
+
+
+
 """
 def add_member(request, room_id, user_id):
     room = get_object_or_404(ChatRoom, pk=room_id)
