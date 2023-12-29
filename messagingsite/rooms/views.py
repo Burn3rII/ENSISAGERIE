@@ -6,6 +6,9 @@ from django.template.loader import render_to_string
 from .forms import RoomCreationForm
 from .models import Room, Message
 from django.shortcuts import render, get_object_or_404
+from django.templatetags.static import static
+import json
+import os
 """from django.contrib.auth.models import User
 from django.contrib.auth.models import Group"""
 
@@ -95,7 +98,16 @@ def load_messages(request):
         return JsonResponse({'status': 'error'})
 
 
+def emoji_list(request):
+    json_file_path = os.path.join(static('rooms/json'), 'data_by_groups.json')
 
+    with open(json_file_path, 'r', encoding='utf-8') as file:
+        emoji_data = json.load(file)
+
+    # Convert emoji data to a JSON-compatible format
+    emoji_data_json = {category: [{'char': emoji['char'], 'name': emoji['name']} for emoji in emojis] for category, emojis in emoji_data.items()}
+
+    return JsonResponse(emoji_data_json, safe=False)
 
 
 
