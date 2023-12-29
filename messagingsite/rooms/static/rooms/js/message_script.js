@@ -124,7 +124,7 @@ $(document).ready(function() {
             }
         }
         
-    }, 500);
+    }, 1500);
     
     $('#messageForm').on('submit', function(event) {
         event.preventDefault();
