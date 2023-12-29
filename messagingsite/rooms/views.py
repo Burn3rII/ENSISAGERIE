@@ -68,19 +68,15 @@ def send_message(request):
         return JsonResponse({'status': 'success'})
     else:
         return JsonResponse({'status': 'error'})
-    
-def last_message_date(request):
+
+def message_number(request):
     if request.method == 'GET':
         room_id = request.GET.get('room_id')
         room = get_object_or_404(Room, pk=room_id)
-        last_message = Message.objects.filter(room=room).order_by('-publication_date').first()
+        message_number = Message.objects.filter(room=room).count()
         
-        if last_message:
-            return JsonResponse({'last_message_date': last_message.publication_date})
-        
-        else:
-            return JsonResponse({'status': 'no messages'})
-        
+        return JsonResponse({'message_number': message_number})
+    
     else:
         return JsonResponse({'status': 'error'})
 
@@ -89,12 +85,22 @@ def load_messages(request):
         room_id = request.GET.get('room_id')
         message_number = int(request.GET.get('message_number'))
         room = get_object_or_404(Room, pk=room_id)
-        messages = Message.objects.filter(room=room).order_by('-publication_date')[:message_number].reverse()
+        message_count = Message.objects.filter(room=room).count()
+        messages = Message.objects.filter(room=room).order_by('-publication_date').reverse()[message_count-message_number:]
 
         return render(request, 'rooms/messages.html', {'messages': messages})
     else:
         return JsonResponse({'status': 'error'})
+    
+def load_all_messages(request):
+    if request.method == 'GET':
+        room_id = request.GET.get('room_id')
+        room = get_object_or_404(Room, pk=room_id)
+        messages = Message.objects.filter(room=room).order_by('-publication_date').reverse()
 
+        return render(request, 'rooms/messages.html', {'messages': messages})
+    else:
+        return JsonResponse({'status': 'error'})
 
 
 
