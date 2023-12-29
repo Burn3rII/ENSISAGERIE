@@ -3,6 +3,11 @@ var message_number_client = 0;
 var message_shown_offset = 10;
 var message_shown_number = message_shown_offset;
 var message_shown_status = "auto";
+let queue = Promise.resolve();
+
+function addToQueue(task) {
+    queue = queue.then(() => task());
+}
 
 function loadMessages() {
     const roomId = document.querySelector('script[data-room-id]').getAttribute('data-room-id');
@@ -90,17 +95,20 @@ function sendMessage() {
                 csrfmiddlewaretoken: csrfToken,
             },
             success: function () {
-                messageInput.val("");
-                
-                if (message_shown_status === "auto"){
+                addToQueue(async () => {
+                    messageInput.val("");
                     serverMessageNumber();
-                    loadMessages();
-                }
+                    message_shown_number ++;
 
-                if (message_shown_status === "all"){
-                    serverMessageNumber();
-                    loadAllMessages();
-                }
+                    if (message_shown_status === "auto"){
+                        loadMessages();
+                    }
+
+                    if (message_shown_status === "all"){
+                        loadAllMessages();
+                    }
+                });
+                
             },
         });
     }    
@@ -108,51 +116,65 @@ function sendMessage() {
 
 $(document).ready(function() {
     // Charger les messages dès le départ
-    serverMessageNumber();
-    loadMessages();
+    addToQueue(async () => {
+        serverMessageNumber();
+        loadMessages();
+    });
     
-    setInterval(function () {
-        
-        serverMessageNumber();       
-      
-        if (message_number_server !== message_number_client) {
-            if (message_shown_status === "auto") {
-                loadMessages();
-            }
-            else if (message_shown_status === "all") {
-                loadAllMessages();
-            }
-        }
-        
-    }, 1500);
-    
+
     $('#messageForm').on('submit', function(event) {
         event.preventDefault();
-        sendMessage();
+        addToQueue(async () => {
+            sendMessage();
+        });
     });
 
     $('#seeMoreForm').on('submit', function(event) {
-        event.preventDefault();
-        message_shown_status = "auto";
-        moreShownMessageNumber();
-        serverMessageNumber();
-        loadMessages();
+        event.preventDefault();      
+        addToQueue(async () => {
+            message_shown_status = "auto";
+            moreShownMessageNumber();
+            serverMessageNumber();
+            loadMessages();
+        });
     });
 
     $('#seeLessForm').on('submit', function(event) {
         event.preventDefault();
-        message_shown_status = "auto";
-        lessShownMessageNumber();
-        serverMessageNumber();
-        loadMessages();
+        addToQueue(async () => {
+            message_shown_status = "auto";
+            lessShownMessageNumber();
+            serverMessageNumber();
+            loadMessages();
+        });
     });
 
     $('#seeAllForm').on('submit', function(event) {
         event.preventDefault();
-        message_shown_status = "all";
-        serverMessageNumber();
-        loadAllMessages();
+        addToQueue(async () => {
+            message_shown_status = "all";
+            serverMessageNumber();
+            loadAllMessages();
+        });     
     });
+    
+    setInterval(function () {
+        
+        addToQueue(async () => {
+            serverMessageNumber();      
+      
+            if (message_number_server !== message_number_client) {
+                if (message_shown_status === "auto") {
+                    loadMessages();
+                }
+                else if (message_shown_status === "all") {
+                    loadAllMessages();
+                }
+            }
+        });
+        
+        
+    }, 1500);
 });
 
 $(document).ready(function () {
