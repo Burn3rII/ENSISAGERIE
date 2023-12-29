@@ -38,13 +38,24 @@
     <form id="messageForm">
         <input type="text" id="messageInput" autocomplete="off" />
         <button type="submit" class="in_body_button">Envoyer</button>
-        <!--<button id="emojiButton">&#128516;</button>-->
+        <button id="emojiButton">&#128516;</button>
+        <div id="categoryButtonsContainer"></div>
         <div id="emojiContainer">
+        {% for category, emojis in emoji_data.items %}
+            <h2>{{ category }}</h2>
+            {% for emoji in emojis %}
+                <button type="button" class="emojiButtons" data-emoji="{{ emoji.char }}">
+                    {{ emoji.char }} - {{ emoji.name }}
+                </button>
+            {% endfor %}
+        {% endfor %}
         </div>
     </form>
 </div>
 
 <script type="text/javascript" src="{% static 'rooms/js/message_script.js' %}"
         data-room-id="{{ room.id }}"
-        data-csrf-token="{{ csrf_token }}"></script>
+        data-csrf-token="{{ csrf_token }}">
+        const JSONfile = "{% static 'rooms/json/data-by-group.json' %}"
+</script>
 {% endblock %}
