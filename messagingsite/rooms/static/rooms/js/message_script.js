@@ -12,7 +12,6 @@ function addToQueue(task) {
 function loadMessages() {
     const roomId = document.querySelector('script[data-room-id]').getAttribute('data-room-id');
     //message_shown_number += message_number_server - message_number_client;
-    message_shown_number = message_shown_offset;
 
     $.ajax({
         url: "/rooms/load_messages/",
