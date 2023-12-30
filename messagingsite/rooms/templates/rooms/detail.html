@@ -7,6 +7,18 @@
         <h2>{{ room.name }}</h2>
     </div>
 
+    <div id="nav-middle">
+        <form id="seeMoreForm" class="seeMore">
+            <button type="submit" class="in_body_button">Voir Plus</button>
+        </form>
+        <form id="seeLessForm" class="seeMore">
+            <button type="submit" class="in_body_button">Voir Moins</button>
+        </form>
+        <form id="seeAllForm" class="seeMore">
+            <button type="submit" class="in_body_button">Voir Tous</button>
+        </form>
+    </div>
+
     <div id="nav-right">
         <div id="search-room">
             <form id="search-form">
@@ -18,6 +30,7 @@
             <div id="search-results"></div>
         </div>
     </div>
+
 </div>
 
 <div id="chat">
@@ -26,12 +39,25 @@
         <input type="text" id="messageInput" autocomplete="off" />
         <button type="submit" class="in_body_button">Envoyer</button>
         <button id="emojiButton">&#128516;</button>
+        <div id="categoryButtonsContainer"></div>
         <div id="emojiContainer">
+        {% for category, emojis in emoji_data.items %}
+            <h2>{{ category }}</h2>
+            {% for emoji in emojis %}
+                <button type="button" class="emojiButtons" data-emoji="{{ emoji.char }}">
+                    {{ emoji.char }} - {{ emoji.name }}
+                </button>
+            {% endfor %}
+        {% endfor %}
         </div>
     </form>
 </div>
 
 <script type="text/javascript" src="{% static 'rooms/js/message_script.js' %}"
         data-room-id="{{ room.id }}"
-        data-csrf-token="{{ csrf_token }}"></script>
+        data-csrf-token="{{ csrf_token }}">
+</script>
+<script type="text/javascript">
+    const JSONfile = "{% static 'rooms/json/data-by-group.json' %}";
+ </script>
 {% endblock %}
