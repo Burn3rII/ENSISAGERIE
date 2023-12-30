@@ -7,18 +7,6 @@
         <h2>{{ room.name }}</h2>
     </div>
 
-    <div id="nav-middle">
-        <form id="seeMoreForm" class="seeMore">
-            <button type="submit" class="in_body_button">Voir Plus</button>
-        </form>
-        <form id="seeLessForm" class="seeMore">
-            <button type="submit" class="in_body_button">Voir Moins</button>
-        </form>
-        <form id="seeAllForm" class="seeMore">
-            <button type="submit" class="in_body_button">Voir Tous</button>
-        </form>
-    </div>
-
     {% if room.owner == user %}
     <div id="nav-right">
         <a href="{% url 'rooms:user_management' room.id %}"
@@ -26,6 +14,8 @@
     </div>
     {% endif %}
 </div>
+
+
 
 <div id="chat">
     <div id="messages"></div>
@@ -46,8 +36,23 @@
                 </button>
             {% endfor %}
         {% endfor %}
+        </div>
+    </form>
+    <div id="nav-seemore">
+        <form id="seeMoreForm" class="seeMore">
+            <button type="submit" class="in_body_button">Voir Plus</button>
+        </form>
+        <form id="seeLessForm" class="seeMore">
+            <button type="submit" class="in_body_button">Voir Moins</button>
+        </form>
+        <form id="seeAllForm" class="seeMore">
+            <button type="submit" class="in_body_button">Voir Tous</button>
+        </form>
+    </div>
     </div>
 </div>
+
+
 
 <!-- Django template tags are not processed in external JavaScript
 files by default, so we pass it via the template as a constant -->
