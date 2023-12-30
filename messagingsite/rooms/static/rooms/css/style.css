@@ -86,3 +86,38 @@
     color: #000000;
     background-color: var(--chat-color2);
 }
+
+#categoryButtonsContainer {
+    display : none;
+    max-height: 200px;
+    overflow-y: auto;
+    display: flex;
+    gap: 10px; /* Permet d'ajuster l'espace entre chaque emoji */
+    flex-wrap: wrap; /* Permet de passer à la ligne quand la largeur est trop petite */
+}
+
+#emojiContainer {
+    display : none;
+    max-height: 200px;
+    overflow-y: auto;
+    display: flex;
+    gap: 10px; /* Permet d'ajuster l'espace entre chaque emoji */
+    flex-wrap: wrap; /* Permet de passer à la ligne quand la largeur est trop petite */
+}
+
+
+.categoryButton {
+    font-size: 1.5rem; /* Permet d'ajuster la taille des emoji */
+}
+    
+.categoryButton:hover {
+    cursor : pointer;
+}
+  
+.emojiButtons {
+    font-size: 1.5rem; /* Permet d'ajuster la taille des emoji */
+}
+    
+.emojiButtons:hover {
+    cursor : pointer;
+}
