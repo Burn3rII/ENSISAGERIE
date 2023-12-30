@@ -7,17 +7,24 @@
         <h2>{{ room.name }}</h2>
     </div>
 
-    <div id="nav-right">
-        <div id="search-room">
-            <form id="search-form">
-                <input type="text" id="search-input"
-                       placeholder="Inviter un utilisateur">
-                <input type="submit" value="Rechercher" id="search-submit"/>
-            </form>
-
-            <div id="search-results"></div>
-        </div>
+    <div id="nav-middle">
+        <form id="seeMoreForm" class="seeMore">
+            <button type="submit" class="in_body_button">Voir Plus</button>
+        </form>
+        <form id="seeLessForm" class="seeMore">
+            <button type="submit" class="in_body_button">Voir Moins</button>
+        </form>
+        <form id="seeAllForm" class="seeMore">
+            <button type="submit" class="in_body_button">Voir Tous</button>
+        </form>
     </div>
+
+    {% if room.owner == user %}
+    <div id="nav-right">
+        <a href="{% url 'rooms:user_management' room.id %}"
+           class="type1">Gestion des utilisateurs</a>
+    </div>
+    {% endif %}
 </div>
 
 <div id="chat">
@@ -50,8 +57,10 @@ files by default, so we pass it via the template as a constant -->
 <!-- Chargement du script de gestion des messages -->
 <script type="text/javascript" src="{% static 'rooms/js/message_script.js' %}"
         data-room-id="{{ room.id }}"
-        data-csrf-token="{{ csrf_token }}"></script>
+        data-csrf-token="{{ csrf_token }}">
+</script>
 <!-- Chargement du script de gestion des emojis -->
-<script type="text/javascript" src="{% static 'rooms/js/emoji_script.js' %}"></script>
+<script type="text/javascript" src="{% static 'rooms/js/emoji_script.js' %}">
+</script>
 
 {% endblock %}

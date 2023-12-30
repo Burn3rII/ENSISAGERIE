@@ -1,25 +1,12 @@
 Index:
 Changer les news
 Mettre un bouton dark mode correct
-Ne faire apparaitre que les 10 premiers salons et après mettre un scroll (S)
-Rendre joli le bouton pour rejoindre un salon (S)
 
 Salon (page principale):
-Aligner le bouton gestion des utilisateurs (S)
 Réduire le nb de messages visibles (mettre un scroll)
-Gérer les émojis
+Meilleure gestion des émojis
 Pouvoir supprimer son propre message et n'importe quel message si owner
 
-Salon (page gestion des utilisateurs): (S)
-Pouvoir inviter quelqu'un
-Pouvoir renvoyer quelqu'un
-Rendre les boutons plus esthétiques
-
 Nouvelles pages:
-Page de statistiques (ne de messages envoyés, nb d'utilisateurs actifs ou non
+Page de statistiques (nb de messages envoyés, nb d'utilisateurs actifs ou non
 etc...)
-
-Au niveau des droits (pour Maxence):
-Voir si le site est protégé contre le fait de pouvoir accéder directement aux
-pages, mêmes interdites, en passant par l'URL (je pense pas qu'il le soit) et
-voir si on peut régler ca avec les perms proposées par Django

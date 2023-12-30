@@ -2,11 +2,21 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 0 3rem;
 }
 
 #nav-left {
     padding-left: 2rem;
+}
+
+#nav-middle {
+    width: 18rem;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+#nav-middle button {
+    margin-bottom: 0;
 }
 
 #nav-right {
@@ -19,8 +29,14 @@
     #room-nav {
         display: block;
     }
+
+    #nav-middle {
+        margin-top: 0.5rem;
+    }
+
     #nav-right {
         margin-top: 0.5rem;
+        padding-left: 2rem;
     }
 }
 
@@ -63,12 +79,6 @@
     width: 90%;
 }
 
-/*
-.others-message {
-    text-align: right;
-}
-*/
-
 #messages p.others-message {
     padding: 0.5rem;
     margin-bottom: 0.5rem;
@@ -84,6 +94,47 @@
     color: #000000;
     background-color: var(--chat-color2);
 }
+
+@media screen and (min-width:1000px) {
+    #user_management_sections {
+        display: flex;
+    }
+}
+
+@media screen and (max-width:1000px) {
+    #user_management_sections {
+        display: block;
+    }
+
+    #user_management_sections > * {
+        margin-bottom: 3rem;
+    }
+}
+
+#user_management_sections > * {
+    flex:1;
+}
+
+#user_management_sections {
+    margin-top: 3rem;
+}
+
+#pending-requests ul {
+    margin-top: 0.5rem;
+}
+
+.pending_request_container, .invite_container, .remove_user_container {
+    display: inline-flex;
+    align-items: center;
+}
+
+.pending_request_container button, .invite_container button,
+.remove_user_container button {
+    margin-bottom: 0;
+}
+
+.pending_request_container *, .invite_container *, .remove_user_container * {
+    margin-right: 0.3rem;
 
 /* CSS spécifique aux émojis */
 
