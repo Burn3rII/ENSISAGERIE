@@ -1,0 +1,20 @@
+{% if pending_requests %}
+<h3>Demandes d'adhésion au salon</h3>
+<ul>
+    {% for request in pending_requests %}
+    <li>
+        <div class="pending_request_container">
+            <p>{{ request.user.username }}</p>
+            <button class="approve-request-btn in_body_button"
+                    data-request-id="{{ request.id }}">Approuver
+            </button>
+            <button class="reject-request-btn in_body_button"
+                    data-request-id="{{ request.id }}">Rejeter
+            </button>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Aucune demande pour rejoindre le salon en attente.</p>
+{% endif %}

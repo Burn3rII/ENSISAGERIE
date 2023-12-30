@@ -10,10 +10,26 @@
     #left {
         margin-right: 1rem;
     }
+
+    #your-rooms-and-invitations, #your_requests_and_accepted_requests {
+        display: flex;
+    }
+
+    #your-rooms-and-invitations > *, #your_requests_and_accepted_requests > * {
+        flex: 1;
+    }
+
+    #your-rooms, #your-requests {
+        margin-right: 1rem;
+    }
 }
 
 @media screen and (max-width:1000px) {
     #index-content {
+        display: block;
+    }
+
+    #your-rooms-and-invitations, #your_requests_and_accepted_requests {
         display: block;
     }
 }
@@ -22,16 +38,38 @@
     margin-top: 3rem;
 }
 
-#your-rooms, #search-room {
+#rooms-invitations, #your-rooms, #your-requests, #accepted_requests,
+#search-room {
     border: 0.2rem solid var(--secondary-color);
     border-radius: 0.7rem;
     padding: 1rem;
 }
 
+#your-rooms ul, #rooms-invitations ul, #your-requests ul,
+#accepted_requests ul {
+    max-height: 10rem;
+    overflow-y: auto;
+}
+
 #rooms-section div {
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
 }
 
 #rooms-section div:last-child {
     margin-bottom: 0;
+}
+
+.invitation_container, .accepted_requests_container, .room_search_container {
+    display: inline-flex;
+    align-items: center;
+}
+
+.invitation_container button, .accepted_requests_container button,
+.room_search_container button {
+    margin-bottom: 0;
+}
+
+.invitation_container *, .accepted_requests_container *,
+.room_search_container * {
+    margin-right: 0.3rem;
 }

@@ -2,7 +2,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 0 3rem;
 }
 
 #nav-left {
@@ -16,6 +15,10 @@
     justify-content: space-between;
 }
 
+#nav-middle button {
+    margin-bottom: 0;
+}
+
 #nav-right {
     display: flex;
     align-items: center;
@@ -26,8 +29,14 @@
     #room-nav {
         display: block;
     }
+
+    #nav-middle {
+        margin-top: 0.5rem;
+    }
+
     #nav-right {
         margin-top: 0.5rem;
+        padding-left: 2rem;
     }
 }
 
@@ -64,12 +73,6 @@
     margin: 1rem 3rem 0 3rem;
     width: 90%;
 }
-
-/*
-.others-message {
-    text-align: right;
-}
-*/
 
 #messages p.others-message {
     padding: 0.5rem;
@@ -109,15 +112,57 @@
 .categoryButton {
     font-size: 1.5rem; /* Permet d'ajuster la taille des emoji */
 }
-    
+
 .categoryButton:hover {
     cursor : pointer;
 }
-  
+
 .emojiButtons {
     font-size: 1.5rem; /* Permet d'ajuster la taille des emoji */
 }
-    
+
 .emojiButtons:hover {
     cursor : pointer;
+}
+
+@media screen and (min-width:1000px) {
+    #user_management_sections {
+        display: flex;
+    }
+}
+
+@media screen and (max-width:1000px) {
+    #user_management_sections {
+        display: block;
+    }
+
+    #user_management_sections > * {
+        margin-bottom: 3rem;
+    }
+}
+
+#user_management_sections > * {
+    flex:1;
+}
+
+#user_management_sections {
+    margin-top: 3rem;
+}
+
+#pending-requests ul {
+    margin-top: 0.5rem;
+}
+
+.pending_request_container, .invite_container, .remove_user_container {
+    display: inline-flex;
+    align-items: center;
+}
+
+.pending_request_container button, .invite_container button,
+.remove_user_container button {
+    margin-bottom: 0;
+}
+
+.pending_request_container *, .invite_container *, .remove_user_container * {
+    margin-right: 0.3rem;
 }
