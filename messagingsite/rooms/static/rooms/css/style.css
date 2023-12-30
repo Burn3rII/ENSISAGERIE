@@ -51,11 +51,17 @@
     overflow-wrap: break-word;
 }
 
+
 #chat-bottom {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     padding: 0 2rem;
+}
+  
+#input-container {
+    display: flex;
+    align-items: center;
 }
 
 #messageForm {
@@ -93,42 +99,6 @@
     border-radius: 0.75rem;
     color: #000000;
     background-color: var(--chat-color2);
-}
-
-#categoryButtonsContainer {
-    display : none;
-    max-height: 200px;
-    overflow-y: auto;
-    display: flex;
-    gap: 10px; /* Permet d'ajuster l'espace entre chaque emoji */
-    flex-wrap: wrap; /* Permet de passer à la ligne quand la largeur est trop petite */
-}
-
-#emojiContainer {
-    margin-top: 0.5rem;
-    display : none;
-    max-height: 200px;
-    overflow-y: auto;
-    display: flex;
-    gap: 10px; /* Permet d'ajuster l'espace entre chaque emoji */
-    flex-wrap: wrap; /* Permet de passer à la ligne quand la largeur est trop petite */
-}
-
-
-.categoryButton {
-    font-size: 1.5rem; /* Permet d'ajuster la taille des emoji */
-}
-
-.categoryButton:hover {
-    cursor : pointer;
-}
-
-.emojiButtons {
-    font-size: 1.5rem; /* Permet d'ajuster la taille des emoji */
-}
-
-.emojiButtons:hover {
-    cursor : pointer;
 }
 
 @media screen and (min-width:1000px) {
@@ -171,4 +141,50 @@
 
 .pending_request_container *, .invite_container *, .remove_user_container * {
     margin-right: 0.3rem;
+
+/* CSS spécifique aux émojis */
+
+#categoryButtonsContainer {
+    display : none;
+    max-height: 200px;
+    overflow-y: auto;
+    display: flex;
+    gap: 10px; /* Permet d'ajuster l'espace entre chaque emoji */
+    flex-wrap: wrap; /* Permet de passer à la ligne quand la largeur est trop petite */
+}
+
+#emojiContainer {
+    display : none;
+    max-height: 200px;
+    overflow-y: auto;
+    display: flex;
+    gap: 10px; /* Permet d'ajuster l'espace entre chaque emoji */
+    flex-wrap: wrap; /* Permet de passer à la ligne quand la largeur est trop petite */
+}
+
+#emojiButton {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-size: 1.5rem; /* Permet d'ajuster la taille de l'émoji pour afficher les autres émojis */
+    align-self: flex-start; /* Aligne le bouton au début de la div input-container dès que possible */
+}
+
+.categoryButton {
+    background-color: transparent;
+    border: solid;
+    padding: 5px; /* Permet d'ajuster l'espace entre chaque bouton de catégorie et ses bordures */
+    font-size: 1rem; /* Permet d'ajuster la taille des boutons des catégories */
+}
+
+.emojiButtons {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    font-size: 1.5rem; /* Permet d'ajuster la taille des emojis */
+}
+
+#emojiButton:hover, .categoryButton:hover, .emojiButtons:hover {
+    cursor: pointer;
 }
