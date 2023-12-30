@@ -50,6 +50,11 @@
     overflow-wrap: break-word;
 }
 
+#input-container {
+    display: flex;
+    align-items: center;
+}
+
 #messageForm {
     padding: 0 2rem;
     position: sticky;
@@ -80,6 +85,8 @@
     background-color: var(--chat-color2);
 }
 
+/* CSS spécifique aux émojis */
+
 #categoryButtonsContainer {
     display : none;
     max-height: 200px;
@@ -98,19 +105,29 @@
     flex-wrap: wrap; /* Permet de passer à la ligne quand la largeur est trop petite */
 }
 
-.categoryButton {
-            font-size: 1.5rem; /* Permet d'ajuster la taille des emoji */
+#emojiButton {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-size: 1.5rem; /* Permet d'ajuster la taille de l'émoji pour afficher les autres émojis */
+    align-self: flex-start; /* Aligne le bouton au début de la div input-container dès que possible */
 }
 
-.categoryButton:hover {
-    cursor : pointer;
+.categoryButton {
+    background-color: transparent;
+    border: solid;
+    padding: 5px; /* Permet d'ajuster l'espace entre chaque bouton de catégorie et ses bordures */
+    font-size: 1rem; /* Permet d'ajuster la taille des boutons des catégories */
 }
 
 .emojiButtons {
-            font-size: 1.5rem; /* Permet d'ajuster la taille des emoji */
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    font-size: 1.5rem; /* Permet d'ajuster la taille des emojis */
 }
 
-.emojiButtons:hover {
-    cursor : pointer;
+#emojiButton:hover, .categoryButton:hover, .emojiButtons:hover {
+    cursor: pointer;
 }
-

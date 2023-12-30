@@ -22,30 +22,36 @@
 
 <div id="chat">
     <div id="messages"></div>
-    <form id="messageForm">
-        <input type="text" id="messageInput" autocomplete="off" />
-        <button type="submit" class="in_body_button">Envoyer</button>
+    <div id="input-container">
+        <form id="messageForm">
+            <input type="text" id="messageInput" autocomplete="off" />
+            <button type="submit" class="in_body_button">Envoyer</button>
+        </form>
         <button id="emojiButton">&#128516;</button>
-        <div id="categoryButtonsContainer"></div>
-        <div id="emojiContainer">
-            {% for category, emojis in emoji_data.items %}
-                <h2>{{ category }}</h2>
-                    {% for emoji in emojis %}
-                            <button type="button" class="emojiButtons" data-emoji="{{ emoji.char }}">
-                                {{ emoji.char }} - {{ emoji.name }}
-                            </button>
-                    {% endfor %}
+    </div>
+    <div id="categoryButtonsContainer"></div>
+    <div id="emojiContainer">
+        {% for category, emojis in emoji_data.items %}
+            <h2>{{ category }}</h2>
+            {% for emoji in emojis %}
+                <button type="button" class="emojiButtons" data-emoji="{{ emoji.char }}">
+                {{ emoji.char }} - {{ emoji.name }}
+                </button>
             {% endfor %}
-        </div>
-    </form>
+        {% endfor %}
+    </div>
 </div>
 
-<script type="text/javascript" src="{% static 'rooms/js/message_script.js' %}"
-        data-room-id="{{ room.id }}"
-        data-csrf-token="{{ csrf_token }}"></script>
 <!-- Django template tags are not processed in external JavaScript
-files by default so we pass it via the template as a constant -->
+files by default, so we pass it via the template as a constant -->
 <script type="text/javascript">
    const JSONfile = "{% static 'rooms/json/data-by-group.json' %}";
 </script>
+<!-- Chargement du script de gestion des messages -->
+<script type="text/javascript" src="{% static 'rooms/js/message_script.js' %}"
+        data-room-id="{{ room.id }}"
+        data-csrf-token="{{ csrf_token }}"></script>
+<!-- Chargement du script de gestion des emojis -->
+<script type="text/javascript" src="{% static 'rooms/js/emoji_script.js' %}"></script>
+
 {% endblock %}
