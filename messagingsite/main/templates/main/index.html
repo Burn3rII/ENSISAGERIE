@@ -39,28 +39,35 @@
     {% if user.is_authenticated %}
     <div id="right">
         <div id="rooms-section">
-            <h3>Vos salons</h3>
-            <div id="your-rooms">
-                {% if your_rooms %}
-                <ul>
-                    {% for room in your_rooms %}
-                    <li><a href="{% url 'rooms:detail' room.id %}"
-                           class="type1">{{ room.name }}</a></li>
-                    {% endfor %}
-                </ul>
-                {% else %}
-                    <p>Il semble que vous ne soyez inscrit dans aucun salon.</p>
-                {% endif %}
+            <div id="your-rooms-and-invitations">
+                <div>
+                    <h3>Vos salons</h3>
+                    <div id="your-rooms"></div>
+                </div>
+                <div>
+                    <h3>Invitations de salons reçues</h3>
+                    <div id="rooms-invitations"></div>
+                </div>
+            </div>
+            <div id="your_requests_and_accepted_requests">
+                <div>
+                    <h3>Demandes en attente</h3>
+                    <div id="your-requests"></div>
+                </div>
+                <div>
+                    <h3>Demandes acceptées</h3>
+                    <div id="accepted_requests"></div>
+                </div>
             </div>
             <h3>Rechercher un salon</h3>
             <div id="search-room">
-                <form id="search-form">
-                    <input type="text" id="search-input"
+                <form id="room-search-form">
+                    <input type="text" id="room-search-input"
                            placeholder="Rechercher par nom">
                     <input type="submit" value="Rechercher"/>
                 </form>
 
-                <div id="search-results"></div>
+                <div id="room-search-results"></div>
             </div>
             <div id="create-room">
                 <h3><a href="{% url 'rooms:create' %}" class="type1">Créer un
@@ -73,4 +80,7 @@
 
 <div id="illustration-section">
 </div>
+
+<script type="text/javascript" src="{% static 'main/js/index_script.js' %}">
+</script>
 {% endblock %}

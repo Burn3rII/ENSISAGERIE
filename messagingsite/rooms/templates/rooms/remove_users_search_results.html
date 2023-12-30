@@ -1,0 +1,12 @@
+<ul>
+    {% for user in search_results %}
+        <li>
+            <div class="remove_user_container">
+                <p>{{ user.username }}</p>
+                <button class="remove-user-btn in_body_button"
+                        data-room-id="{{ room_id }}"
+                        data-user-id="{{ user.id }}">Renvoyer</button>
+            </div>
+        </li>
+    {% endfor %}
+</ul>

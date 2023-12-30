@@ -1,0 +1,9 @@
+{% if your_requests %}
+<ul>
+    {% for request in your_requests %}
+    <li>{{ request.room.name }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+    <p>Vous n'avez aucune demande en attente.</p>
+{% endif %}

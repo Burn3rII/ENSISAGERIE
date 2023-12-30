@@ -7,17 +7,12 @@
         <h2>{{ room.name }}</h2>
     </div>
 
+    {% if room.owner == user %}
     <div id="nav-right">
-        <div id="search-room">
-            <form id="search-form">
-                <input type="text" id="search-input"
-                       placeholder="Inviter un utilisateur">
-                <input type="submit" value="Rechercher" id="search-submit"/>
-            </form>
-
-            <div id="search-results"></div>
-        </div>
+        <a href="{% url 'rooms:user_management' room.id %}"
+           class="type1">Gestion des utilisateurs</a>
     </div>
+    {% endif %}
 </div>
 
 <div id="chat">
@@ -26,8 +21,7 @@
         <input type="text" id="messageInput" autocomplete="off" />
         <button type="submit" class="in_body_button">Envoyer</button>
         <button id="emojiButton">&#128516;</button>
-        <div id="emojiContainer">
-        </div>
+        <div id="emojiContainer"></div>
     </form>
 </div>
 
