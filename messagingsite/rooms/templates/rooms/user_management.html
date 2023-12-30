@@ -1,0 +1,38 @@
+{% extends "rooms/base.html" %}
+{% load static %}
+
+{% block content %}
+<div id="room-nav">
+    <h2>{{ room.name }} - Gestion des utilisateurs</h2>
+</div>
+
+{% if room.owner == user %}
+<div id="user_management_sections">
+    <div id="invite-user">
+        <form id="invite-user-form">
+            <input type="text" id="invite-user-input"
+                   placeholder="Inviter un utilisateur">
+            <input type="submit" value="Rechercher"
+                   id="invite-user-submit"/>
+        </form>
+        <div id="invite-user-results"></div>
+    </div>
+
+    <div id="remove-user">
+        <form id="remove-user-form">
+            <input type="text" id="remove-user-input"
+                   placeholder="Renvoyer un utilisateur">
+            <input type="submit" value="Rechercher"/>
+        </form>
+        <div id="remove-user-results"></div>
+    </div>
+
+    <div id="pending-requests"></div>
+</div>
+{% endif %}
+
+<script type="text/javascript"
+        src="{% static 'rooms/js/user_management_script.js' %}"
+        data-room-id="{{ room.id }}"
+        data-csrf-token="{{ csrf_token }}"></script>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+  <h2>Gérer les demandes de rejoindre pour le salon "{{ room.name }}"</h2>
+
+  {% if join_requests %}
+    <ul>
+      {% for join_request in join_requests %}
+        <li>
+
+          {% if not join_request.is_approved and not join_request.is_an_invitation %}
+            <form method="post" action="{% url 'rooms:manage_join_requests' room_id=room.id %}">
+              {% csrf_token %}
+              <input type="hidden" name="join_request_id" value="{{ join_request.id }}">
+              <button type="submit" name="action" value="approve">Approuver</button>
+              <button type="submit" name="action" value="reject">Rejeter</button>
+            </form>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Aucune demande de rejoindre en attente.</p>
+  {% endif %}
+{% endblock %}

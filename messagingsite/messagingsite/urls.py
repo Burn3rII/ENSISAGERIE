@@ -28,4 +28,5 @@ urlpatterns = [
 handler400 = 'main.views.error_400'
 handler403 = 'main.views.error_403'
 handler404 = 'main.views.error_404'
+handler405 = 'main.views.error_405'
 handler500 = 'main.views.error_500'

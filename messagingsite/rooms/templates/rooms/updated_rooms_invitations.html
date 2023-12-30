@@ -1,0 +1,19 @@
+{% if rooms_invitations %}
+<ul>
+    {% for invitation in rooms_invitations %}
+    <li>
+        <div class="invitation_container">
+            <p>{{ invitation.room.name }}</p>
+            <button class="accept-invitation-btn in_body_button"
+                    data-invitation-id="{{ invitation.id }}">
+                Accepter</button>
+            <button class="reject-invitation-btn in_body_button"
+                    data-invitation-id="{{ invitation.id }}">
+                Rejeter</button>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+    <p>Vous n'avez reçu aucune invitation pour le moment.</p>
+{% endif %}

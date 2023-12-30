@@ -1,0 +1,12 @@
+<ul>
+    {% for user in search_results %}
+        <li>
+            <div class="invite_container">
+                <p>{{ user.username }}</p>
+                <button class="invite-btn in_body_button"
+                        data-room-id="{{ room_id }}"
+                        data-user-id="{{ user.id }}">Inviter</button>
+            </div>
+        </li>
+    {% endfor %}
+</ul>

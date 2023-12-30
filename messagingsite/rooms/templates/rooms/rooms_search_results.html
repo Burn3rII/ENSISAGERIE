@@ -1,0 +1,19 @@
+<ul>
+    {% for room in search_results %}
+        <li>
+            <div class="room_search_container">
+                <p>{{ room.name }}</p>
+                {% if not room.private %}
+                    <button class="join-room-btn in_body_button"
+                            data-room-id="{{ room.id }}">Rejoindre le salon
+                    </button>
+                {% else %}
+                    <button class="request-to-join-btn in_body_button"
+                            data-room-id="{{ room.id }}">Demander à rejoindre
+                        le salon
+                    </button>
+                {% endif %}
+            </div>
+        </li>
+    {% endfor %}
+</ul>

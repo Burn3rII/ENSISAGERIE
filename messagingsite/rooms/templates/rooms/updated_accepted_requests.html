@@ -1,0 +1,15 @@
+{% if accepted_requests %}
+<ul>
+    {% for request in accepted_requests %}
+    <li>
+        <div class="accepted_requests_container">
+            <p>{{ request.room.name }}</p>
+            <button class="delete-accepted-request-btn in_body_button"
+                    data-request-id="{{ request.id }}">Ok</button>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+    <p>Aucune demande n'a, pour le moment, été acceptée.</p>
+{% endif %}

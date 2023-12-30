@@ -13,6 +13,8 @@
     --chat-color1: #FF6F61;
     --chat-color2: #1EAFB8;
 
+    --placeholder-color: #888888;
+
     --font-size: 16px;
 }
 
@@ -22,6 +24,11 @@
     --primary-color: #1E1E1E;
     --secondary-color: #D2691E;
     --type1-a-color: #AAB2B7;
+    --placeholder-color: #DDDDDD;
+}
+
+::placeholder {
+    color: var(--placeholder-color);
 }
 
 a.type1 {
@@ -170,6 +177,11 @@ footer p {
     background-color: var(--secondary-color);
 }
 
+.form-content input[type=checkbox] {
+    margin-bottom: 2rem;
+    padding: 0.5rem 0;
+}
+
 input[type=text] {
     padding: 0.5rem 0;
     border: 0;
@@ -188,7 +200,7 @@ input[type=submit], .in_body_button {
     background-color: var(--secondary-color);
 }
 
-input[type=submit]:hover, input[type=submit]:focus, input[type=submit]:active{
+input[type=submit]:hover, input[type=submit]:active, .in_body_button:hover, .in_body_button:active{
     background-color: #495056;
 }
 

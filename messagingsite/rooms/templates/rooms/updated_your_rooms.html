@@ -1,0 +1,12 @@
+{% if your_rooms %}
+<ul>
+    {% for room in your_rooms %}
+    <li><a href="{% url 'rooms:detail' room.id %}"
+           class="type1">{{ room.name }}
+    {% if room.owner == user %}(Propriétaire){% endif %}
+    </a></li>
+    {% endfor %}
+</ul>
+{% else %}
+    <p>Il semble que vous ne soyez inscrit dans aucun salon.</p>
+{% endif %}

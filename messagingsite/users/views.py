@@ -1,6 +1,5 @@
-from django.shortcuts import render
+from django.contrib.auth import login
 from django.urls import reverse_lazy
-from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, FormView
 from django.contrib.auth.views import (LoginView, LogoutView,
                                        PasswordChangeView,
@@ -10,7 +9,6 @@ from django.contrib.auth.views import (LoginView, LogoutView,
                                        PasswordResetConfirmView,
                                        PasswordResetCompleteView)
 from .forms import CustomUserCreationForm, UserProfilForm
-from django.contrib.auth import login
 
 
 class UserCreationView(CreateView):
