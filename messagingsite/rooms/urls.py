@@ -23,9 +23,10 @@ urlpatterns = [
     path("user_management/<int:room_id>/", views.user_management,
          name="user_management"),
     path('send_message/', views.send_message, name='send_message'),
-    path('last_message_date/', views.last_message_date,
-         name='last_message_date'),
     path('load_messages/', views.load_messages, name='load_messages'),
+    path('load_all_messages/', views.load_all_messages,
+         name='load_all_messages'),
+    path('message_number/', views.message_number, name='message_number'),
     # Page de gestion des utilisateurs d'un salon------------------------------
     path('search_invite_user/', views.search_invite_user,
          name='search_invite_user'),

@@ -8,6 +8,13 @@
     padding-left: 2rem;
 }
 
+#nav-middle {
+    width: 18rem;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
 #nav-right {
     display: flex;
     align-items: center;
@@ -74,7 +81,8 @@
     background-color: var(--chat-color2);
 }
 
-#emojiContainer {
+#categoryButtonsContainer {
+    display : none;
     max-height: 200px;
     overflow-y: auto;
     display: flex;
@@ -82,11 +90,29 @@
     flex-wrap: wrap; /* Permet de passer à la ligne quand la largeur est trop petite */
 }
 
-.emoji span {
+#emojiContainer {
+    display : none;
+    max-height: 200px;
+    overflow-y: auto;
+    display: flex;
+    gap: 10px; /* Permet d'ajuster l'espace entre chaque emoji */
+    flex-wrap: wrap; /* Permet de passer à la ligne quand la largeur est trop petite */
+}
+
+
+.categoryButton {
     font-size: 1.5rem; /* Permet d'ajuster la taille des emoji */
 }
 
-.emoji:hover {
+.categoryButton:hover {
+    cursor : pointer;
+}
+
+.emojiButtons {
+    font-size: 1.5rem; /* Permet d'ajuster la taille des emoji */
+}
+
+.emojiButtons:hover {
     cursor : pointer;
 }
 

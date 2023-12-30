@@ -12,6 +12,10 @@ from django.contrib.auth.models import User
 from .models import Room, Message, JoinRequest, RoomInvitation
 
 from .forms import RoomCreationForm
+
+
+from django.templatetags.static import static
+import json, os
 """from django.contrib.auth.models import User
 from django.contrib.auth.models import Group"""
 
@@ -157,25 +161,22 @@ def send_message(request):
     room = get_object_or_404(Room, pk=room_id)
     message_content = request.POST.get('message')
 
-    Message.objects.create(room=room, sender=request.user, text=message_content)
+    Message.objects.create(room=room, sender=request.user,
+                           text=message_content)
 
     return JsonResponse({'message': 'Le message a été envoyé.'})
 
 
-@login_required
-@require_GET
-def last_message_date(request):
-    room_id = request.GET.get('room_id')
-    room = get_object_or_404(Room, pk=room_id)
-    last_message = Message.objects.filter(room=room).order_by(
-        '-publication_date').first()
+def message_number(request):
+    if request.method == 'GET':
+        room_id = request.GET.get('room_id')
+        room = get_object_or_404(Room, pk=room_id)
+        message_number = Message.objects.filter(room=room).count()
 
-    if last_message:
-        return JsonResponse(
-            {'last_message_date': last_message.publication_date})
+        return JsonResponse({'message_number': message_number})
 
     else:
-        return JsonResponse({'status': 'no messages'})
+        return JsonResponse({'status': 'error'})
 
 
 @login_required
@@ -183,9 +184,36 @@ def last_message_date(request):
 def load_messages(request):
     room_id = request.GET.get('room_id')
     room = get_object_or_404(Room, pk=room_id)
-    messages = Message.objects.filter(room=room).order_by('-publication_date').reverse()
+    message_number = int(request.GET.get('message_number'))
+    message_count = Message.objects.filter(room=room).count()
+    messages = Message.objects.filter(room=room).order_by(
+        '-publication_date').reverse()[message_count - message_number:]
 
     return render(request, 'rooms/messages.html', {'messages': messages})
+
+
+def load_all_messages(request):
+    if request.method == 'GET':
+        room_id = request.GET.get('room_id')
+        room = get_object_or_404(Room, pk=room_id)
+        messages = Message.objects.filter(room=room).order_by(
+            '-publication_date').reverse()
+
+        return render(request, 'rooms/messages.html', {'messages': messages})
+    else:
+        return JsonResponse({'status': 'error'})
+
+
+def emoji_list(request):
+    json_file_path = os.path.join(static('rooms/json'), 'data_by_groups.json')
+
+    with open(json_file_path, 'r', encoding='utf-8') as file:
+        emoji_data = json.load(file)
+
+    # Convert emoji data to a JSON-compatible format
+    emoji_data_json = {category: [{'char': emoji['char'], 'name': emoji['name']} for emoji in emojis] for category, emojis in emoji_data.items()}
+
+    return JsonResponse(emoji_data_json, safe=False)
 
 
 # Sur une page de gestion des utilisateurs d'un salon--------------------------
