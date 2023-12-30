@@ -184,6 +184,8 @@ def load_messages(request):
     room = get_object_or_404(Room, pk=room_id)
     message_number = int(request.GET.get('message_number'))
     message_count = Message.objects.filter(room=room).count()
+    if message_number > message_count:
+        message_number = message_count
     messages = Message.objects.filter(room=room).order_by(
         '-publication_date').reverse()[message_count - message_number:]
 

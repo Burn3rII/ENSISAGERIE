@@ -47,11 +47,18 @@
     </form>
 </div>
 
-<script type="text/javascript" src="{% static 'rooms/js/message_script.js' %}"
-        data-room-id="{{ room.id }}"
-        data-csrf-token="{{ csrf_token }}">
-</script>
+<!-- Django template tags are not processed in external JavaScript
+files by default, so we pass it via the template as a constant -->
 <script type="text/javascript">
     const JSONfile = "{% static 'rooms/json/data-by-group.json' %}";
- </script>
+</script>
+<!-- Chargement du script de gestion des messages -->
+<script type="text/javascript" src="{% static 'rooms/js/message_script.js' %}"
+         data-room-id="{{ room.id }}"
+         data-csrf-token="{{ csrf_token }}">
+</script>
+<!-- Chargement du script de gestion des emojis -->
+<script type="text/javascript" src="{% static 'rooms/js/emoji_script.js' %}">
+</script>
+
 {% endblock %}
