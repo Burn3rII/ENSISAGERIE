@@ -51,7 +51,7 @@ function serverMessageNumber() {
     const roomId = document.querySelector('script[data-room-id]').getAttribute('data-room-id');
 
     $.ajax({
-        url: "/rooms/message_number/",
+        url: "/rooms/get_message_number/",
         type: "GET",
         data: { room_id: roomId },
         success: function (data) {

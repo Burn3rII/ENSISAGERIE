@@ -1,3 +1,6 @@
+import os
+import json
+from django.templatetags.static import static
 from django.views.generic.edit import CreateView
 from django.db.models import Q
 from django.http import JsonResponse
@@ -13,9 +16,6 @@ from .models import Room, Message, JoinRequest, RoomInvitation
 
 from .forms import RoomCreationForm
 
-
-from django.templatetags.static import static
-import json, os
 """from django.contrib.auth.models import User
 from django.contrib.auth.models import Group"""
 
@@ -167,16 +167,14 @@ def send_message(request):
     return JsonResponse({'message': 'Le message a été envoyé.'})
 
 
-def message_number(request):
-    if request.method == 'GET':
-        room_id = request.GET.get('room_id')
-        room = get_object_or_404(Room, pk=room_id)
-        message_number = Message.objects.filter(room=room).count()
+@login_required
+@require_GET
+def get_message_number(request):
+    room_id = request.GET.get('room_id')
+    room = get_object_or_404(Room, pk=room_id)
+    message_number = Message.objects.filter(room=room).count()
 
-        return JsonResponse({'message_number': message_number})
-
-    else:
-        return JsonResponse({'status': 'error'})
+    return JsonResponse({'message_number': message_number})
 
 
 @login_required
@@ -192,18 +190,18 @@ def load_messages(request):
     return render(request, 'rooms/messages.html', {'messages': messages})
 
 
+@login_required
+@require_GET
 def load_all_messages(request):
-    if request.method == 'GET':
-        room_id = request.GET.get('room_id')
-        room = get_object_or_404(Room, pk=room_id)
-        messages = Message.objects.filter(room=room).order_by(
-            '-publication_date').reverse()
+    room_id = request.GET.get('room_id')
+    room = get_object_or_404(Room, pk=room_id)
+    messages = Message.objects.filter(room=room).order_by(
+        '-publication_date').reverse()
 
-        return render(request, 'rooms/messages.html', {'messages': messages})
-    else:
-        return JsonResponse({'status': 'error'})
+    return render(request, 'rooms/messages.html', {'messages': messages})
 
 
+@login_required
 def emoji_list(request):
     json_file_path = os.path.join(static('rooms/json'), 'data_by_groups.json')
 
@@ -211,7 +209,9 @@ def emoji_list(request):
         emoji_data = json.load(file)
 
     # Convert emoji data to a JSON-compatible format
-    emoji_data_json = {category: [{'char': emoji['char'], 'name': emoji['name']} for emoji in emojis] for category, emojis in emoji_data.items()}
+    emoji_data_json = {category: [{'char': emoji['char'],
+                                   'name': emoji['name']} for emoji in emojis]
+                       for category, emojis in emoji_data.items()}
 
     return JsonResponse(emoji_data_json, safe=False)
 

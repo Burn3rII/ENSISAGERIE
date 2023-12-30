@@ -26,7 +26,8 @@ urlpatterns = [
     path('load_messages/', views.load_messages, name='load_messages'),
     path('load_all_messages/', views.load_all_messages,
          name='load_all_messages'),
-    path('message_number/', views.message_number, name='message_number'),
+    path('get_message_number/', views.get_message_number,
+         name='get_message_number'),
     # Page de gestion des utilisateurs d'un salon------------------------------
     path('search_invite_user/', views.search_invite_user,
          name='search_invite_user'),
