@@ -10,5 +10,3 @@ Pouvoir supprimer son propre message et n'importe quel message si owner
 Nouvelles pages:
 Page de statistiques (nb de messages envoyés, nb d'utilisateurs actifs ou non
 etc...)
-
-Voir si on est bons au niveau de la sécurité

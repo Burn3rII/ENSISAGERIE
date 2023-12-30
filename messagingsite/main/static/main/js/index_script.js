@@ -46,7 +46,7 @@ $(document).ready(function() {
                 csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val()
             },
             success: function (data) {
-                alert("Invitation acceptée !");
+                alert(data.message);
                 refreshRoomsInvitations()
                 refreshYourRooms()
             },
@@ -69,7 +69,7 @@ $(document).ready(function() {
                 csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val()
             },
             success: function (data) {
-                alert("Invitation refusée.");
+                alert(data.message);
                 refreshRoomsInvitations()
             },
             error: function (error) {
@@ -153,8 +153,9 @@ $(document).ready(function() {
     $("#room-search-form").submit(function(event) {
         event.preventDefault();
         var searchTerm = $("#room-search-input").val();
-
         searchRoom(searchTerm);
+        refreshYourRooms()
+        refreshRoomsInvitations()
     });
 
     $("#room-search-results").on("click", ".join-room-btn", function() {
@@ -168,6 +169,7 @@ $(document).ready(function() {
                 csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val()
             },
             success: function (data) {
+                alert(data.message);
                 var searchTerm = $("#room-search-input").val();
                 searchRoom(searchTerm);
                 refreshYourRooms()
@@ -191,7 +193,7 @@ $(document).ready(function() {
                 csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val()
             },
             success: function (data) {
-                alert("Votre demande a été envoyée au propriétaire du salon.");
+                alert(data.message);
                 var searchTerm = $("#room-search-input").val();
                 searchRoom(searchTerm);
                 refreshYourRequests()

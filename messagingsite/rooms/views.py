@@ -26,8 +26,8 @@ from django.contrib.auth.models import Group"""
 def detail(request, room_id):
     room = get_object_or_404(Room, pk=room_id)
 
-    if request.user not in room.users.all():  # Condition : le user actuel
-        # doit faire partie du salon.
+    if request.user not in room.users.all():  # Le user actuel doit faire
+        # partie du salon.
         return render(request, 'main/403.html', status=403)
 
     context = {'room': room}
@@ -40,14 +40,14 @@ def accept_invitation(request):
     invitation_id = request.POST.get('invitation_id', '')
     invitation = get_object_or_404(RoomInvitation, id=invitation_id)
 
-    if invitation.user != request.user:  # Condition : l'invitation doit
-        # être adressée au user actuel
+    if invitation.user != request.user:  # L'invitation doit être adressée
+        # au user actuel
         return render(request, 'main/403.html', status=403)
 
     invitation.room.users.add(invitation.user)
     invitation.delete()
 
-    return JsonResponse({'message': "L'invitation a été acceptée."})
+    return JsonResponse({'message': "Invitation acceptée !"})
 
 
 @login_required
@@ -56,13 +56,13 @@ def reject_invitation(request):
     invitation_id = request.POST.get('invitation_id', '')
     invitation = get_object_or_404(RoomInvitation, id=invitation_id)
 
-    if invitation.user != request.user:  # Condition : l'invitation doit
-        # être adressée au user actuel
+    if invitation.user != request.user:  # L'invitation doit être adressée
+        # au user actuel
         return render(request, 'main/403.html', status=403)
 
     invitation.delete()
 
-    return JsonResponse({'message': "L'invitation a été refusée."})
+    return JsonResponse({'message': "Invitation refusée."})
 
 
 @login_required
@@ -71,8 +71,8 @@ def delete_accepted_request(request):
     request_id = request.POST.get('request_id', '')
     accepted_request = get_object_or_404(JoinRequest, id=request_id)
 
-    if accepted_request.user != request.user:  # Condition : la requête doit
-        # avoir été créée par le user actuel
+    if accepted_request.user != request.user:  # La requête doit avoir été
+        # créée par le user actuel
         return render(request, 'main/403.html', status=403)
 
     accepted_request.delete()
@@ -86,11 +86,11 @@ def search_room(request):
     search_term = request.GET.get('search_term', '')
     user = request.user
     rooms = Room.objects.filter(
-        Q(name__icontains=search_term) &
-        ~Q(users=user) &
-        ~Q(joinrequest__user=user, joinrequest__is_approved=False)
-    )[:5]  # Q crée une condition de requête et ~Q crée la négation (NOT)
-    # d'une condition de requête.
+        Q(name__icontains=search_term) & ~Q(users=user) &
+        ~Q(joinrequest__user=user) & ~Q(roominvitation__user=user)
+    )[:5]  # On ne garde que les rooms pour lesquelles le user n'est pas
+    # déjà dedans, il n'y a pas déjà une demande de rejoindre et il n'y a
+    # pas déjà une invitation.
     search_results_html = render_to_string(
         'rooms/rooms_search_results.html', {'search_results': rooms})
 
@@ -103,11 +103,15 @@ def join_room(request):
     room_id = request.POST.get('room_id', '')
     room = get_object_or_404(Room, id=room_id)
 
-    if not room.private:
-        room.users.add(request.user)
+    if room.private:
+        return JsonResponse({'message': 'Ce salon est privé. Vous devez '
+                                        'faire une demande.'})
 
-        return JsonResponse(
-            {'message': 'Vous avez rejoint le salon avec succès!'})
+    RoomInvitation.objects.filter(user=request.user, room=room).delete()
+    JoinRequest.objects.filter(user=request.user, room=room).delete()
+    room.users.add(request.user)
+
+    return JsonResponse({'message': 'Vous avez rejoint le salon!'})
 
 
 @login_required
@@ -116,12 +120,26 @@ def request_to_join(request):
     room_id = request.POST.get('room_id', '')
     room = get_object_or_404(Room, id=room_id, private=True)
 
-    if room.private:
-        join_request = JoinRequest(user=request.user, room=room)
-        join_request.save()
+    if not room.private:
+        return JsonResponse({'message': 'Ce salon est publique. Pas besoin de '
+                                        'demande.'})
 
-        return JsonResponse({'message': 'Votre demande a été envoyée au '
-                                        'propriétaire du salon.'})
+    if room.users.filter(id=request.user.id).exists():
+        return JsonResponse({'message': 'Vous êtes déjà membre de ce salon.'})
+
+    if RoomInvitation.objects.filter(user=request.user,
+                                     room=room).exists():
+        return JsonResponse({'message': 'Vous avez déjà reçu une invitation '
+                                        'pour ce salon.'})
+
+    if JoinRequest.objects.filter(user=request.user, room=room).exists():
+        return JsonResponse({'message': 'Vous avez déjà soumis une demande '
+                                        'pour rejoindre ce salon.'})
+
+    join_request = JoinRequest(user=request.user, room=room)
+    join_request.save()
+    return JsonResponse({'message': 'Votre demande a été envoyée au '
+                                    'propriétaire du salon.'})
 
 
 # Sur la page de création de salon---------------------------------------------
@@ -145,8 +163,8 @@ class RoomCreationView(CreateView):
 def user_management(request, room_id):
     room = get_object_or_404(Room, pk=room_id)
 
-    if room.owner != request.user:  # Condition : le user actuel doit être
-        # le propriétaire du salon.
+    if room.owner != request.user:  # Le user actuel doit être le
+        # propriétaire du salon.
         return render(request, 'main/403.html', status=403)
 
     context = {'room': room}
@@ -159,6 +177,11 @@ def user_management(request, room_id):
 def send_message(request):
     room_id = request.POST.get('room_id')
     room = get_object_or_404(Room, pk=room_id)
+
+    if not room.users.filter(id=request.user.id).exists():
+        return JsonResponse({'message': 'Vous ne faites pas partie de ce '
+                                        'salon.'})
+
     message_content = request.POST.get('message')
 
     Message.objects.create(room=room, sender=request.user,
@@ -182,6 +205,11 @@ def get_message_number(request):
 def load_messages(request):
     room_id = request.GET.get('room_id')
     room = get_object_or_404(Room, pk=room_id)
+
+    if not room.users.filter(id=request.user.id).exists():
+        return JsonResponse({'message': 'Vous ne faites pas partie de ce '
+                                        'salon.'})
+
     message_number = int(request.GET.get('message_number'))
     message_count = Message.objects.filter(room=room).count()
     messages = Message.objects.filter(room=room).order_by(
@@ -195,6 +223,11 @@ def load_messages(request):
 def load_all_messages(request):
     room_id = request.GET.get('room_id')
     room = get_object_or_404(Room, pk=room_id)
+
+    if not room.users.filter(id=request.user.id).exists():
+        return JsonResponse({'error': 'Vous ne faites pas partie de ce '
+                                      'salon.'})
+
     messages = Message.objects.filter(room=room).order_by(
         '-publication_date').reverse()
 
@@ -229,15 +262,17 @@ def search_invite_user(request):
         return render(request, 'main/403.html', status=403)
 
     room_users = User.objects.filter(
-        Q(username__icontains=search_term) &
-        ~Q(rooms__id=room_id) &
-        ~Q(roominvitation__room_id=room_id))[:5]  # Q crée une condition
-    # de requête et ~Q crée la négation (NOT) d'une condition de requête.
+        Q(username__icontains=search_term) & ~Q(rooms__id=room_id) &
+        ~Q(roominvitation__room_id=room_id) &
+        ~Q(joinrequest__room_id=room_id))[:5]  # On ne garde que les
+    # users qui ne sont pas déjà dans la room, qui n'ont pas déjà reçu
+    # une invitation et qui n'ont pas déjà fait une demande.
     search_results_html = render_to_string(
         'rooms/invite_users_search_results.html',
         {'room_id': room_id, 'search_results': room_users})
 
-    return JsonResponse({'invite_users_search_results_html': search_results_html})
+    return JsonResponse({'invite_users_search_results_html':
+                         search_results_html})
 
 
 @login_required
@@ -248,14 +283,24 @@ def invite(request):
     room = get_object_or_404(Room, id=room_id)
     user = get_object_or_404(User, id=user_id)
 
-    if room.owner != request.user:  # Condition : le user actuel doit être
-        # le propriétaire du salon.
+    if room.owner != request.user:  # Le user actuel doit être le
+        # propriétaire du salon.
         return render(request, 'main/403.html', status=403)
+
+    if room.users.filter(id=user.id).exists():
+        return JsonResponse({'message': "Le user est déjà membre de ce "
+                                        "salon."})
+
+    if RoomInvitation.objects.filter(user=user, room=room).exists():
+        return JsonResponse({'message': "Le user a déjà reçu une invitation "
+                                        "pour ce salon."})
+
+    if JoinRequest.objects.filter(user=user, room=room).exists():
+        return JsonResponse({'message': "Le user a déjà soumis une demande "
+                                        "pour rejoindre ce salon."})
 
     invitation = RoomInvitation(user=user, room=room)
     invitation.save()
-    print(invitation.id)
-
     return JsonResponse({'message': "Votre invitation a été envoyée à "
                                     "l'utilisateur."})
 
@@ -273,16 +318,15 @@ def search_remove_user(request):
 
     user = request.user
     room_users = User.objects.filter(
-        Q(username__icontains=search_term) &
-        Q(rooms__id=room_id) &
+        Q(username__icontains=search_term) & Q(rooms__id=room_id) &
         ~Q(room__owner=user)
-    )[:5]  # Q crée une condition de requête et ~Q crée la négation (NOT)
-    # d'une condition de requête.
+    )[:5]  # On ne garde que les users qui sont dans le salon, sauf le owner
     search_results_html = render_to_string(
         'rooms/remove_users_search_results.html',
         {'room_id': room_id, 'search_results': room_users})
 
-    return JsonResponse({'remove_users_search_results_html':search_results_html})
+    return JsonResponse({'remove_users_search_results_html':
+                         search_results_html})
 
 
 @login_required
@@ -293,10 +337,19 @@ def remove_user(request):
     room = get_object_or_404(Room, id=room_id)
     user = get_object_or_404(User, id=user_id)
 
-    if room.owner != request.user:  # Condition : le user actuel doit être
-        # le propriétaire du salon.
+    if room.owner != request.user:  # Le user actuel doit être le
+        # propriétaire du salon.
         return render(request, 'main/403.html', status=403)
 
+    if not room.users.filter(id=user.id).exists():
+        return JsonResponse({'message': "L'utilisateur n'est pas dans ce "
+                                        "salon."})
+
+    if user == room.owner:
+        return JsonResponse({'message': "Vous ne pouvez pas éjecter le "
+                                        "propriétaire du salon."})
+
+    JoinRequest.objects.filter(user=user, room=room).delete()
     room.users.remove(user)
 
     return JsonResponse({'message': "L'utilisateur a été éjecté du salon."})
@@ -307,6 +360,10 @@ def remove_user(request):
 def accept_pending_request(request):
     request_id = request.POST.get('request_id', '')
     pending_request = get_object_or_404(JoinRequest, id=request_id)
+
+    if pending_request.room.owner != request.user:  # Le user actuel doit
+        # être le propriétaire du salon.
+        return render(request, 'main/403.html', status=403)
 
     pending_request.is_approved = True
     pending_request.save()
@@ -321,8 +378,8 @@ def reject_pending_request(request):
     request_id = request.POST.get('request_id', '')
     pending_request = get_object_or_404(JoinRequest, id=request_id)
 
-    if pending_request.room.owner != request.user:  # Condition : le user
-        # actuel doit être le propriétaire du salon.
+    if pending_request.room.owner != request.user:  # Le user actuel doit
+        # être le propriétaire du salon.
         return render(request, 'main/403.html', status=403)
 
     pending_request.delete()
@@ -390,8 +447,8 @@ def refresh_pending_requests(request):
     room_id = request.GET.get('room_id', '')
     room = get_object_or_404(Room, id=room_id)
 
-    if room.owner != request.user:  # Condition : le user actuel doit être
-        # le propriétaire du salon.
+    if room.owner != request.user:  # Le user actuel doit être le
+        # propriétaire du salon.
         return render(request, 'main/403.html', status=403)
 
     pending_requests = room.pending_join_requests()

@@ -10,7 +10,8 @@ $(document).ready(function() {
                 room_id: roomId,
             },
             success: function(data) {
-                $("#invite-user-results").html(data.invite_users_search_results_html);
+                $("#invite-user-results").html(
+                data.invite_users_search_results_html);
             },
             error: function(error) {
                 console.log("Erreur de requête AJAX:", error);
@@ -21,7 +22,8 @@ $(document).ready(function() {
     $("#invite-user-form").submit(function(event) {
         event.preventDefault();
         var searchTerm = $("#invite-user-input").val();
-        const roomId = document.querySelector('script[data-room-id]').getAttribute('data-room-id');
+        const roomId = document.querySelector(
+        'script[data-room-id]').getAttribute('data-room-id');
         searchInviteUsers(searchTerm, roomId);
     });
 
@@ -38,7 +40,7 @@ $(document).ready(function() {
                 csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val()
             },
             success: function (data) {
-                alert("Votre invitation a été envoyée à l'utilisateur.");
+                alert(data.message);
                 var searchTerm = $("#room-search-input").val();
                 searchInviteUsers(searchTerm, roomId);
             },
@@ -69,7 +71,8 @@ $(document).ready(function() {
     $("#remove-user-form").submit(function(event) {
         event.preventDefault();
         var searchTerm = $("#remove-user-input").val();
-        const roomId = document.querySelector('script[data-room-id]').getAttribute('data-room-id');
+        const roomId = document.querySelector(
+        'script[data-room-id]').getAttribute('data-room-id');
         searchRemoveUsers(searchTerm, roomId);
     });
 
@@ -86,7 +89,7 @@ $(document).ready(function() {
                 csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val()
             },
             success: function (data) {
-                alert("L'utilisateur a été renvoyé du salon.");
+                alert(data.message);
                 var searchTerm = $("#remove-user-input").val();
                 searchRemoveUsers(searchTerm, roomId);
             },
@@ -131,7 +134,7 @@ $(document).ready(function() {
                 csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val()
             },
             success: function (data) {
-                alert("L'utilisateur a été ajouté au salon.");
+                alert(data.message);
                 refreshPendingRequests()
             },
             error: function (error) {
@@ -153,7 +156,7 @@ $(document).ready(function() {
                 csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val()
             },
             success: function (data) {
-                alert("La demande a été rejetée.");
+                alert(data.message);
                 refreshPendingRequests()
             },
             error: function (error) {
