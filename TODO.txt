@@ -9,5 +9,3 @@ Meilleure gestion des émojis
 Nouvelles pages:
 Page de statistiques (nb de messages envoyés, nb d'utilisateurs actifs ou non
 etc...)
-
-Faire un carrousel de photos

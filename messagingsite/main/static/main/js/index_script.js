@@ -203,6 +203,30 @@ $(document).ready(function() {
             }
         });
     });
+
+// Partie carrousel------------------------------------------------------------
+    var currentImage = -1
+    var staticUrl = document.getElementById('carrousel').getAttribute
+    ('data-static-url');
+    var imageDescriptionElement = document.getElementById('image-description');
+
+    $.getJSON(staticUrl + 'json/images_descriptions.json', function
+    (descriptions) {
+        changePicture();
+
+        setInterval(function() { $("#carrousel").fadeOut(1000, changePicture)
+        }, 20000);
+
+        function changePicture() {
+            currentImage = (currentImage+1) % 12;
+            var imageUrl = staticUrl + "images/singes" + currentImage + ".jpg";
+            var description = descriptions["singes" + currentImage + ".jpg"];
+
+            $("#carrousel").attr("src", imageUrl);
+            $("#carrousel").fadeIn(1000);
+            imageDescriptionElement.innerText = description;
+        }
+    });
 });
 
 
