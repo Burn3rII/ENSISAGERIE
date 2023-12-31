@@ -36,8 +36,7 @@
                 </button>
             {% endfor %}
         {% endfor %}
-        </div>
-    </form>
+    </div>
     <div id="nav-seemore">
         <form id="seeMoreForm" class="seeMore">
             <button type="submit" class="in_body_button">Voir Plus</button>
@@ -49,7 +48,6 @@
             <button type="submit" class="in_body_button">Voir Tous</button>
         </form>
     </div>
-    </div>
 </div>
 
 <!-- Django template tags are not processed in external JavaScript
@@ -59,8 +57,7 @@ files by default, so we pass it via the template as a constant -->
 </script>
 <!-- Chargement du script de gestion des messages -->
 <script type="text/javascript" src="{% static 'rooms/js/message_script.js' %}"
-        data-room-id="{{ room.id }}"
-        data-csrf-token="{{ csrf_token }}">
+        data-room-id="{{ room.id }}">
 </script>
 <!-- Chargement du script de gestion des emojis -->
 <script type="text/javascript" src="{% static 'rooms/js/emoji_script.js' %}">

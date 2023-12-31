@@ -1,7 +1,8 @@
-{% for message in messages %}
+<!-- {% for message in messages %}
     {% if message.sender == user %}
     <div class="my-message">
         <p>{{ message.sender.username }} : {{ message.text}}</p>
+        <p>{{ message.sender.username }} : {{ message.publication_date}}</p>
         {% if not message.is_deleted %}
         <button class="remove-message-btn delete_message_button"
                 data-message-id="{{ message.id }}">supprimer
@@ -11,6 +12,7 @@
     {% else %}
     <div class="others-message">
         <p>{{ message.sender.username }} : {{ message.text}}</p>
+        <p>{{ message.sender.username }} : {{ message.publication_date}}</p>
         {% if room.owner == user and not message.is_deleted %}
         <button class="remove-message-btn delete_message_button"
                 data-message-id="{{ message.id }}">supprimer
@@ -18,4 +20,15 @@
         {% endif %}
     </div>
     {% endif %}
+{% endfor %}
+-->
+
+{% for message in messages %}
+    <div class="{% if message.sender == user %}my-message{% else %}others-message{% endif %}">
+        <p>{{ message.sender.username }} : {{ message.text}} - {{ message.timestamp }}</p>
+        {% if not message.is_deleted %}
+            <button class="remove-message-btn" data-message-id="{{ message.id }}">supprimer</button>
+        {% endif %}
+        <div>{{ message.sender.username }} : {{ message.publication_date}}</div>
+    </div>
 {% endfor %}
