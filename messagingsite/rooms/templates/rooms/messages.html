@@ -25,10 +25,10 @@
 
 {% for message in messages %}
     <div class="{% if message.sender == user %}my-message{% else %}others-message{% endif %}">
-        <p>{{ message.sender.username }} : {{ message.text}} - {{ message.timestamp }}</p>
+        <p>{{ message.sender.username }} : {{ message.text}}</p>
         {% if not message.is_deleted %}
             <button class="remove-message-btn" data-message-id="{{ message.id }}">supprimer</button>
         {% endif %}
-        <div>{{ message.sender.username }} : {{ message.publication_date}}</div>
+        <p>{{ message.sender.username }} : {{ message.publication_date}}</p>
     </div>
 {% endfor %}
