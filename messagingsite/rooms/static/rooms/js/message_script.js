@@ -14,7 +14,7 @@ function loadMessages() {
     //message_shown_number += message_number_server - message_number_client;
 
     $.ajax({
-        url: "/rooms/load_messages/",
+        url: `/rooms/load_messages/`,
         type: "GET",
         data: { 
             room_id: roomId,
@@ -33,7 +33,7 @@ function loadAllMessages() {
     message_shown_number = message_number_server;
 
     $.ajax({
-        url: "/rooms/load_all_messages/",
+        url: `/rooms/load_all_messages/`,
         type: "GET",
         data: { 
             room_id: roomId,
@@ -49,7 +49,7 @@ function serverMessageNumber() {
     const roomId = document.querySelector('script[data-room-id]').getAttribute('data-room-id');
 
     $.ajax({
-        url: "/rooms/get_message_number/",
+        url: `/rooms/get_message_number/`,
         type: "GET",
         data: { room_id: roomId },
         success: function (data) {
@@ -84,7 +84,7 @@ function sendMessage() {
 
     if (message !== "") {
         $.ajax({
-            url: "/rooms/send_message/",
+            url: `/rooms/send_message/`,
             type: "POST",
             data: {
                 room_id: roomId,

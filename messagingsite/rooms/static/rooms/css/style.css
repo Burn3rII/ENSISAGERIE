@@ -82,7 +82,6 @@
 .my-message {
     padding: 0.5rem;
     margin-bottom: 0.5rem;
-    border-radius: 0.75rem;
     background-color: var(--chat-color2);
     display: flex;
 }
@@ -90,7 +89,6 @@
 .others-message {
     padding: 0.5rem;
     margin-bottom: 0.5rem;
-    border-radius: 0.75rem;
     background-color: var(--chat-color1);
     display: flex;
 }
@@ -236,7 +234,6 @@
 .delete_message_button {
     height: 1.8rem;
     padding: 0.3rem;
-    border-radius: 6px;
     color: #000000;
     background: none;
 }

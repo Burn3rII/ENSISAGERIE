@@ -4,7 +4,7 @@ $(document).ready(function() {
     function refreshYourRooms() {
         $.ajax({
             type: "GET",
-            url: "/rooms/refresh_your_rooms/",
+            url: `/rooms/refresh_your_rooms/`,
             success: function(data) {
                 $("#your-rooms").html(data.updated_your_rooms_html);
             },
@@ -16,12 +16,34 @@ $(document).ready(function() {
 
     refreshYourRooms()
 
+    $("#your-rooms").on("click", ".remove-user-btn", function() {
+        const roomId = $(this).data('room-id');
+        const userId = $(this).data('user-id');
+
+        $.ajax({
+            url: `/rooms/remove_user/`,
+            method: "POST",
+            data: {
+                room_id: roomId,
+                user_id: userId,
+                csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val()
+            },
+            success: function (data) {
+                alert(data.message);
+                refreshYourRooms()
+            },
+            error: function (error) {
+                console.log("Erreur de requête AJAX:", error);
+            }
+        });
+    });
+
 // Partie invitations recues---------------------------------------------------
 
     function refreshRoomsInvitations() {
         $.ajax({
             type: "GET",
-            url: "/rooms/refresh_rooms_invitations/",
+            url: `/rooms/refresh_rooms_invitations/`,
             success: function(data) {
                 $("#rooms-invitations").html(data.updated_rooms_invitations_html);
             },
@@ -82,7 +104,7 @@ $(document).ready(function() {
     function refreshYourRequests() {
         $.ajax({
             type: "GET",
-            url: "/rooms/refresh_your_requests/",
+            url: `/rooms/refresh_your_requests/`,
             success: function(data) {
                 $("#your-requests").html(data.updated_your_requests_html);
             },
@@ -99,7 +121,7 @@ $(document).ready(function() {
     function refreshAcceptedRequests() {
         $.ajax({
             type: "GET",
-            url: "/rooms/refresh_accepted_requests/",
+            url: `/rooms/refresh_accepted_requests/`,
             success: function(data) {
                 $("#accepted_requests").html(data.updated_accepted_requests_html);
             },
@@ -137,7 +159,7 @@ $(document).ready(function() {
     function searchRoom(searchTerm) {
         $.ajax({
             type: "GET",
-            url: "/rooms/search_room/",
+            url: `/rooms/search_room/`,
             data: {
                 search_term: searchTerm,
             },

@@ -306,8 +306,8 @@ def search_invite_user(request):
     room_id = request.GET.get('room_id', '')
     room = get_object_or_404(Room, pk=room_id)
 
-    if room.owner != request.user:  # Condition : le user actuel doit être
-        # le propriétaire du salon.
+    if room.owner != request.user:  # Le user actuel doit être le
+        # propriétaire du salon.
         return render(request, 'main/403.html', status=403)
 
     room_users = User.objects.filter(
@@ -361,14 +361,13 @@ def search_remove_user(request):
     room_id = request.GET.get('room_id', '')
     room = get_object_or_404(Room, id=room_id)
 
-    if room.owner != request.user:  # Condition : le user actuel doit être
-        # le propriétaire du salon.
+    if room.owner != request.user:  # Le user actuel doit être le
+        # propriétaire du salon.
         return render(request, 'main/403.html', status=403)
 
-    user = request.user
     room_users = User.objects.filter(
         Q(username__icontains=search_term) & Q(rooms__id=room_id) &
-        ~Q(room__owner=user)
+        ~Q(room__owner=request.user)
     )[:5]  # On ne garde que les users qui sont dans le salon, sauf le owner
     search_results_html = render_to_string(
         'rooms/remove_users_search_results.html',
@@ -386,8 +385,9 @@ def remove_user(request):
     room = get_object_or_404(Room, id=room_id)
     user = get_object_or_404(User, id=user_id)
 
-    if room.owner != request.user:  # Le user actuel doit être le
-        # propriétaire du salon.
+    if room.owner != request.user and user != request.user:  # Le user actuel
+        # doit être le propriétaire du salon ou la personne éjectée dans le
+        # cas où le user quitte lui même le groupe
         return render(request, 'main/403.html', status=403)
 
     if not room.users.filter(id=user.id).exists():
@@ -400,6 +400,10 @@ def remove_user(request):
 
     JoinRequest.objects.filter(user=user, room=room).delete()
     room.users.remove(user)
+
+    if user == request.user:
+        return JsonResponse(
+            {'message': "Vous avez quitté le groupe."})
 
     return JsonResponse({'message': "L'utilisateur a été éjecté du salon."})
 

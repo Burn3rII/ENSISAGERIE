@@ -41,7 +41,6 @@
 #rooms-invitations, #your-rooms, #your-requests, #accepted_requests,
 #search-room {
     border: 0.2rem solid var(--secondary-color);
-    border-radius: 0.7rem;
     padding: 1rem;
 }
 
@@ -71,5 +70,42 @@
 
 .invitation_container *, .accepted_requests_container *,
 .room_search_container * {
+    margin-right: 0.3rem;
+}
+
+@media screen and (min-width:1000px) {
+    #user_management_sections {
+        display: flex;
+    }
+}
+
+@media screen and (max-width:1000px) {
+    #user_management_sections {
+        display: block;
+    }
+
+    #user_management_sections > * {
+        margin-bottom: 3rem;
+    }
+}
+
+#user_management_sections > * {
+    flex:1;
+}
+
+#user_management_sections {
+    margin-top: 3rem;
+}
+
+.delete_user_container {
+    display: inline-flex;
+    align-items: center;
+}
+
+.delete_user_container button {
+    margin-bottom: 0;
+}
+
+.delete_user_container * {
     margin-right: 0.3rem;
 }

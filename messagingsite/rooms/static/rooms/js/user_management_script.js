@@ -4,7 +4,7 @@ $(document).ready(function() {
      function searchInviteUsers(searchTerm, roomId) {
         $.ajax({
             type: "GET",
-            url: "/rooms/search_invite_user/",
+            url: `/rooms/search_invite_user/`,
             data: {
                 search_term: searchTerm,
                 room_id: roomId,
