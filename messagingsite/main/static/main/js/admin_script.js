@@ -1,13 +1,15 @@
 $(document).ready(function() {
 
 // Partie suppression d'utilisateurs-------------------------------------------
-    function searchDeleteUsers(searchTerm) {
+    var searchTermDelete;
+
+    function searchDeleteUsers() {
 
         $.ajax({
             type: "GET",
             url: `/search_delete_user/`,
             data: {
-                search_term: searchTerm,
+                search_term: searchTermDelete,
             },
             success: function(data) {
                 $("#delete-user-results").html(
@@ -21,8 +23,8 @@ $(document).ready(function() {
 
     $("#delete-user-form").submit(function(event) {
         event.preventDefault();
-        var searchTerm = $("#delete-user-input").val();
-        searchDeleteUsers(searchTerm);
+        searchTermDelete = $("#delete-user-input").val();
+        searchDeleteUsers();
     });
 
     $("#delete-user-results").on("click", ".delete-user-btn", function() {
@@ -37,8 +39,7 @@ $(document).ready(function() {
             },
             success: function (data) {
                 alert(data.message);
-                var searchTerm = $("#delete-user-input").val();
-                searchDeleteUsers(searchTerm);
+                searchDeleteUsers();
             },
             error: function (error) {
                 console.log("Erreur de requête AJAX:", error);

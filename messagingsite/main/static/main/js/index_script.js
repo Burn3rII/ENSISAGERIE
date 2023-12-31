@@ -30,7 +30,7 @@ $(document).ready(function() {
             },
             success: function (data) {
                 alert(data.message);
-                refreshYourRooms()
+                refreshYourRooms();
             },
             error: function (error) {
                 console.log("Erreur de requête AJAX:", error);
@@ -69,8 +69,8 @@ $(document).ready(function() {
             },
             success: function (data) {
                 alert(data.message);
-                refreshRoomsInvitations()
-                refreshYourRooms()
+                refreshRoomsInvitations();
+                refreshYourRooms();
             },
             error: function (error) {
                 console.log("Erreur de requête AJAX:", error);
@@ -92,7 +92,7 @@ $(document).ready(function() {
             },
             success: function (data) {
                 alert(data.message);
-                refreshRoomsInvitations()
+                refreshRoomsInvitations();
             },
             error: function (error) {
                 console.log("Erreur de requête AJAX:", error);
@@ -117,7 +117,6 @@ $(document).ready(function() {
     refreshYourRequests()
 
 // Partie demandes acceptées---------------------------------------------------
-
     function refreshAcceptedRequests() {
         $.ajax({
             type: "GET",
@@ -147,7 +146,7 @@ $(document).ready(function() {
                 csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val()
             },
             success: function (data) {
-                refreshAcceptedRequests()
+                refreshAcceptedRequests();
             },
             error: function (error) {
                 console.log("Erreur de requête AJAX:", error);
@@ -156,12 +155,14 @@ $(document).ready(function() {
     });
 
 // Partie recherche de salons--------------------------------------------------
-    function searchRoom(searchTerm) {
+    var searchTermRoom;
+
+    function searchRoom() {
         $.ajax({
             type: "GET",
             url: `/rooms/search_room/`,
             data: {
-                search_term: searchTerm,
+                search_term: searchTermRoom,
             },
             success: function(data) {
                 $("#room-search-results").html(data.rooms_search_results_html);
@@ -174,10 +175,10 @@ $(document).ready(function() {
 
     $("#room-search-form").submit(function(event) {
         event.preventDefault();
-        var searchTerm = $("#room-search-input").val();
-        searchRoom(searchTerm);
-        refreshYourRooms()
-        refreshRoomsInvitations()
+        searchTermRoom = $("#room-search-input").val();
+        searchRoom();
+        refreshYourRooms();
+        refreshRoomsInvitations();
     });
 
     $("#room-search-results").on("click", ".join-room-btn", function() {
@@ -192,9 +193,8 @@ $(document).ready(function() {
             },
             success: function (data) {
                 alert(data.message);
-                var searchTerm = $("#room-search-input").val();
-                searchRoom(searchTerm);
-                refreshYourRooms()
+                searchRoom();
+                refreshYourRooms();
             },
             error: function (error) {
                 console.log("Erreur de requête AJAX:", error);
@@ -218,7 +218,7 @@ $(document).ready(function() {
                 alert(data.message);
                 var searchTerm = $("#room-search-input").val();
                 searchRoom(searchTerm);
-                refreshYourRequests()
+                refreshYourRequests();
             },
             error: function (error) {
                 console.log("Erreur de requête AJAX:", error);

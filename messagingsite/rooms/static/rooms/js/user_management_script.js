@@ -1,12 +1,14 @@
 $(document).ready(function() {
 
 // Partie invitations----------------------------------------------------------
-     function searchInviteUsers(searchTerm, roomId) {
+    var searchTermInvite;
+
+     function searchInviteUsers(roomId) {
         $.ajax({
             type: "GET",
             url: `/rooms/search_invite_user/`,
             data: {
-                search_term: searchTerm,
+                search_term: searchTermInvite,
                 room_id: roomId,
             },
             success: function(data) {
@@ -21,10 +23,10 @@ $(document).ready(function() {
 
     $("#invite-user-form").submit(function(event) {
         event.preventDefault();
-        var searchTerm = $("#invite-user-input").val();
+        searchTermInvite = $("#invite-user-input").val();
         const roomId = document.querySelector(
         'script[data-room-id]').getAttribute('data-room-id');
-        searchInviteUsers(searchTerm, roomId);
+        searchInviteUsers(roomId);
     });
 
     $("#invite-user-results").on("click", ".invite-btn", function() {
@@ -42,8 +44,7 @@ $(document).ready(function() {
             },
             success: function (data) {
                 alert(data.message);
-                var searchTerm = $("#room-search-input").val();
-                searchInviteUsers(searchTerm, roomId);
+                searchInviteUsers(roomId);
             },
             error: function (error) {
                 console.log("Erreur de requête AJAX:", error);
@@ -52,12 +53,14 @@ $(document).ready(function() {
     });
 
 // Partie suppression d'utilisateurs-------------------------------------------
-    function searchRemoveUsers(searchTerm, roomId) {
+    var searchTermRemove;
+
+    function searchRemoveUsers(roomId) {
         $.ajax({
             type: "GET",
             url: "/rooms/search_remove_user/",
             data: {
-                search_term: searchTerm,
+                search_term: searchTermRemove,
                 room_id: roomId,
             },
             success: function(data) {
@@ -71,10 +74,10 @@ $(document).ready(function() {
 
     $("#remove-user-form").submit(function(event) {
         event.preventDefault();
-        var searchTerm = $("#remove-user-input").val();
+        searchTermRemove = $("#remove-user-input").val();
         const roomId = document.querySelector(
         'script[data-room-id]').getAttribute('data-room-id');
-        searchRemoveUsers(searchTerm, roomId);
+        searchRemoveUsers(roomId);
     });
 
     $("#remove-user-results").on("click", ".remove-user-btn", function() {
@@ -92,8 +95,7 @@ $(document).ready(function() {
             },
             success: function (data) {
                 alert(data.message);
-                var searchTerm = $("#remove-user-input").val();
-                searchRemoveUsers(searchTerm, roomId);
+                searchRemoveUsers(roomId);
             },
             error: function (error) {
                 console.log("Erreur de requête AJAX:", error);
@@ -138,7 +140,7 @@ $(document).ready(function() {
             },
             success: function (data) {
                 alert(data.message);
-                refreshPendingRequests()
+                refreshPendingRequests();
             },
             error: function (error) {
                 console.log("Erreur de requête AJAX:", error);
@@ -160,7 +162,7 @@ $(document).ready(function() {
             },
             success: function (data) {
                 alert(data.message);
-                refreshPendingRequests()
+                refreshPendingRequests();
             },
             error: function (error) {
                 console.log("Erreur de requête AJAX:", error);
