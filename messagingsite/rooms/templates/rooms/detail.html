@@ -7,14 +7,14 @@
         <h2>{{ room.name }}</h2>
     </div>
 
-    {% if room.owner == user %}
     <div id="nav-right">
         <a href="{% url 'rooms:statistics' room.id %}"
            class="type1">Statistiques</a>
+        {% if room.owner == user %}
         <a href="{% url 'rooms:user_management' room.id %}"
            class="type1">Gestion des utilisateurs</a>
+        {% endif %}
     </div>
-    {% endif %}
 </div>
 
 <div id="chat">
