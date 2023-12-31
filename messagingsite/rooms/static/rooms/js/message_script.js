@@ -182,7 +182,7 @@ $(document).ready(function() {
             },
             success: function (data) {
                 alert(data.message);
-                loadMessages()
+                loadMessages();
             },
             error: function (error) {
                 console.log("Erreur de requête AJAX:", error);
