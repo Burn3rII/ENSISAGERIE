@@ -34,6 +34,9 @@
                         un compte</a>
                 {% else %}
                     <a href="{% url 'users:profil' %}">Mon profil</a>
+                    {% if user.is_superuser %}
+                    <a href="{% url 'main:administration' %}">Admin</a>
+                    {% endif %}
                     <form action="{% url 'users:logout' %}" method="post">
                         {% csrf_token %}
                         <button type="submit">Se déconnecter</button>
