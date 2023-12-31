@@ -4,7 +4,12 @@
     <li><a href="{% url 'rooms:detail' room.id %}"
            class="type1">{{ room.name }}
     {% if room.owner == user %}(Propriétaire){% endif %}
-    </a></li>
+    </a>
+    {% if not room.owner == user %}
+    <button class="remove-user-btn in_body_button"
+            data-room-id="{{ room.id }}"
+            data-user-id="{{ user.id }}">quitter</button>
+    {% endif %}</li>
     {% endfor %}
 </ul>
 {% else %}

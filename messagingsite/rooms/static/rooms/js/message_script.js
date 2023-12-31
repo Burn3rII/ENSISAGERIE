@@ -14,7 +14,7 @@ function loadMessages() {
     //message_shown_number += message_number_server - message_number_client;
 
     $.ajax({
-        url: "/rooms/load_messages/",
+        url: `/rooms/load_messages/`,
         type: "GET",
         data: { 
             room_id: roomId,
@@ -26,7 +26,6 @@ function loadMessages() {
         },
         
     });
-    
 }
 
 function loadAllMessages() {
@@ -34,7 +33,7 @@ function loadAllMessages() {
     message_shown_number = message_number_server;
 
     $.ajax({
-        url: "/rooms/load_all_messages/",
+        url: `/rooms/load_all_messages/`,
         type: "GET",
         data: { 
             room_id: roomId,
@@ -44,14 +43,13 @@ function loadAllMessages() {
             message_number_client = message_number_server;
         },
     });
-
 }
 
 function serverMessageNumber() {
     const roomId = document.querySelector('script[data-room-id]').getAttribute('data-room-id');
 
     $.ajax({
-        url: "/rooms/get_message_number/",
+        url: `/rooms/get_message_number/`,
         type: "GET",
         data: { room_id: roomId },
         success: function (data) {
@@ -79,7 +77,6 @@ function lessShownMessageNumber() {
 
 function sendMessage() {
     const roomId = document.querySelector('script[data-room-id]').getAttribute('data-room-id');
-    const csrfToken = document.querySelector('script[data-csrf-token]').getAttribute('data-csrf-token');
 
     const messageInput = $("#messageInput");
     let message = messageInput.val();
@@ -87,12 +84,12 @@ function sendMessage() {
 
     if (message !== "") {
         $.ajax({
-            url: "/rooms/send_message/",
+            url: `/rooms/send_message/`,
             type: "POST",
             data: {
                 room_id: roomId,
                 message: message,
-                csrfmiddlewaretoken: csrfToken,
+                csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val()
             },
             success: function () {
                 addToQueue(async () => {
@@ -122,7 +119,6 @@ $(document).ready(function() {
         serverMessageNumber();
         loadMessages();
     });
-    
 
     $('#messageForm').on('submit', function(event) {
         event.preventDefault();
@@ -161,7 +157,6 @@ $(document).ready(function() {
     });
     
     setInterval(function () {
-        
         addToQueue(async () => {
             serverMessageNumber();      
       
@@ -174,7 +169,25 @@ $(document).ready(function() {
                 }
             }
         });
-        
-        
     }, 1000);
+
+    $("#messages").on("click", ".remove-message-btn", function() {
+        const messageId = $(this).data('message-id');
+
+        $.ajax({
+            url: `/rooms/remove_message/`,
+            method: "POST",
+            data: {
+                message_id: messageId,
+                csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val()
+            },
+            success: function (data) {
+                alert(data.message);
+                loadMessages()
+            },
+            error: function (error) {
+                console.log("Erreur de requête AJAX:", error);
+            }
+        });
+    });
 });

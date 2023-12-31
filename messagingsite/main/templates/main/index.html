@@ -34,6 +34,13 @@
                 <li>Sécurité avancée des données</li>
             </ul>
         </div>
+
+        <div id="illustration-section">
+            <img id="carrousel" src="{% static 'main/images/singes0.jpg' %}"
+                 class="img-fluid" alt="Photo de singe"
+                 data-static-url="{% static 'main/' %}" width="100%">
+            <p id="image-description"></p>
+        </div>
     </div>
 
     {% if user.is_authenticated %}
@@ -76,9 +83,6 @@
         </div>
     </div>
     {% endif %}
-</div>
-
-<div id="illustration-section">
 </div>
 
 <script type="text/javascript" src="{% static 'main/js/index_script.js' %}">

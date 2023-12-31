@@ -4,7 +4,7 @@ $(document).ready(function() {
      function searchInviteUsers(searchTerm, roomId) {
         $.ajax({
             type: "GET",
-            url: "/rooms/search_invite_user/",
+            url: `/rooms/search_invite_user/`,
             data: {
                 search_term: searchTerm,
                 room_id: roomId,
@@ -28,7 +28,8 @@ $(document).ready(function() {
     });
 
     $("#invite-user-results").on("click", ".invite-btn", function() {
-        const roomId = $(this).data('room-id');
+        const roomId = document.querySelector(
+        'script[data-room-id]').getAttribute('data-room-id');
         const userId = $(this).data('user-id');
 
         $.ajax({
@@ -77,7 +78,8 @@ $(document).ready(function() {
     });
 
     $("#remove-user-results").on("click", ".remove-user-btn", function() {
-        const roomId = $(this).data('room-id');
+        const roomId = document.querySelector(
+        'script[data-room-id]').getAttribute('data-room-id');
         const userId = $(this).data('user-id');
 
         $.ajax({
@@ -101,7 +103,8 @@ $(document).ready(function() {
 
 // Partie demandes en attente--------------------------------------------------
     function refreshPendingRequests() {
-        const roomId = document.querySelector('script[data-room-id]').getAttribute('data-room-id');
+        const roomId = document.querySelector(
+        'script[data-room-id]').getAttribute('data-room-id');
 
         $.ajax({
             type: "GET",

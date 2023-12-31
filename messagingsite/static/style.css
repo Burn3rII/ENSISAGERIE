@@ -156,7 +156,6 @@ footer p {
     width: 100%;
     padding: 2rem;
     border: 0.2rem solid var(--secondary-color);
-    border-radius: 0.7rem;
 }
 
 .form-content label {
@@ -170,7 +169,6 @@ footer p {
     margin-bottom: 2rem;
     padding: 0.5rem 0;
     border: 0;
-    border-radius: 0.5rem;
     outline: 0;
     text-indent: 0.5rem;
     color: var(--primary-color);
@@ -185,7 +183,6 @@ footer p {
 input[type=text] {
     padding: 0.5rem 0;
     border: 0;
-    border-radius: 0.5rem;
     outline: 0;
     text-indent: 0.5rem;
     color: var(--primary-color);
@@ -195,7 +192,7 @@ input[type=text] {
 input[type=submit], .in_body_button {
     padding: 5px;
     margin-bottom: 0.5rem;
-    border-radius: 6px;
+
     color: var(--primary-color);
     background-color: var(--secondary-color);
 }
