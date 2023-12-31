@@ -20,6 +20,7 @@ class Message(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE,)
     publication_date = models.DateTimeField(auto_now_add=True)
     text = models.CharField(max_length=1000)
+    is_deleted = models.BooleanField(default=False)
 
     def __str__(self):
         return self.text

@@ -20,6 +20,8 @@ urlpatterns = [
     path("create/", views.RoomCreationView.as_view(),
          name="create"),
     # Page d'un salon----------------------------------------------------------
+    path("statistics/<int:room_id>/", views.statistics,
+         name="statistics"),
     path("user_management/<int:room_id>/", views.user_management,
          name="user_management"),
     path('send_message/', views.send_message, name='send_message'),
@@ -28,6 +30,7 @@ urlpatterns = [
          name='load_all_messages'),
     path('get_message_number/', views.get_message_number,
          name='get_message_number'),
+    path('remove_message/', views.remove_message, name='remove_message'),
     # Page de gestion des utilisateurs d'un salon------------------------------
     path('search_invite_user/', views.search_invite_user,
          name='search_invite_user'),

@@ -5,8 +5,9 @@ Mettre un bouton dark mode correct
 Salon (page principale):
 Réduire le nb de messages visibles (mettre un scroll)
 Meilleure gestion des émojis
-Pouvoir supprimer son propre message et n'importe quel message si owner
 
 Nouvelles pages:
 Page de statistiques (nb de messages envoyés, nb d'utilisateurs actifs ou non
 etc...)
+
+Faire un carrousel de photos

@@ -2,7 +2,7 @@ import os
 import json
 from django.templatetags.static import static
 from django.views.generic.edit import CreateView
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.template.loader import render_to_string
@@ -15,9 +15,6 @@ from django.contrib.auth.models import User
 from .models import Room, Message, JoinRequest, RoomInvitation
 
 from .forms import RoomCreationForm
-
-"""from django.contrib.auth.models import User
-from django.contrib.auth.models import Group"""
 
 
 # Sur la page d'accueil--------------------------------------------------------
@@ -160,6 +157,33 @@ class RoomCreationView(CreateView):
 
 # Sur une page de salon--------------------------------------------------------
 @login_required
+def statistics(request, room_id):
+    room = Room.objects.get(id=room_id)
+
+    # Statistiques générales
+    total_messages = Message.objects.filter(room=room).count()
+    total_users = room.users.count()
+
+    # Statistiques des utilisateurs
+    active_users = room.users.filter(message__room=room).distinct().count()
+
+    # Activité temporelle
+    messages_per_day = Message.objects.filter(room=room).extra(
+        select={'day': 'date(publication_date)'}
+    ).values('day').annotate(count=Count('id'))
+
+    context = {
+        'room': room,
+        'total_messages': total_messages,
+        'total_users': total_users,
+        'active_users': active_users,
+        'messages_per_day': messages_per_day,
+    }
+
+    return render(request, 'rooms/room_statistics.html', context)
+
+
+@login_required
 def user_management(request, room_id):
     room = get_object_or_404(Room, pk=room_id)
 
@@ -192,16 +216,6 @@ def send_message(request):
 
 @login_required
 @require_GET
-def get_message_number(request):
-    room_id = request.GET.get('room_id')
-    room = get_object_or_404(Room, pk=room_id)
-    message_number = Message.objects.filter(room=room).count()
-
-    return JsonResponse({'message_number': message_number})
-
-
-@login_required
-@require_GET
 def load_messages(request):
     room_id = request.GET.get('room_id')
     room = get_object_or_404(Room, pk=room_id)
@@ -217,7 +231,8 @@ def load_messages(request):
     messages = Message.objects.filter(room=room).order_by(
         '-publication_date').reverse()[message_count - message_number:]
 
-    return render(request, 'rooms/messages.html', {'messages': messages})
+    return render(request, 'rooms/messages.html',
+                  {'messages': messages, 'room': room})
 
 
 @login_required
@@ -227,13 +242,45 @@ def load_all_messages(request):
     room = get_object_or_404(Room, pk=room_id)
 
     if not room.users.filter(id=request.user.id).exists():
-        return JsonResponse({'error': 'Vous ne faites pas partie de ce '
-                                      'salon.'})
+        return JsonResponse({'message': 'Vous ne faites pas partie de ce '
+                                        'salon.'})
 
     messages = Message.objects.filter(room=room).order_by(
         '-publication_date').reverse()
 
-    return render(request, 'rooms/messages.html', {'messages': messages})
+    return render(request, 'rooms/messages.html',
+                  {'messages': messages, 'room': room})
+
+
+@login_required
+@require_GET
+def get_message_number(request):
+    room_id = request.GET.get('room_id')
+    room = get_object_or_404(Room, pk=room_id)
+    message_number = Message.objects.filter(room=room).count()
+
+    return JsonResponse({'message_number': message_number})
+
+
+@login_required
+@require_POST
+def remove_message(request):
+    message_id = request.POST.get('message_id', '')
+    message = get_object_or_404(Message, id=message_id)
+
+    if request.user != message.room.owner and request.user != message.sender:
+        # Le user actuel doit être le owner ou le message doit appartenir au
+        # user actuel
+        return render(request, 'main/403.html', status=403)
+
+    if message.is_deleted:
+        return JsonResponse({'message': 'Ce message a déjà été supprimé.'})
+
+    message.text = "Ce message a été supprimé."
+    message.is_deleted = True
+    message.save()
+
+    return JsonResponse({'message': "Le message a été supprimé."})
 
 
 @login_required
@@ -461,26 +508,3 @@ def refresh_pending_requests(request):
 
     return JsonResponse({"updated_pending_requests_html":
                          updated_pending_requests_html})
-
-
-"""
-def add_member(request, room_id, user_id):
-    room = get_object_or_404(ChatRoom, pk=room_id)
-    user = get_object_or_404(get_user_model(), pk=user_id)
-
-    if request.user == room.owner:
-        room.members.add(user)
-        return HttpResponse("Member added successfully.")
-    else:
-        return HttpResponseForbidden("Permission denied. Only the owner can add members.")
-
-def delete_chat_room(request, room_id):
-    room = get_object_or_404(ChatRoom, pk=room_id)
-
-    if request.user == room.owner:
-        room.delete()
-        return HttpResponse("Chat room deleted successfully.")
-    else:
-        return HttpResponseForbidden("Permission denied. Only the owner can delete the chat room.")
-
-"""
