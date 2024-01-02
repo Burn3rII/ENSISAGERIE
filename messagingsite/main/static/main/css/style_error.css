@@ -1,25 +1,25 @@
-#Error_section{
+#error_section {
     margin: 1rem 1rem 0 1rem;
 }
 
-#Error_section div{
+#error_section div {
     padding: 2rem 0 0 0;
     text-align: center;
     vertical-align: middle;
     font-weight: bold;
 }
 
-#Error_code{
+#error_code {
     padding-left: 0;
     height: 5rem;
     font-size: 4rem;
 }
 
-#Error_logo{
+#error_logo {
     padding: 2rem 0 0 0;
 }
 
-#Error_descriptor{
+#error_descriptor {
     padding-left: 0; 
     height: 2rem;
     font-size: 2rem;
