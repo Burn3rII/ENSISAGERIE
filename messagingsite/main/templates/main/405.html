@@ -2,14 +2,12 @@
 {% load static %}
 
 {% block content %}
-
-    <div>
-        <h1 id="Error_code">Erreur 405</h1>
-    </div>
-    <div>
-        <p id="Error_descriptor">Méthode de requête non autorisée</p>
-        <img src="{% static 'images/405.jpg' %}" alt="Error 405"
-             id="Error_logo" width="100%"/>
-    </div>
-        
+<div>
+    <h1 id="error_code">Erreur 405</h1>
+</div>
+<div>
+    <p id="error_descriptor">Méthode de requête non autorisée</p>
+    <img src="{% static 'images/405.jpg' %}" alt="Error 405"
+         id="error_logo" width="100%"/>
+</div>
 {% endblock %}

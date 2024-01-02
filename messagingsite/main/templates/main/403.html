@@ -2,14 +2,12 @@
 {% load static %}
 
 {% block content %}
-
-    <div>
-        <h1 id="Error_code">Erreur 403</h1>
-    </div>
-    <div>
-        <p id="Error_descriptor">Accès interdit</p>
-        <img src="{% static 'images/403.jpg' %}" alt="Error 403"
-             id="Error_logo" width="100%"/>
-    </div>
-        
+<div>
+    <h1 id="error_code">Erreur 403</h1>
+</div>
+<div>
+    <p id="error_descriptor">Accès interdit</p>
+    <img src="{% static 'images/403.jpg' %}" alt="Error 403"
+         id="error_logo" width="100%"/>
+</div>
 {% endblock %}

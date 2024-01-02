@@ -1,6 +1,5 @@
 Index:
 Changer les news
-Mettre un bouton dark mode correct
 
 Salon (page principale):
 Réduire le nb de messages visibles (mettre un scroll)
