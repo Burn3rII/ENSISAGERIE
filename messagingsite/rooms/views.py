@@ -89,7 +89,8 @@ def search_room(request):
     # déjà dedans, il n'y a pas déjà une demande de rejoindre et il n'y a
     # pas déjà une invitation.
     search_results_html = render_to_string(
-        'rooms/rooms_search_results.html', {'search_results': rooms})
+        'rooms/rooms_search_results.html',
+        {'search_results': rooms, "user": request.user})
 
     return JsonResponse({'rooms_search_results_html': search_results_html})
 
@@ -104,6 +105,11 @@ def join_room(request):
         return JsonResponse({'message': 'Ce salon est privé. Vous devez '
                                         'faire une demande.'})
 
+    if request.user in room.users_banned.all():
+        return JsonResponse({
+            'message': 'Vous avez été banni de ce salon. Vous devez désormais '
+                       'faire une demande avant d\'entrer à nouveau.'})
+
     RoomInvitation.objects.filter(user=request.user, room=room).delete()
     JoinRequest.objects.filter(user=request.user, room=room).delete()
     room.users.add(request.user)
@@ -115,9 +121,9 @@ def join_room(request):
 @require_POST
 def request_to_join(request):
     room_id = request.POST.get('room_id', '')
-    room = get_object_or_404(Room, id=room_id, private=True)
+    room = get_object_or_404(Room, id=room_id)
 
-    if not room.private:
+    if not room.private and request.user not in room.users_banned.all():
         return JsonResponse({'message': 'Ce salon est publique. Pas besoin de '
                                         'demande.'})
 
@@ -401,6 +407,7 @@ def remove_user(request):
                                         "propriétaire du salon."})
 
     JoinRequest.objects.filter(user=user, room=room).delete()
+    room.users_banned.add(user)
     room.users.remove(user)
 
     if user == request.user:
@@ -423,6 +430,7 @@ def accept_pending_request(request):
     pending_request.is_approved = True
     pending_request.save()
     pending_request.room.users.add(pending_request.user)
+    pending_request.room.users_banned.remove(pending_request.user)
 
     return JsonResponse({'message': "La demande a été acceptée."})
 

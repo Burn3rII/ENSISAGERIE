@@ -3,14 +3,15 @@
         <li>
             <div class="room_search_container">
                 <p>{{ room.name }}</p>
-                {% if not room.private %}
+                {% if not room.private and user not in room.users_banned.all %}
                     <button class="join-room-btn in_body_button"
                             data-room-id="{{ room.id }}">Rejoindre le salon
                     </button>
-                {% else %}
+                {% else %}  <!-- Un user banni ne peut pas rejoindre
+                directement un salon, même publique. -->
                     <button class="request-to-join-btn in_body_button"
-                            data-room-id="{{ room.id }}">Demander à rejoindre
-                        le salon
+                            data-room-id="{{ room.id }}">Demander à
+                        rejoindre le salon
                     </button>
                 {% endif %}
             </div>

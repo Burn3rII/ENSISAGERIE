@@ -6,6 +6,8 @@ class Room(models.Model):
     name = models.CharField(max_length=30)
     owner = models.ForeignKey(User, on_delete=models.CASCADE,)
     users = models.ManyToManyField(User, related_name="rooms")
+    users_banned = models.ManyToManyField(User, related_name="banned_rooms",
+                                          blank=True)
     private = models.BooleanField(default=False)
 
     def __str__(self):
