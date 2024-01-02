@@ -2,7 +2,8 @@
 {% load static %}
 <html lang="fr">
     <head>
-        <meta charset="utf_8"/>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Ensisingerie</title>
         {% block styles %}
             <link rel="stylesheet" href="{% static 'style.css' %}"/>
@@ -44,13 +45,13 @@
                 {% endif %}
                 <a href="{% url 'main:help' %}">Support</a>
                 <div>
-                    <input type="button" id="theme-switch">
                     <label for="theme-switch">
                         <img width="25px" height="25px" src="TODO"
                              alt="Light Mode" draggable="false">
                         <img width="25px" height="25px" src="TODO"
                              alt="Dark Mode" draggable="false">
                     </label>
+                    <input type="button" id="theme-switch" title="Click to switch between light and dark themes">
                 </div>
             </nav>
         </header>
