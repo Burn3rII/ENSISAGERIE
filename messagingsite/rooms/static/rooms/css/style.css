@@ -66,7 +66,7 @@
 #chat {
     display: flex;
     flex-direction: column;
-    height: auto;
+    height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -84,6 +84,8 @@
     margin-bottom: 0.5rem;
     background-color: var(--chat-color2);
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .others-message {
@@ -91,6 +93,8 @@
     margin-bottom: 0.5rem;
     background-color: var(--chat-color1);
     display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .others-message p {
@@ -100,6 +104,7 @@
     overflow: hidden; /* Cache le contenu dépassant la div */
     margin: 0;
     overflow-wrap: break-word;
+    text-align: right;
 }
 
 .my-message p {
@@ -192,20 +197,32 @@
 .pending_request_container *, .invite_container *, .remove_user_container * {
     margin-right: 0.3rem;
 }
-  
+/*
 .delete-button {
     text-align: right;
 }
-
+*/
 .remove-message-btn {
     height: 1.8rem;
-    padding: 0.3rem;
+    /*padding: 0.3rem;*/
     color: #000000;
     background: none;
 }
 
 .remove-message-btn:hover, .remove-message-btn:active{
+    cursor: pointer;
     background-color: #495056;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 
 #input-container {

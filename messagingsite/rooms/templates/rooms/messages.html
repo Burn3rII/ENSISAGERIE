@@ -22,13 +22,33 @@
     {% endif %}
 {% endfor %}
 -->
-
+<!--
+{% load static %}
 {% for message in messages %}
     <div class="{% if message.sender == user %}my-message{% else %}others-message{% endif %}">
         <p>{{ message.sender.username }} : {{ message.text}}</p>
         {% if not message.is_deleted %}
-            <button class="remove-message-btn" data-message-id="{{ message.id }}">supprimer</button>
+            <button class="remove-message-btn" data-message-id="{{ message.id }}">
+                <img src="{% static 'rooms/img/trash-bin.png' %}" alt="Red bin" id="Red bin"/>
+            </button>
         {% endif %}
-        <p>{{ message.sender.username }} : {{ message.publication_date}}</p>
     </div>
+    <p>{{ message.publication_date}}</p>
+{% endfor %}
+-->
+
+{% load static %}
+{% for message in messages %}
+    <div class="{% if message.sender == user %}my-message{% else %}others-message{% endif %}">
+        <p>{{ message.sender.username }}</p>
+        <div>
+            <p>{{ message.text}}</p>
+            {% if not message.is_deleted %}
+                <button class="remove-message-btn" data-message-id="{{ message.id }}">
+                    <img src="{% static 'rooms/img/trash-bin.png' %}" alt="Supprimer" id="Red bin"/>
+                </button>
+            {% endif %}
+        </div>
+    </div>
+    <p>{{ message.publication_date}}</p>
 {% endfor %}
