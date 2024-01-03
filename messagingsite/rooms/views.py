@@ -503,7 +503,6 @@ def refresh_accepted_requests(request):
                          updated_accepted_requests_html})
 
 
-
 @login_required
 @require_GET
 def refresh_pending_requests(request):
@@ -523,17 +522,7 @@ def refresh_pending_requests(request):
     return JsonResponse({"updated_pending_requests_html":
                          updated_pending_requests_html})
 
-def emoji_list(request):
-    json_file_path = os.path.join(static('rooms/json'), 'data_by_groups.json')
 
-    with open(json_file_path, 'r', encoding='utf-8') as file:
-        emoji_data = json.load(file)
-
-    # Convert emoji data to a JSON-compatible format
-    emoji_data_json = {category: [{'char': emoji['char'], 'name': emoji['name']} for emoji in emojis] for category, emojis in emoji_data.items()}
-
-    return JsonResponse(emoji_data_json, safe=False)
-  
 """
 def add_member(request, room_id, user_id):
     room = get_object_or_404(ChatRoom, pk=room_id)

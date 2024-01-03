@@ -156,16 +156,24 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-
+    margin-bottom: 1rem;
 }
 
 #messageForm {
     position: sticky;
     bottom: 0;
-    margin-top: 1rem;
     /*width: 50%;*/
     display: flex;
-    align-items: baseline;
+    align-items: center;
+}
+
+#messageForm button {
+    margin-bottom: 0;
+    margin-right: 0.3rem;
+}
+
+#messageInput {
+    margin-right: 0.5rem;
 }
 
 #nav-seemore {
@@ -318,6 +326,7 @@
 #input-container {
     display: flex;
     align-items: center;
+    margin-top: 1rem;
 }
 
 /* CSS spécifique aux émojis */
