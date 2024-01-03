@@ -8,26 +8,35 @@
 
 {% if room.owner == user %}
 <div id="user_management_sections">
-    <div id="invite-user">
-        <form id="invite-user-form">
-            <input type="text" id="invite-user-input"
-                   placeholder="Inviter un utilisateur">
-            <input type="submit" value="Rechercher"
-                   id="invite-user-submit"/>
-        </form>
-        <div id="invite-user-results"></div>
+    <div>
+        <h3>Inviter un utilisateur</h3>
+        <div id="invite-user">
+            <form id="invite-user-form">
+                <input type="text" id="invite-user-input"
+                       placeholder="Rechercher par nom">
+                <input type="submit" value="Rechercher"
+                       id="invite-user-submit"/>
+            </form>
+            <div id="invite-user-results"></div>
+        </div>
     </div>
 
-    <div id="remove-user">
-        <form id="remove-user-form">
-            <input type="text" id="remove-user-input"
-                   placeholder="Renvoyer un utilisateur">
-            <input type="submit" value="Rechercher"/>
-        </form>
-        <div id="remove-user-results"></div>
+    <div>
+        <h3>Renvoyer un utilisateur</h3>
+        <div id="remove-user">
+            <form id="remove-user-form">
+                <input type="text" id="remove-user-input"
+                       placeholder="Rechercher par nom">
+                <input type="submit" value="Rechercher"/>
+            </form>
+            <div id="remove-user-results"></div>
+        </div>
     </div>
 
-    <div id="pending-requests"></div>
+    <div>
+        <h3>Demandes d'adhésion au salon</h3>
+        <div id="pending-requests"></div>
+    </div>
 </div>
 {% endif %}
 

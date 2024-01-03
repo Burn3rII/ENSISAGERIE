@@ -1,16 +1,21 @@
 {% if pending_requests %}
-<h3>Demandes d'adhésion au salon</h3>
 <ul>
     {% for request in pending_requests %}
     <li>
         <div class="pending_request_container">
-            <p>{{ request.user.username }}</p>
-            <button class="approve-request-btn in_body_button"
-                    data-request-id="{{ request.id }}">Approuver
-            </button>
-            <button class="reject-request-btn in_body_button"
-                    data-request-id="{{ request.id }}">Rejeter
-            </button>
+            <p>{{ request.user.username }}
+            {% if request.user in request.room.users_banned.all %}
+            (a été banni)
+            {% endif %}
+            </p>
+            <div>
+                <button class="approve-request-btn in_body_button"
+                        data-request-id="{{ request.id }}">Approuver
+                </button>
+                <button class="reject-request-btn in_body_button"
+                        data-request-id="{{ request.id }}">Rejeter
+                </button>
+            </div>
         </div>
     </li>
     {% endfor %}
