@@ -66,7 +66,7 @@
 #chat {
     display: flex;
     flex-direction: column;
-    height: auto;
+    height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -77,6 +77,9 @@
     flex-grow: 1;
     overflow-y: scroll;
     width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
 }
 
 .my-message {
@@ -84,6 +87,10 @@
     margin-bottom: 0.5rem;
     background-color: var(--chat-color2);
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: flex-start;
+    border-radius: 0.5rem;
 }
 
 .others-message {
@@ -91,31 +98,60 @@
     margin-bottom: 0.5rem;
     background-color: var(--chat-color1);
     display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    align-self: flex-end;
+    border-radius: 0.5rem;
 }
 
 .others-message p {
-    flex-grow: 1;
     color: #000000;
-    flex-shrink: 1; /* Permet au paragraphe de réduire sa taille */
-    overflow: hidden; /* Cache le contenu dépassant la div */
+    text-align: right;
     margin: 0;
-    overflow-wrap: break-word;
+    /* flex-grow: 1; */
+    /* flex-shrink: 1; /* Permet au paragraphe de réduire sa taille */
+    /* overflow: hidden; /* Cache le contenu dépassant la div */
+    /* overflow-wrap: break-word; */
 }
 
 .my-message p {
-    flex-grow: 1;
     color: #000000;
-    flex-shrink: 1; /* Permet au paragraphe de réduire sa taille */
-    overflow: hidden; /* Cache le contenu dépassant la div */
     margin: 0;
-    overflow-wrap: break-word;
+    /* flex-grow: 1;
+    /* flex-shrink: 1; /* Permet au paragraphe de réduire sa taille */
+    /* overflow: hidden; /* Cache le contenu dépassant la div */
+    /* overflow-wrap: break-word; */
+}
+.header-message {
+    display: flex;
+    flex-direction: row;
 }
 
-#messages p {
+.my-message > div, .others-message > div {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+/* #messages p {
     width: 100%;
     overflow-wrap: break-word;
+} */
+
+.my-timestamp, .others-timestamp {
+    font-size: 0.8rem;
+    margin: 0;
+    color: #000000;
+}
+/*
+.my-timestamp {
+    align-self: flex-start;
 }
 
+.others-timestamp {
+    align-self: flex-end;
+}
+*/
 #chat-bottom {
     display: flex;
     align-items: flex-start;
@@ -127,7 +163,9 @@
     position: sticky;
     bottom: 0;
     margin-top: 1rem;
-    width: 50%;
+    /*width: 50%;*/
+    display: flex;
+    align-items: baseline;
 }
 
 #nav-seemore {
@@ -147,42 +185,6 @@
 
 #nav-seemore button {
     margin-bottom: 0;
-}
-
-#categoryButtonsContainer {
-    display : none;
-    max-height: 200px;
-    overflow-y: auto;
-    display: flex;
-    gap: 10px; /* Permet d'ajuster l'espace entre chaque emoji */
-    flex-wrap: wrap; /* Permet de passer à la ligne quand la largeur est trop petite */
-}
-
-#emojiContainer {
-    margin-top: 0.5rem;
-    display : none;
-    max-height: 200px;
-    overflow-y: auto;
-    display: flex;
-    gap: 10px; /* Permet d'ajuster l'espace entre chaque emoji */
-    flex-wrap: wrap; /* Permet de passer à la ligne quand la largeur est trop petite */
-}
-
-
-.categoryButton {
-    font-size: 1.5rem; /* Permet d'ajuster la taille des emoji */
-}
-
-.categoryButton:hover {
-    cursor : pointer;
-}
-
-.emojiButtons {
-    font-size: 1.5rem; /* Permet d'ajuster la taille des emoji */
-}
-
-.emojiButtons:hover {
-    cursor : pointer;
 }
 
 @media screen and (min-width:1000px) {
@@ -218,8 +220,7 @@
     align-items: center;
 }
 
-.pending_request_container button, .invite_container button,
-.remove_user_container button {
+.pending_request_container button, .invite_container button, .remove_user_container button {
     margin-bottom: 0;
 }
 
@@ -227,17 +228,86 @@
     margin-right: 0.3rem;
 }
 
-.delete-button {
-    text-align: right;
-}
-
-.delete_message_button {
+.others-message .remove-message-btn {
     height: 1.8rem;
-    padding: 0.3rem;
-    color: #000000;
     background: none;
+    align-self: flex-end; /* Aligne le bouton à la fin de son conteneur */
+    margin-top: 0.5rem;
 }
 
-.delete_message_button:hover, .delete_message_button:active{
+.my-message .remove-message-btn {
+    height: 1.8rem;
+    background: none;
+    align-self: flex-start; /* Aligne le bouton à la fin de son conteneur */
+    margin-top: 0.5rem;
+}
+
+.remove-message-btn:hover, .remove-message-btn:active{
+    cursor: pointer;
     background-color: #495056;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+#input-container {
+    display: flex;
+    align-items: center;
+}
+
+/* CSS spécifique aux émojis */
+
+#categoryButtonsContainer {
+    max-height: 200px;
+    overflow-y: auto;
+    display: flex;
+    gap: 10px; /* Permet d'ajuster l'espace entre chaque emoji */
+    flex-wrap: wrap; /* Permet de passer à la ligne quand la largeur est trop petite */
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#emojiContainer {
+    margin-top: 0.5rem;
+    max-height: 200px;
+    width: 90%;
+    overflow-y: auto;
+    display: flex;
+    gap: 10px; /* Permet d'ajuster l'espace entre chaque emoji */
+    flex-wrap: wrap; /* Permet de passer à la ligne quand la largeur est trop petite */
+    align-self: center;
+}
+
+#emojiButton {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-size: 1.5rem; /* Permet d'ajuster la taille de l'émoji pour afficher les autres émojis */
+}
+
+.categoryButton {
+    background-color: transparent;
+    border: solid;
+    padding: 5px; /* Permet d'ajuster l'espace entre chaque bouton de catégorie et ses bordures */
+    font-size: 1rem; /* Permet d'ajuster la taille des boutons des catégories */
+}
+
+.emojiButtons {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    font-size: 1.5rem; /* Permet d'ajuster la taille des emojis */
+}
+
+#emojiButton:hover, .categoryButton:hover, .emojiButtons:hover {
+    cursor: pointer;
 }

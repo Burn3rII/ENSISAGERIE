@@ -232,8 +232,10 @@ def load_messages(request):
 
     message_number = int(request.GET.get('message_number'))
     message_count = Message.objects.filter(room=room).count()
+
     if message_number > message_count:
         message_number = message_count
+
     messages = Message.objects.filter(room=room).order_by(
         '-publication_date').reverse()[message_count - message_number:]
 
@@ -502,6 +504,7 @@ def refresh_accepted_requests(request):
                          updated_accepted_requests_html})
 
 
+
 @login_required
 @require_GET
 def refresh_pending_requests(request):
@@ -520,3 +523,36 @@ def refresh_pending_requests(request):
 
     return JsonResponse({"updated_pending_requests_html":
                          updated_pending_requests_html})
+
+def emoji_list(request):
+    json_file_path = os.path.join(static('rooms/json'), 'data_by_groups.json')
+
+    with open(json_file_path, 'r', encoding='utf-8') as file:
+        emoji_data = json.load(file)
+
+    # Convert emoji data to a JSON-compatible format
+    emoji_data_json = {category: [{'char': emoji['char'], 'name': emoji['name']} for emoji in emojis] for category, emojis in emoji_data.items()}
+
+    return JsonResponse(emoji_data_json, safe=False)
+  
+"""
+def add_member(request, room_id, user_id):
+    room = get_object_or_404(ChatRoom, pk=room_id)
+    user = get_object_or_404(get_user_model(), pk=user_id)
+
+    if request.user == room.owner:
+        room.members.add(user)
+        return HttpResponse("Member added successfully.")
+    else:
+        return HttpResponseForbidden("Permission denied. Only the owner can add members.")
+
+def delete_chat_room(request, room_id):
+    room = get_object_or_404(ChatRoom, pk=room_id)
+
+    if request.user == room.owner:
+        room.delete()
+        return HttpResponse("Chat room deleted successfully.")
+    else:
+        return HttpResponseForbidden("Permission denied. Only the owner can delete the chat room.")
+
+"""

@@ -77,7 +77,6 @@ function lessShownMessageNumber() {
 
 function sendMessage() {
     const roomId = document.querySelector('script[data-room-id]').getAttribute('data-room-id');
-
     const messageInput = $("#messageInput");
     let message = messageInput.val();
     message = message.trim();
