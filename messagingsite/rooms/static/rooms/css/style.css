@@ -1,25 +1,20 @@
-#room-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
+@media screen and (max-width: 480px) {
+    #chat-bottom {
+        flex-direction: column;
+        align-items: center;
+    }
 
-#nav-left {
-    padding-left: 2rem;
-}
+    #nav-seemore {
+        margin-top: 0.5rem;
+    }
 
-#nav-right {
-    display: flex;
-    align-items: center;
-    padding-right: 2rem;
-}
+    #nav-seemore > * {
+        margin-bottom: 0.5rem;
+    }
 
-#nav-right > * {
-    margin-right: 0.5rem;
-}
-
-#nav-right > :last-child {
-    margin-right: 0rem;
+    #nav-seemore form {
+        width: 100%;
+    }
 }
 
 @media screen and (max-width:1000px) {
@@ -57,6 +52,30 @@
     #messages {
         margin: 2rem 3rem 0 3rem;
     }
+}
+
+#room-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#nav-left {
+    padding-left: 2rem;
+}
+
+#nav-right {
+    display: flex;
+    align-items: center;
+    padding-right: 2rem;
+}
+
+#nav-right > * {
+    margin-right: 0.5rem;
+}
+
+#nav-right > :last-child {
+    margin-right: 0rem;
 }
 
 #search-submit {
@@ -106,7 +125,7 @@
 
 .others-message p {
     color: #000000;
-    text-align: right;
+    text-align: left;
     margin: 0;
     /* flex-grow: 1; */
     /* flex-shrink: 1; /* Permet au paragraphe de réduire sa taille */
@@ -122,6 +141,7 @@
     /* overflow: hidden; /* Cache le contenu dépassant la div */
     /* overflow-wrap: break-word; */
 }
+
 .header-message {
     display: flex;
     flex-direction: row;
@@ -131,6 +151,7 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+    width: 100%;
 }
 
 /* #messages p {
@@ -154,33 +175,56 @@
 */
 #chat-bottom {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
+    margin-top: 0.5rem;
     margin-bottom: 1rem;
+}
+
+#input-container {
+    display: flex;
+    align-self: center;
 }
 
 #messageForm {
     position: sticky;
     bottom: 0;
+    /*margin-top: 1rem;*/
     /*width: 50%;*/
     display: flex;
-    align-items: center;
+    /*align-items: baseline;*/
 }
 
 #messageForm button {
     margin-bottom: 0;
-    margin-right: 0.3rem;
-}
-
-#messageInput {
+    margin-left: 0.5rem;
     margin-right: 0.5rem;
 }
 
+.others-message .remove-message-btn {
+    height: 1.8rem;
+    background: none;
+    align-self: flex-end; /* Aligne le bouton à la fin de son conteneur */
+    margin-top: 0.5rem;
+}
+
+.my-message .remove-message-btn {
+    height: 1.8rem;
+    background: none;
+    align-self: flex-start; /* Aligne le bouton à la fin de son conteneur */
+    margin-top: 0.5rem;
+}
+
+.remove-message-btn:hover, .remove-message-btn:active{
+    cursor: pointer;
+    background-color: #495056;
+}
+
 #nav-seemore {
-    vertical-align: top;
-    margin-top: 1rem;
     display: flex;
-    justify-content: space-between;
+    /*vertical-align: top;
+    margin-top: 1rem;
+    justify-content: space-between;*/
 }
 
 #nav-seemore > * {
@@ -193,41 +237,6 @@
 
 #nav-seemore button {
     margin-bottom: 0;
-}
-
-#categoryButtonsContainer {
-    display : none;
-    max-height: 200px;
-    overflow-y: auto;
-    display: flex;
-    gap: 10px; /* Permet d'ajuster l'espace entre chaque emoji */
-    flex-wrap: wrap; /* Permet de passer à la ligne quand la largeur est trop petite */
-}
-
-#emojiContainer {
-    margin-top: 0.5rem;
-    display : none;
-    max-height: 200px;
-    overflow-y: auto;
-    display: flex;
-    gap: 10px; /* Permet d'ajuster l'espace entre chaque emoji */
-    flex-wrap: wrap; /* Permet de passer à la ligne quand la largeur est trop petite */
-}
-
-.categoryButton {
-    font-size: 1.5rem; /* Permet d'ajuster la taille des emoji */
-}
-
-.categoryButton:hover {
-    cursor : pointer;
-}
-
-.emojiButtons {
-    font-size: 1.5rem; /* Permet d'ajuster la taille des emoji */
-}
-
-.emojiButtons:hover {
-    cursor : pointer;
 }
 
 @media screen and (min-width:1000px) {
@@ -251,6 +260,10 @@
     margin-right: 1rem;
 }
 
+#user_management_sections {
+    margin-top: 3rem;
+}
+
 #user_management_sections ul {
     border: 0.2rem solid var(--secondary-color);
     border-style: double;
@@ -261,28 +274,15 @@
     margin-right: 0;
 }
 
-#user_management_sections {
-    margin-top: 3rem;
-}
-
-.invite_container, .remove_user_container, .pending_request_container {
-    width:100%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-#invite-user-results li, #remove-user-results li, #pending-requests li {
-    list-style-type: none;
-}
-
-#invite-user, #remove-user, #pending-requests ul {
+#pending-requests ul {
     margin-top: 0.5rem;
 }
 
 .pending_request_container, .invite_container, .remove_user_container {
+    width:100%;
     display: inline-flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .pending_request_container button, .invite_container button, .remove_user_container button {
@@ -293,23 +293,12 @@
     margin-right: 0.3rem;
 }
 
-.others-message .remove-message-btn {
-    height: 1.8rem;
-    background: none;
-    align-self: flex-end; /* Aligne le bouton à la fin de son conteneur */
-    margin-top: 0.5rem;
+#invite-user-results li, #remove-user-results li, #pending-requests li {
+    list-style-type: none;
 }
 
-.my-message .remove-message-btn {
-    height: 1.8rem;
-    background: none;
-    align-self: flex-start; /* Aligne le bouton à la fin de son conteneur */
+#invite-user, #remove-user, #pending-requests ul {
     margin-top: 0.5rem;
-}
-
-.remove-message-btn:hover, .remove-message-btn:active{
-    cursor: pointer;
-    background-color: #495056;
 }
 
 .visually-hidden {
@@ -321,12 +310,6 @@
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   border: 0;
-}
-
-#input-container {
-    display: flex;
-    align-items: center;
-    margin-top: 1rem;
 }
 
 /* CSS spécifique aux émojis */

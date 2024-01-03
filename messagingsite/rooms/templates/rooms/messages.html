@@ -52,15 +52,17 @@
         <div>
             <p>{{ message.text}}</p>
             {% if not message.is_deleted %}
-                <!-- Source de l'icône: https://icons8.com/icon/87397/waste (lien obligatoire)-->
-                <p class="visually-hidden">
-                    <a target="_blank" href="https://icons8.com/icon/87397/waste">Waste</a>
-                    icon by
-                    <a target="_blank" href="https://icons8.com">Icons8</a>
-                </p>
-                <button class="remove-message-btn" data-message-id="{{ message.id }}">
-                    <img src="{% static 'rooms/img/trash-bin.png' %}" alt="Supprimer" id="Red bin"/>
-                </button>
+                {% if room.owner == user or message.sender == user %}
+                    <!-- Source de l'icône: https://icons8.com/icon/87397/waste (lien obligatoire)-->
+                    <p class="visually-hidden">
+                        <a target="_blank" href="https://icons8.com/icon/87397/waste">Waste</a>
+                        icon by
+                        <a target="_blank" href="https://icons8.com">Icons8</a>
+                    </p>
+                    <button class="remove-message-btn" data-message-id="{{ message.id }}">
+                        <img src="{% static 'rooms/img/trash-bin.png' %}" alt="Supprimer" class="Red bin"/>
+                    </button>
+                {% endif %}
             {% endif %}
         </div>
     </div>
