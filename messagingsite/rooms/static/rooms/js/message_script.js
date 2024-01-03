@@ -181,7 +181,6 @@ $(document).ready(function() {
                 csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val()
             },
             success: function (data) {
-                alert(data.message);
                 loadMessages();
             },
             error: function (error) {

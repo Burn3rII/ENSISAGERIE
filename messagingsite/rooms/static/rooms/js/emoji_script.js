@@ -58,7 +58,6 @@ $(document).ready(function () {
 
             // Ajoute un event listener à chaque bouton de catégorie
             $(document).on('click', '.categoryButton', function () {
-                console.log('Category button clicked');
                 const categoryIndex = $(this).data('category');
                 // Vérifie que l'index de la catégorie est bien un nombre et que categoryIndex existe dans emojiData
                 if (typeof categoryIndex === 'number' && emojiData[categoryIndex]) {
@@ -67,12 +66,10 @@ $(document).ready(function () {
                     if (category.emojis && Array.isArray(category.emojis)) {
                         if (lastClickedCategory === categoryIndex) {
                             // Si la même catégorie est cliquée, cache le conteneur des emojis
-                            console.log('Emoji container is visible, hiding');
                             emojiContainer.hide();
                             lastClickedCategory = null;  // Réinitialise la variable lastClickedCategory
                         } else {
                             // Si une autre catégorie est cliquée, affiche et peuple directement le conteneur des emojis
-                            console.log('Emoji container is changing categories');
                             populateEmojiButtons(category.emojis);
                             emojiContainer.show(); // Affiche le conteneur des emojis
                             lastClickedCategory = categoryIndex;  // Met à jour la variable lastClickedCategory
@@ -87,17 +84,12 @@ $(document).ready(function () {
 
             // Gère la visibilité du conteneur des emojis
             emojiButton.click(function () {
-                console.log('Before click: ', messageInput.val());
-                console.log('Emoji button clicked');
                 if (categoryButtonsContainer.is(':visible')) {
                     if (emojiContainer.is(':visible')) {
-                        console.log('Emoji container is visible, hiding');
                         emojiContainer.hide();
                     }
-                    console.log('Category container is visible, hiding');
                     categoryButtonsContainer.hide();
                 } else {
-                    console.log('Category container is hidden, showing');
                     categoryButtonsContainer.show();
                     lastClickedCategory = null;  // Réinitialise la variable lastClickedCategory
                 }
@@ -105,15 +97,12 @@ $(document).ready(function () {
 
             // Ajoute un event listener à chaque bouton d'emoji
             $(document).on('click', '.emojiButtons', function () {
-                console.log('Emoji button clicked');
                 const emoji = $(this).data('emoji');
                 messageInput.val(messageInput.val() + emoji);
             });
 
             // Cache les conteneurs après avoir configuré les event listeners
-            console.log('First loading of the page, emojis is hiding');
             emojiContainer.hide();
-            console.log('First loading of the page, Category container is hiding');
             categoryButtonsContainer.hide();
         },
         error: function (error) {
