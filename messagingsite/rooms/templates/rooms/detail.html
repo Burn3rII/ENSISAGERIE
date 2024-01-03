@@ -28,17 +28,6 @@
             </form>
             <button id="emojiButton">&#128516;</button>
         </div>
-        <div id="categoryButtonsContainer"></div>
-        <div id="emojiContainer">
-            {% for category, emojis in emoji_data.items %}
-                <h2>{{ category }}</h2>
-                {% for emoji in emojis %}
-                    <button type="button" class="emojiButtons" data-emoji="{{ emoji.char }}">
-                    {{ emoji.char }} - {{ emoji.name }}
-                    </button>
-                {% endfor %}
-            {% endfor %}
-        </div>
         <div id="nav-seemore">
             <form id="seeMoreForm" class="seeMore">
                 <button type="submit" class="in_body_button">Voir Plus</button>
@@ -50,6 +39,17 @@
                 <button type="submit" class="in_body_button">Voir Tous</button>
             </form>
         </div>
+    </div>
+    <div id="categoryButtonsContainer"></div>
+    <div id="emojiContainer">
+        {% for category, emojis in emoji_data.items %}
+            <h2>{{ category }}</h2>
+            {% for emoji in emojis %}
+                <button type="button" class="emojiButtons" data-emoji="{{ emoji.char }}">
+                {{ emoji.char }} - {{ emoji.name }}
+                </button>
+            {% endfor %}
+        {% endfor %}
     </div>
 </div>
 
@@ -65,5 +65,4 @@ files by default, so we pass it via the template as a constant -->
 <!-- Chargement du script de gestion des emojis -->
 <script type="text/javascript" src="{% static 'rooms/js/emoji_script.js' %}">
 </script>
-
 {% endblock %}
