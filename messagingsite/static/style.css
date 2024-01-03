@@ -141,6 +141,21 @@ header a {
     color: var(--a-active-color);
 }
 
+#help-section div {
+    margin-top: 2rem;
+    padding: 2rem;
+    border: 0.2rem solid var(--secondary-color);
+    border-style: double;
+}
+
+#help-section div h2 {
+    text-decoration: underline;
+}
+
+#help-section div h3 {
+    margin-top: 2rem;
+}
+
 #main-content {
     margin: 1rem 1rem 0 1rem;
 }
@@ -169,6 +184,7 @@ footer p {
     width: 100%;
     padding: 2rem;
     border: 0.2rem solid var(--secondary-color);
+    border-style: double;
 }
 
 .form-content label {
@@ -233,6 +249,7 @@ body {
     height: var(--toggle_height);
     width: var(--toggle_width);
     border-radius: var(--toggle_height);
+    border-style: double;
     transition: all 500ms ease-in-out;
     background: var(--background-color-night);
 }

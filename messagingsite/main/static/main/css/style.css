@@ -38,16 +38,27 @@
     margin-top: 3rem;
 }
 
+#illustration-section img {
+    border: 0.2rem solid #000000;
+}
+
 #rooms-invitations, #your-rooms, #your-requests, #accepted_requests,
 #search-room {
     border: 0.2rem solid var(--secondary-color);
-    padding: 1rem;
+    border-style: double;
+    padding: 1rem 0.5rem 1rem 1rem;
 }
 
 #your-rooms ul, #rooms-invitations ul, #your-requests ul,
 #accepted_requests ul {
     max-height: 10rem;
     overflow-y: auto;
+}
+
+#your-rooms li, #rooms-invitations li, #your-requests li,
+#accepted_requests li, #room-search-results li, #invite-user-results li,
+#remove-user-results li, #pending-requests li {
+    list-style-type: none;
 }
 
 #rooms-section div {
@@ -58,19 +69,37 @@
     margin-bottom: 0;
 }
 
-.invitation_container, .accepted_requests_container, .room_search_container {
+.invitation_container, .accepted_requests_container, .room_search_container,
+.room-container {
+    width:100%;
     display: inline-flex;
     align-items: center;
+    justify-content: space-between;
+}
+
+#your-rooms li, #rooms-invitations li, #your-requests li,
+#accepted_requests li, #room-search-results li {
+    margin-right: 0.5rem;
+}
+
+.invitation_container div, .accepted_requests_container div,
+.room_search_container div {
+    display: flex;
 }
 
 .invitation_container button, .accepted_requests_container button,
-.room_search_container button {
+.room_search_container button, #your-rooms button {
     margin-bottom: 0;
 }
 
 .invitation_container *, .accepted_requests_container *,
 .room_search_container * {
     margin-right: 0.3rem;
+}
+
+.invitation_container :last-child, .accepted_requests_container :last-child,
+.room_search_container :last-child {
+    margin-right: 0;
 }
 
 @media screen and (min-width:1000px) {

@@ -428,7 +428,6 @@ def accept_pending_request(request):
     pending_request.is_approved = True
     pending_request.save()
     pending_request.room.users.add(pending_request.user)
-    pending_request.room.users_banned.remove(pending_request.user)
 
     return JsonResponse({'message': "La demande a été acceptée."})
 

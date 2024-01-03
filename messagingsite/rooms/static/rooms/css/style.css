@@ -168,7 +168,6 @@
     flex-wrap: wrap; /* Permet de passer à la ligne quand la largeur est trop petite */
 }
 
-
 .categoryButton {
     font-size: 1.5rem; /* Permet d'ajuster la taille des emoji */
 }
@@ -203,13 +202,35 @@
 
 #user_management_sections > * {
     flex:1;
+    margin-right: 1rem;
+}
+
+#user_management_sections ul {
+    border: 0.2rem solid var(--secondary-color);
+    border-style: double;
+    padding: 1rem 0.5rem 1rem 1rem;
+}
+
+#user_management_sections > :last-child {
+    margin-right: 0;
 }
 
 #user_management_sections {
     margin-top: 3rem;
 }
 
-#pending-requests ul {
+.invite_container, .remove_user_container, .pending_request_container {
+    width:100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#invite-user-results li, #remove-user-results li, #pending-requests li {
+    list-style-type: none;
+}
+
+#invite-user, #remove-user, #pending-requests ul {
     margin-top: 0.5rem;
 }
 

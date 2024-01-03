@@ -2,9 +2,37 @@
 {% load static %}
 
 {% block content %}
-<section>
-    <div>
-        <p>FAQ + AIDE</p>
+<div id="help-section">
+    <h2>FAQ + Aide</h2>
+
+    <div id="help-access-section">
+        <h2>Accès aux salons</h2>
+        <h3>Qui peut avoir accès à un de mes salons ?</h3>
+        <p>Tout le monde s'il est publique, de moment qu'il possède un compte.
+            Créez un salon privé si vous souhaitez contrôler qui y a accès.</p>
+
+        <h3>Dans la section "Demandes d'adhésion au salon" de l'un de mes
+            salons apparait la mention "(a été banni)" à côté de l'un des
+            utilisateurs. Que cela signifie-t-il ?</h3>
+        <p>Si cette mention apparaît, c'est que cet utilisateur a déjà été
+            banni à un moment où un autre de l'un de ce salon et qu'il souhaite
+            y revenir. Faites donc attention avant de l'accepter à nouveau.</p>
     </div>
-</section>
+
+    <div id="help-search-room-section">
+        <h2>Recherche d'un salon</h2>
+        <h3>Je dois faire une demande pour rejoindre un salon dans lequel
+            j'étais auparavant et dans lequel j'ai pu rentrer sans faire de
+            demande. Est-ce normal ?</h3>
+        <p>Oui. Vous avez sûrment été banni de ce salon. Pour éviter tout abus, il
+            vous ai désormais impossible de retourner dans ce salon sans
+            l'approbation de son propriétaire.</p>
+
+        <h3>Je ne trouve pas le salon que je recherche dans la partie
+            "Rechercher un salon"</h3>
+        <p>Seuls les salons dans lesquels vous n'êtes pas déjà et pour lesquels
+            vous n'avez ni demande de rejoindre ni invitation sont affichés.
+            Vérifiez ces sections !</p>
+    </div>
+</div>
 {% endblock %}

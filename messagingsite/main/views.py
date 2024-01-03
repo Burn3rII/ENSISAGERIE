@@ -33,7 +33,6 @@ class AdminView(TemplateView):
 @superuser_required_decorator
 @require_GET
 def search_delete_user(request):
-    print("DSDFS")
     search_term = request.GET.get('search_term', '')
 
     users = User.objects.filter(
@@ -65,6 +64,14 @@ def delete_user(request):
     JoinRequest.objects.filter(user=user).delete()
     RoomInvitation.objects.filter(user=user).delete()
 
+    user_rooms = Room.objects.filter(users=user)
+    for room in user_rooms:
+        room.users.remove(user)
+
+    user_banned_rooms = Room.objects.filter(users_banned=user)
+    for room in user_banned_rooms:
+        room.users_banned.remove(user)
+
     rooms_owned = Room.objects.filter(owner=user)
     for room in rooms_owned:
         room.owner = request.user
@@ -73,9 +80,9 @@ def delete_user(request):
     user.delete()
 
     return JsonResponse(
-        {'message': "L'utilisateur a été supprimé, ses messages supprimés et "
-                    "vous êtes désormais propriétaire des salons qu'il "
-                    "possédait."})
+        {'message': "L'utilisateur a été supprimé, retiré de tous les salons, "
+                    "ses messages supprimés et vous êtes désormais "
+                    "propriétaire des salons qu'il possédait."})
 
 
 class HelpView(TemplateView):
