@@ -1,7 +1,8 @@
-{% for message in messages %}
+<!-- {% for message in messages %}
     {% if message.sender == user %}
     <div class="my-message">
         <p>{{ message.sender.username }} : {{ message.text}}</p>
+        <p>{{ message.sender.username }} : {{ message.publication_date}}</p>
         {% if not message.is_deleted %}
         <button class="remove-message-btn delete_message_button"
                 data-message-id="{{ message.id }}">supprimer
@@ -11,6 +12,7 @@
     {% else %}
     <div class="others-message">
         <p>{{ message.sender.username }} : {{ message.text}}</p>
+        <p>{{ message.sender.username }} : {{ message.publication_date}}</p>
         {% if room.owner == user and not message.is_deleted %}
         <button class="remove-message-btn delete_message_button"
                 data-message-id="{{ message.id }}">supprimer
@@ -18,4 +20,48 @@
         {% endif %}
     </div>
     {% endif %}
+{% endfor %}
+-->
+<!--
+{% load static %}
+{% for message in messages %}
+    <div class="{% if message.sender == user %}my-message{% else %}others-message{% endif %}">
+        <p>{{ message.sender.username }} : {{ message.text}}</p>
+        {% if not message.is_deleted %}
+            <button class="remove-message-btn" data-message-id="{{ message.id }}">
+                <img src="{% static 'rooms/img/trash-bin.png' %}" alt="Red bin" id="Red bin"/>
+            </button>
+        {% endif %}
+    </div>
+    <p>{{ message.publication_date}}</p>
+{% endfor %}
+-->
+
+{% load static %}
+{% for message in messages %}
+    <div class="{% if message.sender == user %}my-message{% else %}others-message{% endif %}">
+        <div class="header-message">
+            <p>{{ message.sender.username }} | <span
+                    class="{% if message.sender == user %}my-timestamp{% else %}others-timestamp{% endif %}">
+                {{ message.publication_date}}</span>
+            </p>
+            <!--<p class="{% if message.sender == user %}my-timestamp{% else %}others-timestamp{% endif %}">
+                {{ message.publication_date}}
+            </p>-->
+        </div>
+        <div>
+            <p>{{ message.text}}</p>
+            {% if not message.is_deleted %}
+                <!-- Source de l'icône: https://icons8.com/icon/87397/waste (lien obligatoire)-->
+                <p class="visually-hidden">
+                    <a target="_blank" href="https://icons8.com/icon/87397/waste">Waste</a>
+                    icon by
+                    <a target="_blank" href="https://icons8.com">Icons8</a>
+                </p>
+                <button class="remove-message-btn" data-message-id="{{ message.id }}">
+                    <img src="{% static 'rooms/img/trash-bin.png' %}" alt="Supprimer" id="Red bin"/>
+                </button>
+            {% endif %}
+        </div>
+    </div>
 {% endfor %}
