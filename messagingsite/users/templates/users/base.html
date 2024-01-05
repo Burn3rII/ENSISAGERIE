@@ -14,7 +14,7 @@
 
     <body>
         {% block jquery %}
-        <!-- Script jquery -->
+            <!-- Script jquery -->
             <script src="https://code.jquery.com/jquery-3.7.1.min.js"
                     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
                     crossorigin="anonymous"></script>
@@ -36,7 +36,7 @@
                 {% else %}
                     <a href="{% url 'users:profil' %}">Mon profil</a>
                     {% if user.is_superuser %}
-                    <a href="{% url 'main:administration' %}">Admin</a>
+                        <a href="{% url 'main:administration' %}">Admin</a>
                     {% endif %}
                     <form action="{% url 'users:logout' %}" method="post">
                         {% csrf_token %}

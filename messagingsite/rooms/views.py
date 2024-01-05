@@ -521,26 +521,3 @@ def refresh_pending_requests(request):
 
     return JsonResponse({"updated_pending_requests_html":
                          updated_pending_requests_html})
-
-
-"""
-def add_member(request, room_id, user_id):
-    room = get_object_or_404(ChatRoom, pk=room_id)
-    user = get_object_or_404(get_user_model(), pk=user_id)
-
-    if request.user == room.owner:
-        room.members.add(user)
-        return HttpResponse("Member added successfully.")
-    else:
-        return HttpResponseForbidden("Permission denied. Only the owner can add members.")
-
-def delete_chat_room(request, room_id):
-    room = get_object_or_404(ChatRoom, pk=room_id)
-
-    if request.user == room.owner:
-        room.delete()
-        return HttpResponse("Chat room deleted successfully.")
-    else:
-        return HttpResponseForbidden("Permission denied. Only the owner can delete the chat room.")
-
-"""

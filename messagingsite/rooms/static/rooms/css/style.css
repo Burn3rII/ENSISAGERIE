@@ -1,19 +1,14 @@
-@media screen and (max-width: 480px) {
-    #chat-bottom {
-        flex-direction: column;
-        align-items: center;
+@media screen and (min-width:1000px) {
+    #messageForm {
+        margin-left: 4rem;
     }
 
     #nav-seemore {
-        margin-top: 0.5rem;
+        margin-right: 5rem;
     }
 
-    #nav-seemore > * {
-        margin-bottom: 0.5rem;
-    }
-
-    #nav-seemore form {
-        width: 100%;
+    #messages {
+        margin: 2rem 3rem 0 3rem;
     }
 }
 
@@ -40,17 +35,22 @@
     }
 }
 
-@media screen and (min-width:1000px) {
-    #messageForm {
-        margin-left: 4rem;
+@media screen and (max-width: 480px) {
+    #chat-bottom {
+        flex-direction: column;
+        align-items: center;
     }
 
     #nav-seemore {
-        margin-right: 5rem;
+        margin-top: 0.5rem;
     }
 
-    #messages {
-        margin: 2rem 3rem 0 3rem;
+    #nav-seemore > * {
+        margin-bottom: 0.5rem;
+    }
+
+    #nav-seemore form {
+        width: 100%;
     }
 }
 
@@ -127,24 +127,11 @@
     color: #000000;
     text-align: left;
     margin: 0;
-    /* flex-grow: 1; */
-    /* flex-shrink: 1; /* Permet au paragraphe de réduire sa taille */
-    /* overflow: hidden; /* Cache le contenu dépassant la div */
-    /* overflow-wrap: break-word; */
 }
 
 .my-message p {
     color: #000000;
     margin: 0;
-    /* flex-grow: 1;
-    /* flex-shrink: 1; /* Permet au paragraphe de réduire sa taille */
-    /* overflow: hidden; /* Cache le contenu dépassant la div */
-    /* overflow-wrap: break-word; */
-}
-
-.header-message {
-    display: flex;
-    flex-direction: row;
 }
 
 .my-message > div, .others-message > div {
@@ -154,25 +141,12 @@
     width: 100%;
 }
 
-/* #messages p {
-    width: 100%;
-    overflow-wrap: break-word;
-} */
-
 .my-timestamp, .others-timestamp {
     font-size: 0.8rem;
     margin: 0;
     color: #000000;
 }
-/*
-.my-timestamp {
-    align-self: flex-start;
-}
 
-.others-timestamp {
-    align-self: flex-end;
-}
-*/
 #chat-bottom {
     display: flex;
     align-items: center;
@@ -189,10 +163,7 @@
 #messageForm {
     position: sticky;
     bottom: 0;
-    /*margin-top: 1rem;*/
-    /*width: 50%;*/
     display: flex;
-    /*align-items: baseline;*/
 }
 
 #messageForm button {
@@ -222,9 +193,6 @@
 
 #nav-seemore {
     display: flex;
-    /*vertical-align: top;
-    margin-top: 1rem;
-    justify-content: space-between;*/
 }
 
 #nav-seemore > * {
@@ -318,7 +286,7 @@
     max-height: 200px;
     overflow-y: auto;
     display: flex;
-    gap: 10px; /* Permet d'ajuster l'espace entre chaque emoji */
+    gap: 1rem; /* Permet d'ajuster l'espace entre chaque emoji */
     flex-wrap: wrap; /* Permet de passer à la ligne quand la largeur est trop petite */
     flex-direction: row;
     justify-content: space-evenly;
@@ -330,7 +298,7 @@
     width: 90%;
     overflow-y: auto;
     display: flex;
-    gap: 10px; /* Permet d'ajuster l'espace entre chaque emoji */
+    gap: 1rem; /* Permet d'ajuster l'espace entre chaque emoji */
     flex-wrap: wrap; /* Permet de passer à la ligne quand la largeur est trop petite */
     align-self: center;
 }
