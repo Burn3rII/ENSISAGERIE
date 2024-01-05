@@ -520,3 +520,4 @@ def refresh_pending_requests(request):
         {"pending_requests": pending_requests})
 
     return JsonResponse({"updated_pending_requests_html":
+                         updated_pending_requests_html})
