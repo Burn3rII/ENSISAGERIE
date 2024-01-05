@@ -126,6 +126,31 @@
     margin-top: 3rem;
 }
 
+#delete-user-results ul {
+    border: 0.2rem solid var(--secondary-color);
+    border-style: double;
+    padding: 1rem 0.5rem 1rem 1rem;
+}
+
+#delete-user-results li {
+    list-style-type: none;
+}
+
+.delete_user_container {
+    width:100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.delete_user_container button {
+    margin-bottom: 0;
+}
+
+.delete_user_container * {
+    margin-right: 0.3rem;
+}
+
 .delete_user_container {
     display: inline-flex;
     align-items: center;

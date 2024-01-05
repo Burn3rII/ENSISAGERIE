@@ -125,7 +125,7 @@ header a {
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 520px) {
     header {
         display: flex;
         flex-direction: row;
@@ -135,18 +135,33 @@ header a {
     }
 
     #title {
-        margin-top: 0.5rem;
+        margin-right: 0;
+        flex: 4;
     }
 
-    #header-menu a {
-        margin: 0.5rem;
-    }
-}
-
-@media screen and (max-width: 448px) {
     #header-menu {
         flex-direction: row;
         margin-top: 1rem;
+    }
+
+    #header-menu a, #header-menu form {
+        margin: 0.2rem;
+    }
+
+    .theme-switch {
+        margin-top: 1rem;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    #header-menu {
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width: 325px) {
+    #home-link-logo {
+        margin-right: 0;
     }
 }
 
@@ -270,7 +285,7 @@ body {
     font-size: 10%; /* Changer cette propriété pour modifier la taille du
     bouton */
     position: relative;
-    margin: 0 auto;
+    margin-right: 0;
     height: var(--toggle_height);
     width: var(--toggle_width);
     border-radius: var(--toggle_height);
