@@ -125,6 +125,31 @@ header a {
     }
 }
 
+@media screen and (max-width: 480px) {
+    header {
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    #title {
+        margin-top: 0.5rem;
+    }
+
+    #header-menu a {
+        margin: 0.5rem;
+    }
+}
+
+@media screen and (max-width: 448px) {
+    #header-menu {
+        flex-direction: row;
+        margin-top: 1rem;
+    }
+}
+
 #header-menu button[type=submit] {
     font-family: 'Roboto', Arial;
     font-size: var(--font-size);

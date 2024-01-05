@@ -9,9 +9,26 @@ function addToQueue(task) {
     queue = queue.then(() => task());
 }
 
+function attachSupprButtonsEventListeners() {
+    var images = document.querySelectorAll('.Red-bin');
+
+    for (var i = 0; i < images.length; i++) {
+        // Change l'image du bouton supprimer quand la souris passe dessus
+        images[i].addEventListener('mouseover', function () {
+            var hoverSrc = this.getAttribute('data-hover-src');
+            this.src = hoverSrc;
+        });
+
+        // Change l'image du bouton supprimer quand la souris ne passe plus dessus
+        images[i].addEventListener('mouseout', function () {
+            var originalSrc = this.getAttribute('data-original-src');
+            this.src = originalSrc;
+        });
+    }
+}
+
 function loadMessages() {
     const roomId = document.querySelector('script[data-room-id]').getAttribute('data-room-id');
-    //message_shown_number += message_number_server - message_number_client;
 
     $.ajax({
         url: `/rooms/load_messages/`,
@@ -22,6 +39,7 @@ function loadMessages() {
         },
         success: function (data) {
             $("#messages").html(data);
+            attachSupprButtonsEventListeners();
             message_number_client = message_number_server;
         },
         
@@ -113,7 +131,7 @@ function sendMessage() {
 }
 
 $(document).ready(function() {
-    // Charger les messages dès le départ
+    // Charge les messages dès le départ
     addToQueue(async () => {
         serverMessageNumber();
         loadMessages();

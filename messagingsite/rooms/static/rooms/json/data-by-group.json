@@ -1334,7 +1334,7 @@
     ]
   },
   {
-    "name": "People & Body",
+    "name": "Personnes & Corps",
     "slug": "people_body",
     "emojis": [
       {
@@ -4549,7 +4549,7 @@
     ]
   },
   {
-    "name": "Animals & Nature",
+    "name": "Animaux & Nature",
     "slug": "animals_nature",
     "emojis": [
       {
@@ -5771,7 +5771,7 @@
     ]
   },
   {
-    "name": "Food & Drink",
+    "name": "Nourriture & Boisson",
     "slug": "food_drink",
     "emojis": [
       {
@@ -6841,7 +6841,7 @@
     ]
   },
   {
-    "name": "Travel & Places",
+    "name": "Voyage & Endroits",
     "slug": "travel_places",
     "emojis": [
       {
@@ -8591,7 +8591,7 @@
     ]
   },
   {
-    "name": "Activities",
+    "name": "Activités",
     "slug": "activities",
     "emojis": [
       {
@@ -9277,7 +9277,7 @@
     ]
   },
   {
-    "name": "Objects",
+    "name": "Objets",
     "slug": "objects",
     "emojis": [
       {
@@ -11371,7 +11371,7 @@
     ]
   },
   {
-    "name": "Symbols",
+    "name": "Symboles",
     "slug": "symbols",
     "emojis": [
       {
@@ -13161,7 +13161,7 @@
     ]
   },
   {
-    "name": "Flags",
+    "name": "Drapeaux",
     "slug": "flags",
     "emojis": [
       {
