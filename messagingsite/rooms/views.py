@@ -522,14 +522,3 @@ def refresh_pending_requests(request):
 
     return JsonResponse({"updated_pending_requests_html":
                          updated_pending_requests_html})
-
-def emoji_list(request):
-    json_file_path = os.path.join(static('rooms/json'), 'data_by_groups.json')
-
-    with open(json_file_path, 'r', encoding='utf-8') as file:
-        emoji_data = json.load(file)
-
-    # Convert emoji data to a JSON-compatible format
-    emoji_data_json = {category: [{'char': emoji['char'], 'name': emoji['name']} for emoji in emojis] for category, emojis in emoji_data.items()}
-
-    return JsonResponse(emoji_data_json, safe=False)
