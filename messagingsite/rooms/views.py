@@ -503,7 +503,6 @@ def refresh_accepted_requests(request):
                          updated_accepted_requests_html})
 
 
-
 @login_required
 @require_GET
 def refresh_pending_requests(request):
@@ -521,4 +520,3 @@ def refresh_pending_requests(request):
         {"pending_requests": pending_requests})
 
     return JsonResponse({"updated_pending_requests_html":
-                         updated_pending_requests_html})

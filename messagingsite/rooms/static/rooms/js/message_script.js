@@ -186,7 +186,7 @@ $(document).ready(function() {
                 }
             }
         });
-    }, 1000);
+    }, 3000);
 
     $("#messages").on("click", ".remove-message-btn", function() {
         const messageId = $(this).data('message-id');

@@ -1,6 +1,7 @@
 # ENSISINGERIE - Groupe Antropius - Desmonteix - Senechal
 
 Projet de groupe ENSISA messagerie en ligne.
+Site disponible en ligne à cette adresse : https://ensisingerie.alwaysdata.net/
 
 ## Lancer le serveur avec debug = false:
 
