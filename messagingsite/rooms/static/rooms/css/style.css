@@ -41,6 +41,10 @@
 }
 
 @media screen and (min-width:1000px) {
+    #room-nav {
+        display: flex;
+    }
+
     #messageForm {
         margin-left: 4rem;
     }
@@ -55,7 +59,6 @@
 }
 
 #room-nav {
-    display: flex;
     align-items: center;
     justify-content: space-between;
 }
