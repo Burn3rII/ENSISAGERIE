@@ -33,7 +33,6 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=Csv())
 # Application definition
 
 INSTALLED_APPS = [
-    'api.apps.ApiConfig',
     'main.apps.MainConfig',
     'users.apps.UsersConfig',  # Important que l'app users soit avant les
     # contrib.
