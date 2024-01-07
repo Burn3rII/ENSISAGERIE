@@ -4,3 +4,4 @@
 */staticfiles/*
 messagingsite/db.sqlite3
 .idea/*
+.env
