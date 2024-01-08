@@ -10,6 +10,8 @@ from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_GET, require_POST
+from datetime import timedelta
+from django.utils import timezone
 
 from django.contrib.auth.models import User
 from .models import Room, Message, JoinRequest, RoomInvitation
@@ -171,7 +173,10 @@ def statistics(request, room_id):
     total_users = room.users.count()
 
     # Statistiques des utilisateurs
-    active_users = room.users.filter(message__room=room).distinct().count()
+    seven_days_ago = timezone.now() - timedelta(days=7)
+    active_users = room.users.filter(
+        message__room=room,
+        message__publication_date__gte=seven_days_ago).distinct().count()
 
     # Activité temporelle
     messages_per_day = Message.objects.filter(room=room).extra(

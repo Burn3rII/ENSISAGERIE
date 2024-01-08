@@ -35,5 +35,10 @@ $(document).ready(function() {
                 localStorage.setItem("theme","dark-theme")
                 break;
         }
+        if (typeof window.updateChartColors === 'function') {
+            window.updateChartColors(); // Fonction de la page
+            // room_statistics.html. On ne l'appel que si on est sur la page
+            // (donc si la fonction est définie).
+        }
     });
 });

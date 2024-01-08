@@ -227,6 +227,14 @@
     margin-bottom: 0;
 }
 
+#content-stats h1 {
+    margin-bottom: 1rem;
+}
+
+#content-stats p {
+    margin-bottom: 0.5rem;
+}
+
 @media screen and (min-width:1000px) {
     #user_management_sections {
         display: flex;
