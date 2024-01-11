@@ -37,7 +37,7 @@ $(document).ready(function() {
         }
         if (typeof window.updateChartColors === 'function') {
             window.updateChartColors(); // Fonction de la page
-            // room_statistics.html. On ne l'appel que si on est sur la page
+            // room_statistics.html. On ne l'appelle que si on est sur la page
             // (donc si la fonction est définie).
         }
     });
