@@ -157,7 +157,7 @@
     width: 100%;
 }
 
-.my-message {
+.my-message, .others-message {
     max-width: calc(100% - 1rem);
 }
 
