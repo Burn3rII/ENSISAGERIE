@@ -7,35 +7,38 @@
 </div>
 
 <div id="index-content">
-    <div id="left">
-        <div id="welcome-section">
-            <h3>Bienvenue sur Ensisingerie, la messagerie qui simplifie la
-                communication et la collaboration.</h3>
-            {% if not user.is_authenticated %}
-            <p>Connectez-vous ou créez un compte pour commencer.</p>
-            {% endif %}
-        </div>
+    <div id="left" {% if not user.is_authenticated %} class="not-auth"
+         {% endif %}">
+        <div id="infos-left">
+            <div id="welcome-section">
+                <h3>Bienvenue sur Ensisingerie, la messagerie qui simplifie la
+                    communication et la collaboration.</h3>
+                {% if not user.is_authenticated %}
+                <p>Connectez-vous ou créez un compte pour commencer.</p>
+                {% endif %}
+            </div>
 
-        <div id="updates-section">
-            <h3>Dernières mises à jour et annonces</h3>
-            <ul>
-                <li>Nouvelle fonctionnalité : Possibilité de supprimer un
-                    message</li>
-                <li>Un utilisateur banni d'un salon doit désormais faire
-                    une demande pour rentrer à nouveau, même si celui-ci
-                    est publique.</li>
-                <li>Bientôt : possibilité d'ajouter des administrateurs aux
-                    salons !</li>
-            </ul>
-        </div>
+            <div id="updates-section">
+                <h3>Dernières mises à jour et annonces</h3>
+                <ul>
+                    <li>Nouvelle fonctionnalité : Possibilité de supprimer un
+                        message</li>
+                    <li>Un utilisateur banni d'un salon doit désormais faire
+                        une demande pour rentrer à nouveau, même si celui-ci
+                        est publique.</li>
+                    <li>Bientôt : possibilité d'ajouter des administrateurs aux
+                        salons !</li>
+                </ul>
+            </div>
 
-        <div id="features-section">
-            <h3>Fonctionnalités principales</h3>
-            <ul>
-                <li>Communication instantanée</li>
-                <li>Gestion intuitive des messages</li>
-                <li>Sécurité avancée des données</li>
-            </ul>
+            <div id="features-section">
+                <h3>Fonctionnalités principales</h3>
+                <ul>
+                    <li>Communication instantanée</li>
+                    <li>Gestion intuitive des messages</li>
+                    <li>Sécurité avancée des données</li>
+                </ul>
+            </div>
         </div>
 
         <div id="illustration-section">

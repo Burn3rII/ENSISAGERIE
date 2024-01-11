@@ -285,7 +285,8 @@
 
 #user_management_sections ul {
     border: 0.2rem solid var(--secondary-color);
-    border-style: double;
+    border-radius: 7px;
+    border-style: inset;
     padding: 1rem 0.5rem 1rem 1rem;
 }
 
@@ -365,6 +366,7 @@
 .categoryButton {
     background-color: transparent;
     border: solid;
+    border-radius: 7px;
     padding: 5px; /* Permet d'ajuster l'espace entre chaque bouton de catégorie et ses bordures */
     font-size: 1rem; /* Permet d'ajuster la taille des boutons des catégories */
 }

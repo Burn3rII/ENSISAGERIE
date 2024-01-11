@@ -2,13 +2,21 @@
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:700');
 
+@font-face {
+    font-family: 'peach_cake';
+    src: url('./police/peach_cake/Peach Cake.otf') format('opentype');
+}
+
 :root {
-    --primary-color: #8BC8FF;
+    --primary-color: #A1D4ED;
     --secondary-color: #000000;
 
-    --type1-a-color: #B94646;
+    --type1-a-color: #9F0505;
     --a-hover-color: #34495E;
     --a-active-color: #0000FF;
+
+    --submit-button-color: var(--primary-color);
+    --submit-button-background-color: var(--secondary-color);
 
     --chat-color1: #FF6F61;
     --chat-color2: #1EAFB8;
@@ -21,8 +29,8 @@
     --toggle_height: 16em;
     --toggle_width: 30em;
     --toggle_btn_radius: 10em;
-    --background-color-night: #2E2848;
-    --background-color-day: #4682B4;
+    --background-color-night: #080125;
+    --background-color-day: #A1D4ED;
     --moon_color: #D9FBFF;
 }
 
@@ -32,7 +40,10 @@
     --primary-color: #1E1E1E;
     --secondary-color: #D2691E;
     --type1-a-color: #AAB2B7;
+    --submit-button-color: var(--type1-a-color);
+    --submit-button-background-color: var(--primary-color);
     --placeholder-color: #DDDDDD;
+
 }
 
 ::placeholder {
@@ -99,11 +110,11 @@ header a {
 
 #title {
     flex: 2;
-    font-family: Courier New, monospace;
+    font-family: 'peach_cake', monospace;
+    font-size: 3rem;
 }
 
 #header-menu {
-    flex: 4;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -116,12 +127,19 @@ header a {
 
 @media screen and (max-width:1000px) {
     #header-menu {
+        flex: 1;
         flex-direction: column;
     }
 
     #logo {
-        width: 3rem;
-        height: 3rem;
+        width: 4rem;
+        height: 4rem;
+    }
+}
+
+@media screen and (min-width:1000px) {
+    #header-menu {
+        flex: 4;
     }
 }
 
@@ -165,6 +183,16 @@ header a {
     }
 }
 
+@media screen and (max-width: 520px) and (min-width: 500px) {
+    .header-not-auth {
+        margin: 0 0 0 1rem;
+    }
+
+    #header-menu.header-not-auth {
+        margin-top: 0;
+    }
+}
+
 #header-menu button[type=submit] {
     font-family: 'Roboto', Arial;
     font-size: var(--font-size);
@@ -185,7 +213,8 @@ header a {
     margin-top: 2rem;
     padding: 2rem;
     border: 0.2rem solid var(--secondary-color);
-    border-style: double;
+    border-radius: 7px;
+    border-style: inset;
 }
 
 #help-section div h2 {
@@ -224,7 +253,8 @@ footer p {
     width: 100%;
     padding: 2rem;
     border: 0.2rem solid var(--secondary-color);
-    border-style: double;
+    border-radius: 7px;
+    border-style: inset;
 }
 
 .form-content label {
@@ -238,6 +268,7 @@ footer p {
     margin-bottom: 2rem;
     padding: 0.5rem 0;
     border: 0;
+    border-radius: 5px;
     outline: 0;
     text-indent: 0.5rem;
     color: var(--primary-color);
@@ -251,7 +282,9 @@ footer p {
 
 input[type=text] {
     padding: 0.5rem 0;
-    border: 0;
+    border-style: outset;
+    border-radius: 5px;
+    border-color: black;
     outline: 0;
     text-indent: 0.5rem;
     color: var(--primary-color);
@@ -261,9 +294,9 @@ input[type=text] {
 input[type=submit], .in_body_button {
     padding: 5px;
     margin-bottom: 0.5rem;
-
-    color: var(--primary-color);
-    background-color: var(--secondary-color);
+    border-radius: 5px;
+    color: var(--submit-button-color);
+    background-color: var(--submit-button-background-color);
 }
 
 input[type=submit]:hover, input[type=submit]:active, .in_body_button:hover,
@@ -289,7 +322,8 @@ body {
     height: var(--toggle_height);
     width: var(--toggle_width);
     border-radius: var(--toggle_height);
-    border-style: double;
+    border-style: inset;
+    border-color: #000000;
     transition: all 500ms ease-in-out;
     background: var(--background-color-night);
 }
@@ -310,15 +344,15 @@ body {
     width: 7em;
     height: 7em;
     background: #FFFFFF;
-    box-shadow: 3em 3em 0 5em #FFFFFF inset,
-    0 -5em 0 -2.7em #FFFFFF,
-    3.5em -3.5em 0 -3em #FFFFFF,
-    5em 0 0 -2.7em #FFFFFF,
-    3.5em 3.5em 0 -3em #FFFFFF,
-    0 5em 0 -2.7em #FFFFFF,
-    -3.5em 3.5em 0 -3em #FFFFFF,
-    -5em 0 0 -2.7em #FFFFFF,
-    -3.5em -3.5em 0 -3em #FFFFFF;
+    box-shadow: 3em 3em 0 5em #FBE61E inset,
+    0 -5em 0 -2.7em #FBE61E,
+    3.5em -3.5em 0 -3em #FBE61E,
+    5em 0 0 -2.7em #FBE61E,
+    3.5em 3.5em 0 -3em #FBE61E,
+    0 5em 0 -2.7em #FBE61E,
+    -3.5em 3.5em 0 -3em #FBE61E,
+    -5em 0 0 -2.7em #FBE61E,
+    -3.5em -3.5em 0 -3em #FBE61E;
 }
 
 .moon {
