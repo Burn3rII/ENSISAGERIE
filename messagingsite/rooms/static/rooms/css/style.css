@@ -139,11 +139,15 @@
     color: #000000;
     text-align: left;
     margin: 0;
+    max-width: 100%;
+    word-wrap: break-word;
 }
 
 .my-message p {
     color: #000000;
     margin: 0;
+    max-width: 100%;
+    word-wrap: break-word;
 }
 
 .my-message > div, .others-message > div {
@@ -155,11 +159,6 @@
 
 .my-message {
     max-width: calc(100% - 1rem);
-}
-
-.my-message p {
-    max-width: 100%;
-    word-wrap: break-word;
 }
 
 .my-timestamp, .others-timestamp {
