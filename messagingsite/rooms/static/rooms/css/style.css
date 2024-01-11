@@ -98,15 +98,11 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
 }
 
 #messages {
     padding: 0 1rem;
     height: 100%;
-    flex-grow: 1;
-    overflow-y: scroll;
     width: auto;
     display: flex;
     flex-direction: column;
@@ -331,7 +327,7 @@
   border: 0;
 }
 
-/* CSS spécifique aux émojis */
+/*------------------------------CSS spécifique aux émojis------------------------------*/
 
 #categoryButtonsContainer {
     max-height: 200px;
