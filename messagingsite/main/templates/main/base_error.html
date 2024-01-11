@@ -23,7 +23,8 @@
                 <a href="{% url 'main:home' %}">Ensisingerie</a>
             </h1>
 
-            <nav id="header-menu">
+            <nav id="header-menu" {% if not user.is_authenticated %}
+                 class="header-not-auth" {% endif %}>
                 {% if not user.is_authenticated %}
                     <a href="{% url 'users:login' %}">Se connecter / Créer
                         un compte</a>
