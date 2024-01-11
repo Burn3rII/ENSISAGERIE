@@ -1,4 +1,4 @@
-<!doctype HTML>
+<!doctype html>
 {% load static %}
 <html lang="fr">
     <head>
@@ -32,19 +32,19 @@
             <nav id="header-menu" {% if not user.is_authenticated %}
                  class="header-not-auth" {% endif %}>
                 {% if not user.is_authenticated %}
-                    <a href="{% url 'users:login' %}">Se connecter / Créer
-                        un compte</a>
+                    <a href="{% url 'users:login' %}"><span class="border-link connection-color">Se connecter / Créer
+                        un compte</span></a>
                 {% else %}
-                    <a href="{% url 'users:profil' %}">Mon profil</a>
+                    <a href="{% url 'users:profil' %}"><span class="border-link my-profile-color">Mon profil</span></a>
                     {% if user.is_superuser %}
-                        <a href="{% url 'main:administration' %}">Admin</a>
+                        <a href="{% url 'main:administration' %}"><span class="border-link admin-color">Admin</span></a>
                     {% endif %}
                     <form action="{% url 'users:logout' %}" method="post">
                         {% csrf_token %}
-                        <button type="submit">Se déconnecter</button>
+                        <button type="submit" class="connection-color">Se déconnecter</button>
                     </form>
                 {% endif %}
-                <a href="{% url 'main:help' %}">Support</a>
+                <a href="{% url 'main:help' %}"><span class="border-link support-color">Support</span></a>
             </nav>
             <div class="theme-switch day">
                 <div class="sun">
