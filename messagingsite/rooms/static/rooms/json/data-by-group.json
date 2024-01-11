@@ -1,6 +1,6 @@
 [
   {
-    "name": "Smileys & Emotion",
+    "name": "Smileys & Emotions",
     "slug": "smileys_emotion",
     "emojis": [
       {
@@ -5771,7 +5771,7 @@
     ]
   },
   {
-    "name": "Nourriture & Boisson",
+    "name": "Nourritures & Boissons",
     "slug": "food_drink",
     "emojis": [
       {
@@ -6841,7 +6841,7 @@
     ]
   },
   {
-    "name": "Voyage & Endroits",
+    "name": "Voyage & Lieux",
     "slug": "travel_places",
     "emojis": [
       {
