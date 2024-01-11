@@ -4,6 +4,7 @@ var message_shown_offset = 10;
 var message_shown_number = message_shown_offset;
 var message_shown_status = "fixed";
 let queue = Promise.resolve();
+var maxLength = 1000;
 
 function addToQueue(task) {
     queue = queue.then(() => task());
@@ -139,9 +140,17 @@ $(document).ready(function() {
 
     $('#messageForm').on('submit', function(event) {
         event.preventDefault();
-        addToQueue(async () => {
-            sendMessage();
-        });
+
+        var messageInput = $('#messageInput');
+        var messageText = messageInput.val();
+
+        if (messageText.length > maxLength) {
+            alert("Le texte ne peut pas dépasser 1000 caractères.");
+        } else {
+            addToQueue(async () => {
+                sendMessage();
+            });
+        }
     });
 
     $('#seeMoreForm').on('submit', function(event) {
