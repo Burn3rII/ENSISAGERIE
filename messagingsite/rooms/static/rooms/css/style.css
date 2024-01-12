@@ -107,7 +107,7 @@
     display: flex;
     flex-direction: column;
     align-items: baseline;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .my-message {
