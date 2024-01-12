@@ -8,7 +8,7 @@
 }
 
 :root {
-    --primary-color: #A1D4ED;
+    --primary-color: #A1E2ED;
     --secondary-color: #000000;
 
     --color-purple: #9c30ff;
@@ -156,7 +156,19 @@ header a {
     }
 }
 
-@media screen and (max-width: 520px) {
+@media screen and (min-width: 677px) {
+    #header-menu button[type=submit], #header-menu {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 677px) {
+    #header-menu button[type=submit], #header-menu {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 525px) {
     header {
         display: flex;
         flex-direction: row;
@@ -184,7 +196,7 @@ header a {
     }
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 378px) {
     #header-menu {
         margin-right: 0;
     }
@@ -196,7 +208,7 @@ header a {
     }
 }
 
-@media screen and (max-width: 520px) and (min-width: 500px) {
+@media screen and (max-width: 525px) and (min-width: 500px) {
     .header-not-auth {
         margin: 0 0 0 1rem;
     }
@@ -207,8 +219,6 @@ header a {
 }
 
 #header-menu button[type=submit] {
-    font-family: 'Roboto', Arial;
-    font-size: var(--font-size);
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -220,6 +230,50 @@ header a {
 
 #header-menu button[type=submit]:active {
     color: var(--a-active-color);
+}
+
+#header-menu .border-link, #header-menu button[type=submit]{
+    font-family: 'peach_cake', sans-serif !important;
+    cursor: pointer;
+    line-height: 1.61;
+    position: relative;
+    text-decoration: none;
+}
+
+#header-menu .border-link {
+    padding: 0 0 0.3rem 0;
+}
+
+#header-menu .border-link:active, #header-menu .border-link:hover,
+#header-menu button[type=submit]:active, #header-menu button[type=submit]:hover {
+    background-size: 100% .15rem;
+}
+
+.connection-color {
+    background: linear-gradient(to right, var(--color-orange), var(--color-orange));
+    color: var(--color-orange) !important;
+}
+
+.my-profile-color {
+    background: linear-gradient(to right, var(--color-purple), var(--color-purple));
+    color: var(--color-purple) !important;
+}
+
+.admin-color {
+    background: linear-gradient(to right, var(--color-pink), var(--color-pink));
+    color: var(--color-pink) !important;
+}
+
+.support-color {
+    background: linear-gradient(to right, var(--color-green), var(--color-green));
+    color: var(--color-green) !important;
+}
+
+.connection-color, .my-profile-color, .admin-color, .support-color {
+    background-position: 0 bottom;
+    background-repeat: no-repeat;
+    background-size: 1.8rem .15rem;
+    transition: background-size .3s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 #help-section div {
@@ -259,7 +313,22 @@ footer p {
 
 .form-holder .form-content {
     display: flex;
-    padding: 1rem 10%;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+@media screen and (min-width: 750px) {
+    .form-holder .form-content {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .form-holder .form-content {
+        padding-left: 0;
+        padding-right: 0;
+    }
 }
 
 .form-content .form-items {
@@ -391,55 +460,3 @@ body {
 .no-transition {
     transition: none !important;
 }
-
-
-/*------------------------------NAV-----------------------------------------*/
-
-#header-menu .border-link, #header-menu button[type=submit]{
-    text-rendering: optimizelegibility;
-    font-family: 'Montserrat', sans-serif !important;
-    cursor: pointer;
-    font-weight: 500 !important;
-    line-height: 1.61;
-    position: relative;
-    text-decoration: none;
-}
-
-#header-menu .border-link {
-    padding: 0 0 0.3rem 0;
-}
-
-#header-menu .border-link:active, #header-menu .border-link:hover,
-#header-menu button[type=submit]:active, #header-menu button[type=submit]:hover {
-    background-size: 100% .15rem;
-}
-
-.connection-color {
-    background: linear-gradient(to right, var(--color-orange), var(--color-orange));
-    color: var(--color-orange) !important;
-}
-
-.my-profile-color {
-    background: linear-gradient(to right, var(--color-purple), var(--color-purple));
-    color: var(--color-purple) !important;
-}
-
-.admin-color {
-    background: linear-gradient(to right, var(--color-pink), var(--color-pink));
-    color: var(--color-pink) !important;
-}
-
-.support-color {
-    background: linear-gradient(to right, var(--color-green), var(--color-green));
-    color: var(--color-green) !important;
-}
-
-.connection-color, .my-profile-color, .admin-color, .support-color {
-    background-position: 0 bottom;
-    background-repeat: no-repeat;
-    background-size: 1.8rem .15rem;
-    transition: background-size .3s cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-
-/*     text-rendering: optimizelegibility;
-    --scroll-behavior: smooth; */
