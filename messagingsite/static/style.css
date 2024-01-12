@@ -7,6 +7,11 @@
     src: url('./police/peach_cake/Peach Cake.otf') format('opentype');
 }
 
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./police/Montserrat/Montserrat-VariableFont_wght.ttf') format('opentype');
+}
+
 :root {
     --primary-color: #A1E2ED;
     --secondary-color: #000000;
