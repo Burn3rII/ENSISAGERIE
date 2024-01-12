@@ -41,7 +41,9 @@
                     {% endif %}
                     <form action="{% url 'users:logout' %}" method="post">
                         {% csrf_token %}
-                        <button type="submit" class="connection-color">Se déconnecter</button>
+                        <button type="submit"><span
+                                class="border-link connection-color">
+                            Se déconnecter</span></button>
                     </form>
                 {% endif %}
                 <a href="{% url 'main:help' %}"><span class="border-link support-color">Support</span></a>
