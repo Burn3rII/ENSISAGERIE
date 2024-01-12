@@ -143,7 +143,9 @@ header a {
         flex: 1;
         flex-direction: column;
     }
+}
 
+@media screen and (max-width:555px) {
     #logo {
         width: 4rem;
         height: 4rem;
