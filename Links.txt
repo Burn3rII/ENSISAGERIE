@@ -1,8 +1,0 @@
-Lien du serveur :
-
-https://ensisingerie.alwaysdata.net/
-
-
-Lien du repository Github :
-
-https://github.com/Burn3rII/ENSISAGERIE
