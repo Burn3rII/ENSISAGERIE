@@ -94,6 +94,8 @@
     margin-bottom: 0;
 }
 
+/*------------------------------Messages CSS------------------------------*/
+
 #chat {
     display: flex;
     flex-direction: column;
@@ -164,6 +166,29 @@
     color: #000000;
 }
 
+.others-message .remove-message-btn {
+    height: 1.8rem;
+    background: none;
+    align-self: flex-end; /* Aligne le bouton à la fin de son conteneur */
+    margin-top: 0.5rem;
+    transition: background-color .2s;
+}
+
+.my-message .remove-message-btn {
+    height: 1.8rem;
+    background: none;
+    align-self: flex-start; /* Aligne le bouton à la fin de son conteneur */
+    margin-top: 0.5rem;
+    transition: background-color .2s;
+}
+
+.remove-message-btn:hover, .remove-message-btn:active{
+    cursor: pointer;
+    background-color: #495056;
+}
+
+/*------------------------------Input CSS------------------------------*/
+
 #chat-bottom {
     display: flex;
     align-items: center;
@@ -188,25 +213,6 @@
     margin-right: 0.5rem;
 }
 
-.others-message .remove-message-btn {
-    height: 1.8rem;
-    background: none;
-    align-self: flex-end; /* Aligne le bouton à la fin de son conteneur */
-    margin-top: 0.5rem;
-}
-
-.my-message .remove-message-btn {
-    height: 1.8rem;
-    background: none;
-    align-self: flex-start; /* Aligne le bouton à la fin de son conteneur */
-    margin-top: 0.5rem;
-}
-
-.remove-message-btn:hover, .remove-message-btn:active{
-    cursor: pointer;
-    background-color: #495056;
-}
-
 #nav-seemore {
     display: flex;
 }
@@ -223,29 +229,6 @@
     margin-bottom: 0;
 }
 
-#content-stats h1 {
-    margin-bottom: 1rem;
-}
-
-#content-stats p {
-    margin-bottom: 0.5rem;
-}
-
-@media screen and (min-width:1000px) {
-    #user_management_sections {
-        display: flex;
-    }
-}
-
-@media screen and (max-width:1000px) {
-    #user_management_sections {
-        display: block;
-    }
-
-    #user_management_sections > * {
-        margin-bottom: 3rem;
-    }
-}
 
 @media screen and (max-width: 520px) {
     #nav-left {
@@ -267,6 +250,85 @@
 
     #nav-seemore {
         margin-right: 0;
+    }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/*------------------------------Emojis CSS------------------------------*/
+
+#categoryButtonsContainer {
+    max-height: 200px;
+    overflow-y: auto;
+    display: flex;
+    gap: 1rem; /* Permet d'ajuster l'espace entre chaque emoji */
+    flex-wrap: wrap; /* Permet de passer à la ligne quand la largeur est trop petite */
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#emojiContainer {
+    margin-top: 0.5rem;
+    max-height: 200px;
+    width: 90%;
+    overflow-y: auto;
+    display: flex;
+    gap: 1rem; /* Permet d'ajuster l'espace entre chaque emoji */
+    flex-wrap: wrap; /* Permet de passer à la ligne quand la largeur est trop petite */
+    align-self: center;
+}
+
+#emojiButton {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-size: 1.5rem; /* Permet d'ajuster la taille de l'émoji pour afficher les autres émojis */
+}
+
+.categoryButton {
+    background-color: transparent;
+    border: solid;
+    border-radius: 7px;
+    padding: 5px; /* Permet d'ajuster l'espace entre chaque bouton de catégorie et ses bordures */
+    font-size: 1rem; /* Permet d'ajuster la taille des boutons des catégories */
+}
+
+.emojiButtons {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    font-size: 1.5rem; /* Permet d'ajuster la taille des emojis */
+}
+
+#emojiButton:hover, .categoryButton:hover, .emojiButtons:hover {
+    cursor: pointer;
+}
+
+/*------------------------------User management CSS------------------------------*/
+
+@media screen and (min-width:1000px) {
+    #user_management_sections {
+        display: flex;
+    }
+}
+
+@media screen and (max-width:1000px) {
+    #user_management_sections {
+        display: block;
+    }
+
+    #user_management_sections > * {
+        margin-bottom: 3rem;
     }
 }
 
@@ -317,63 +379,12 @@
     margin-top: 0.5rem;
 }
 
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
+/*------------------------------Statistics room CSS------------------------------*/
+
+#content-stats h1 {
+    margin-bottom: 1rem;
 }
 
-/*------------------------------CSS spécifique aux émojis------------------------------*/
-
-#categoryButtonsContainer {
-    max-height: 200px;
-    overflow-y: auto;
-    display: flex;
-    gap: 1rem; /* Permet d'ajuster l'espace entre chaque emoji */
-    flex-wrap: wrap; /* Permet de passer à la ligne quand la largeur est trop petite */
-    flex-direction: row;
-    justify-content: space-evenly;
-}
-
-#emojiContainer {
-    margin-top: 0.5rem;
-    max-height: 200px;
-    width: 90%;
-    overflow-y: auto;
-    display: flex;
-    gap: 1rem; /* Permet d'ajuster l'espace entre chaque emoji */
-    flex-wrap: wrap; /* Permet de passer à la ligne quand la largeur est trop petite */
-    align-self: center;
-}
-
-#emojiButton {
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    margin: 0;
-    font-size: 1.5rem; /* Permet d'ajuster la taille de l'émoji pour afficher les autres émojis */
-}
-
-.categoryButton {
-    background-color: transparent;
-    border: solid;
-    border-radius: 7px;
-    padding: 5px; /* Permet d'ajuster l'espace entre chaque bouton de catégorie et ses bordures */
-    font-size: 1rem; /* Permet d'ajuster la taille des boutons des catégories */
-}
-
-.emojiButtons {
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    font-size: 1.5rem; /* Permet d'ajuster la taille des emojis */
-}
-
-#emojiButton:hover, .categoryButton:hover, .emojiButtons:hover {
-    cursor: pointer;
+#content-stats p {
+    margin-bottom: 0.5rem;
 }

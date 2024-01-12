@@ -2,10 +2,11 @@
 
 Projet de groupe ENSISA messagerie en ligne.
 Site disponible en ligne à cette adresse : https://ensisingerie.alwaysdata.net/
+Lien du projet Github : https://github.com/Burn3rII/ENSISAGERIE
 
 ## Lancer le serveur avec debug = false:
 
-/ ! \ Prérequis : avoir installer un distributeur de fichiers statiques, ici whitenoise ( voir requirement.txt )
+/ ! \ Prérequis : avoir installé un distributeur de fichiers statiques, ici whitenoise ( voir requirement.txt )
 
 D'abord centraliser les fichiers statiques avec la commande :
 - python manage.py collectstatic
@@ -21,7 +22,7 @@ barres horizontales en haut à gauche de la fenêtre) :
 - https://www.youtube.com/watch?v=cAnWazo5pFU pour connecter un projet 
   Github existant avec votre Pycharm.
 - https://www.youtube.com/watch?v=8ZEssR8VTKo pour importer sur Github un 
-  projet local que vous avez sur Pycharm
+  projet local que vous avez sur Pycharm.
 
 Rmq : une fois le projet lié, soyez bien sûrs d'avoir ajouté un 
 interpréteur Python puis installez les packages requis du fichier 
@@ -39,7 +40,7 @@ push. Pour cela :
 
 ### Update project - Commit - Push
 
-Une fois Github lié, un nouveau menu déroulant a dû apparaitre en haut à 
+Une fois Github lié, un nouveau menu déroulant a dû apparaître en haut à 
 gauche de Pycharm, à côté du nom du projet. Ce menu permet, entre autres, 
 de récupérer une copie du projet sur Github (update), de commit et de push.
 
@@ -78,6 +79,7 @@ trouvent 3 boutons permettant de modifier la vue du fichier (preview seule,
 édition seule, édition + preview à côté).
 
 ## Pages Django utiles
+
 Page du user management : https://docs.djangoproject.com/en/4.2/topics/auth/default/
 
 Pour la création de vues en dérivant une des classes View : https://docs.djangoproject.com/en/4.2/ref/class-based-views/

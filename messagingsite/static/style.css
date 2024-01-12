@@ -43,6 +43,10 @@
     --background-color-night: #080125;
     --background-color-day: #A1D4ED;
     --moon_color: #D9FBFF;
+
+    /* Scrolling behavior */
+    --scroll-behavior: smooth; /* permet un défilement de page plus doux */
+    scroll-behavior: var(--scroll-behavior);
 }
 
 /*------------------------------Global---------------------------------------*/
@@ -59,9 +63,24 @@
 
     --type1-a-color: #AAB2B7;
 
-    --submit-button-color: var(--type1-a-color);
+    --submit-button-color: rgb(192, 200, 205);
     --submit-button-background-color: var(--primary-color);
     --placeholder-color: #DDDDDD;
+}
+
+/* Scrollbar style */
+::-webkit-scrollbar {
+    width: 0.5rem; /* largeur de la scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent; /* couleur de fond de la scrollbar */
+    border-radius: 10px; /* coins arrondis de la scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(140, 154, 165, 0.3); /* couleur de la poignée de la scrollbar */
+    border-radius: 10px; /* coins arrondis de la poignée de la scrollbar */
 }
 
 ::placeholder {
@@ -154,6 +173,10 @@ header a {
     #logo {
         width: 4rem;
         height: 4rem;
+    }
+
+    ::-webkit-scrollbar {
+        width: 0.4rem;
     }
 }
 

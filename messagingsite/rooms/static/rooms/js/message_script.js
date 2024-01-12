@@ -113,8 +113,6 @@ function sendMessage() {
                 addToQueue(async () => {
                     messageInput.val("");
                     serverMessageNumber();
-                    
-                    //message_shown_number ++;
 
                     if (message_shown_status === "fixed"){
                         loadMessages();
